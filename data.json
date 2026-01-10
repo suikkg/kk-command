@@ -1054,5 +1054,270 @@
     "command": "Open Browser    https://example.com    chrome",
     "params": "Open Browser: 关键字；chrome: 浏览器类型",
     "notes": "在 RIDE 用例中直接作为关键字行，示例来自 Selenium 使用说明"
+  },
+  {
+    "id": "git-config-name",
+    "category": "Git",
+    "sub": "基础配置",
+    "scene": "设置全局用户名",
+    "command": "git config --global user.name \"Your Name\"",
+    "params": "user.name: 提交显示的用户名",
+    "notes": "首次使用 Git 必配"
+  },
+  {
+    "id": "git-config-email",
+    "category": "Git",
+    "sub": "基础配置",
+    "scene": "设置全局邮箱",
+    "command": "git config --global user.email you@example.com",
+    "params": "user.email: 提交邮箱",
+    "notes": "邮箱应与平台账号一致以便识别"
+  },
+  {
+    "id": "git-alias-lg",
+    "category": "Git",
+    "sub": "基础配置",
+    "scene": "配置漂亮日志 alias",
+    "command": "git config --global alias.lg \"log --oneline --graph --decorate --all\"",
+    "params": "alias.lg: 自定义命令别名",
+    "notes": "快速查看分支图形历史"
+  },
+  {
+    "id": "git-init",
+    "category": "Git",
+    "sub": "基础配置",
+    "scene": "初始化本地仓库",
+    "command": "git init",
+    "params": "在当前目录创建 .git",
+    "notes": "空目录或已有代码均可"
+  },
+  {
+    "id": "git-clone",
+    "category": "Git",
+    "sub": "基础配置",
+    "scene": "克隆远程仓库",
+    "command": "git clone https://example.com/repo.git",
+    "params": "支持 https/ssh",
+    "notes": "如需子模块可追加 --recursive"
+  },
+  {
+    "id": "git-status",
+    "category": "Git",
+    "sub": "日常操作",
+    "scene": "查看状态",
+    "command": "git status",
+    "params": "显示工作区与暂存区差异",
+    "notes": "配合 -sb 获得精简输出"
+  },
+  {
+    "id": "git-add-p",
+    "category": "Git",
+    "sub": "日常操作",
+    "scene": "分块暂存",
+    "command": "git add -p",
+    "params": "-p: 按块交互选择",
+    "notes": "精细控制提交内容"
+  },
+  {
+    "id": "git-commit",
+    "category": "Git",
+    "sub": "日常操作",
+    "scene": "提交暂存区",
+    "command": "git commit -m \"feat: message\"",
+    "params": "-m: 提交说明",
+    "notes": "按团队规范撰写 message"
+  },
+  {
+    "id": "git-commit-amend",
+    "category": "Git",
+    "sub": "日常操作",
+    "scene": "修改上次提交",
+    "command": "git commit --amend",
+    "params": "--amend: 覆盖上一提交",
+    "notes": "未推送前使用，避免改远端历史"
+  },
+  {
+    "id": "git-push",
+    "category": "Git",
+    "sub": "日常操作",
+    "scene": "推送到远程",
+    "command": "git push",
+    "params": "推送当前分支到默认远程",
+    "notes": "首次需设置 upstream: git push -u origin <branch>"
+  },
+  {
+    "id": "git-push-force",
+    "category": "Git",
+    "sub": "日常操作",
+    "scene": "安全强制推送",
+    "command": "git push --force-with-lease",
+    "params": "--force-with-lease: 检查远端未被改写",
+    "notes": "多人协作慎用，确认无人更新",
+    "danger": true,
+    "warning": "改写远端历史，需确认风险"
+  },
+  {
+    "id": "git-pull-rebase",
+    "category": "Git",
+    "sub": "日常操作",
+    "scene": "拉取并重放",
+    "command": "git pull --rebase",
+    "params": "--rebase: 保持线性历史",
+    "notes": "减少无意义 merge 节点"
+  },
+  {
+    "id": "git-pull-rebase-origin-main",
+    "category": "Git",
+    "sub": "日常操作",
+    "scene": "远端有更新时先 rebase",
+    "command": "git pull --rebase origin main",
+    "params": "origin main: 指定远端与主分支",
+    "notes": "本地有提交但远端已更新时，先重放再推送，避免合并提交"
+  },
+  {
+    "id": "git-branch",
+    "category": "Git",
+    "sub": "分支管理",
+    "scene": "查看本地分支",
+    "command": "git branch",
+    "params": "列出本地分支",
+    "notes": "git branch -r 查看远端"
+  },
+  {
+    "id": "git-switch-new",
+    "category": "Git",
+    "sub": "分支管理",
+    "scene": "创建并切换分支",
+    "command": "git switch -c feature/login",
+    "params": "-c: 创建并切换",
+    "notes": "旧语法等价于 git checkout -b"
+  },
+  {
+    "id": "git-checkout-prev",
+    "category": "Git",
+    "sub": "分支管理",
+    "scene": "回到上一个分支",
+    "command": "git checkout -",
+    "params": "-: 前一个分支",
+    "notes": "快速在两个分支间切换"
+  },
+  {
+    "id": "git-merge-noff",
+    "category": "Git",
+    "sub": "分支管理",
+    "scene": "禁用快进合并",
+    "command": "git merge --no-ff feature/login",
+    "params": "--no-ff: 保留合并节点",
+    "notes": "保留分支的合并记录"
+  },
+  {
+    "id": "git-rebase-main",
+    "category": "Git",
+    "sub": "分支管理",
+    "scene": "在主干上重放",
+    "command": "git rebase origin/main",
+    "params": "基于远端 main 重放",
+    "notes": "同步主干后再推送"
+  },
+  {
+    "id": "git-remote-prune",
+    "category": "Git",
+    "sub": "分支管理",
+    "scene": "清理失效远端分支",
+    "command": "git remote prune origin",
+    "params": "删除失效的远端引用",
+    "notes": "定期清理保持列表干净"
+  },
+  {
+    "id": "git-fetch-prune",
+    "category": "Git",
+    "sub": "分支管理",
+    "scene": "获取并清理",
+    "command": "git fetch -p",
+    "params": "-p: prune 失效引用",
+    "notes": "拉取远端并清理无效分支"
+  },
+  {
+    "id": "git-cherry-pick",
+    "category": "Git",
+    "sub": "分支管理",
+    "scene": "拣选单个提交",
+    "command": "git cherry-pick <hash>",
+    "params": "指定 commit 哈希",
+    "notes": "可加 -x 记录来源"
+  },
+  {
+    "id": "git-checkout-file",
+    "category": "Git",
+    "sub": "撤销与回滚",
+    "scene": "丢弃工作区修改（旧用法）",
+    "command": "git checkout -- <file>",
+    "params": "-- <file>: 指定文件",
+    "notes": "新建议用 git restore"
+  },
+  {
+    "id": "git-restore-file",
+    "category": "Git",
+    "sub": "撤销与回滚",
+    "scene": "使用 restore 丢弃修改",
+    "command": "git restore <file>",
+    "params": "恢复文件到暂存/HEAD 状态",
+    "notes": "更现代的撤销命令"
+  },
+  {
+    "id": "git-reset-soft",
+    "category": "Git",
+    "sub": "撤销与回滚",
+    "scene": "撤销最近提交保留修改",
+    "command": "git reset HEAD^",
+    "params": "软重置到上一提交",
+    "notes": "改动仍保留在工作区"
+  },
+  {
+    "id": "git-reset-hard",
+    "category": "Git",
+    "sub": "撤销与回滚",
+    "scene": "强制回退并丢弃改动",
+    "command": "git reset --hard HEAD~1",
+    "params": "--hard: 丢弃工作区和暂存改动",
+    "notes": "危险操作，不可恢复",
+    "danger": true,
+    "warning": "会丢失未保存改动，慎用"
+  },
+  {
+    "id": "git-revert",
+    "category": "Git",
+    "sub": "撤销与回滚",
+    "scene": "生成反向提交回滚",
+    "command": "git revert <hash>",
+    "params": "创建新提交撤销指定变更",
+    "notes": "适用于已推送提交"
+  },
+  {
+    "id": "git-reflog",
+    "category": "Git",
+    "sub": "撤销与回滚",
+    "scene": "查看引用日志",
+    "command": "git reflog",
+    "params": "列出 HEAD/分支移动历史",
+    "notes": "找回被 reset 的提交"
+  },
+  {
+    "id": "git-stash",
+    "category": "Git",
+    "sub": "撤销与回滚",
+    "scene": "暂存当前工作",
+    "command": "git stash",
+    "params": "保存当前修改到栈",
+    "notes": "可配合 -u 包含未跟踪文件"
+  },
+  {
+    "id": "git-stash-pop",
+    "category": "Git",
+    "sub": "撤销与回滚",
+    "scene": "恢复最近一次 stash",
+    "command": "git stash pop",
+    "params": "应用并删除最新 stash",
+    "notes": "若冲突需手动解决"
   }
 ]

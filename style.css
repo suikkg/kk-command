@@ -302,6 +302,36 @@ button.primary {
   margin-bottom: 4px;
 }
 
+/* Git 模块补充：危险标记与子标签 */
+.badge.danger-badge {
+  background: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
+}
+
+.card.danger {
+  border-color: #fca5a5;
+}
+
+.card.danger .command {
+  border-color: #fca5a5;
+}
+
+.sub-tag {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: var(--primary-light);
+  color: var(--card);
+  font-size: 12px;
+}
+
+.warning {
+  color: #b91c1c;
+  font-size: 13px;
+}
+
 @media (max-width: 680px) {
   .topbar { flex-direction: column; align-items: flex-start; padding: 20px 16px 8px; }
   .page { padding: 0 16px 32px; }

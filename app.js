@@ -133,16 +133,20 @@ function renderList() {
 
   filtered.forEach((cmd) => {
     const card = document.createElement("article");
-    card.className = "card cmd-card";
+    card.className = `card cmd-card ${cmd.danger ? "danger" : ""}`;
     card.innerHTML = `
       <div class="cmd-title">
         <div>
-          <div class="badge">${cmd.category}</div>
-          <div class="scene">${cmd.scene}</div>
+          <div class="badge ${cmd.danger ? "danger-badge" : ""}">${cmd.category}</div>
+          <div class="scene">
+            ${cmd.scene}
+            ${cmd.sub ? `<span class="sub-tag">${cmd.sub}</span>` : ""}
+          </div>
         </div>
         <button class="favorite-btn ${state.favorites.has(cmd.id) ? "active" : ""}" data-id="${cmd.id}" aria-label="收藏">★</button>
       </div>
-      <div class="command">${highlightCommand(cmd.command)}</div>
+      <div class="command ${cmd.danger ? "danger" : ""}">${highlightCommand(cmd.command)}</div>
+      ${cmd.danger ? `<div class="warning">危险命令：${cmd.warning || "执行前请确认后果"}</div>` : ""}
       <div class="actions">
         <button class="primary small" data-action="copy" data-id="${cmd.id}">复制</button>
         <button class="ghost small" data-action="detail" data-id="${cmd.id}">详情</button>
@@ -190,7 +194,8 @@ function openModal(cmd) {
   els.modalCommand.innerHTML = highlightCommand(cmd.command);
   els.modalCommand.dataset.raw = cmd.command;
   els.modalParams.textContent = cmd.params || "—";
-  els.modalNotes.textContent = cmd.notes || "—";
+  const note = cmd.notes || "—";
+  els.modalNotes.textContent = cmd.danger && cmd.warning ? `${cmd.warning}；${note}` : note;
   els.modal.classList.remove("hidden");
 }
 

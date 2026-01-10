@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Git 命令速查 | 离线版</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="git.css">
+</head>
+<body class="light">
+  <header class="topbar">
+    <div>
+      <h1>Git 命令速查</h1>
+      <p class="subtitle">离线 · 复制即用 · 风格与主站一致</p>
+    </div>
+    <div class="top-actions">
+      <a href="./index.html" class="ghost">返回主页面</a>
+      <button id="themeToggle" class="ghost">切换主题</button>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="controls card">
+      <div class="search-row">
+        <input id="searchInput" type="search" placeholder="搜索 Git 命令 / 描述" aria-label="搜索命令">
+        <button id="clearSearch" class="ghost">清空</button>
+      </div>
+      <p class="muted">含危险命令会显示红色警告标记，请谨慎使用。</p>
+    </section>
+
+    <section class="git-section">
+      <h2 class="section-title">基础配置</h2>
+      <div class="grid" id="grid-base">
+        <article class="card cmd-card" data-category="基础配置" data-keywords="config user name" data-cmd='git config --global user.name "Your Name"'>
+          <div class="cmd-title">
+            <div>
+              <div class="badge">基础配置</div>
+              <div class="scene">设置全局用户名</div>
+            </div>
+          </div>
+          <div class="command">git config --global user.name "Your Name"</div>
+          <div class="actions">
+            <button class="primary small copy-btn" data-command='git config --global user.name "Your Name"'>复制</button>
+          </div>
+        </article>
+        <article class="card cmd-card" data-category="基础配置" data-keywords="config user email" data-cmd="git config --global user.email you@example.com">
+          <div class="cmd-title">
+            <div>
+              <div class="badge">基础配置</div>
+              <div class="scene">设置全局邮箱</div>
+            </div>
+          </div>
+          <div class="command">git config --global user.email you@example.com</div>
+          <div class="actions">
+            <button class="primary small copy-btn" data-command="git config --global user.email you@example.com">复制</button>
+          </div>
+        </article>
+        <article class="card cmd-card" data-category="基础配置" data-keywords="alias lg log" data-cmd='git config --global alias.lg "log --oneline --graph --decorate --all"'>
+          <div class="cmd-title">
+            <div>
+              <div class="badge">基础配置</div>
+              <div class="scene">配置漂亮日志别名</div>
+            </div>
+          </div>
+          <div class="command">git config --global alias.lg "log --oneline --graph --decorate --all"</div>
+          <div class="actions">
+            <button class="primary small copy-btn" data-command='git config --global alias.lg "log --oneline --graph --decorate --all"'>复制</button>
+          </div>
+        </article>
+        <article class="card cmd-card" data-category="基础配置" data-keywords="editor vscode" data-cmd='git config --global core.editor "code --wait"'>
+          <div class="cmd-title">
+            <div>
+              <div class="badge">基础配置</div>
+              <div class="scene">默认编辑器设为 VS Code</div>
+            </div>
+          </div>
+          <div class="command">git config --global core.editor "code --wait"</div>
+          <div class="actions">
+            <button class="primary small copy-btn" data-command='git config --global core.editor "code --wait"'>复制</button>
+          </div>
+        </article>
+        <article class="card cmd-card" data-category="基础配置" data-keywords="init" data-cmd="git init">
+          <div class="cmd-title">
+            <div>
+              <div class="badge">基础配置</div>
+              <div class="scene">初始化本地仓库</div>
+            </div>
+          </div>
+          <div class="command">git init</div>
+          <div class="actions">
+            <button class="primary small copy-btn" data-command="git init">复制</button>
+          </div>
+        </article>
+        <article class="card cmd-card" data-category="基础配置" data-keywords="clone" data-cmd="git clone https://example.com/repo.git">
+          <div class="cmd-title">
+            <div>
+              <div class="badge">基础配置</div>
+              <div class="scene">克隆远程仓库</div>
+            </div>
+          </div>
+          <div class="command">git clone https://example.com/repo.git</div>
+          <div class="actions">
+            <button class="primary small copy-btn" data-command="git clone https://example.com/repo.git">复制</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="git-section">
+      <h2 class="section-title">日常操作（add/commit/push）</h2>
+      <div class="grid" id="grid-daily">
+        <article class="card cmd-card" data-category="日常操作" data-keywords="status" data-cmd="git status">
+          <div class="cmd-title">
+            <div>
+              <div class="badge">日常操作</div>
+              <div class="scene">查看工作区与暂存区</div>
+            </div>
+          </div>
+          <div class="command">git status</div>
+          <div class="actions">
+            <button class="primary small copy-btn" data-command="git status">复制</button>
+          </div>
+        </article>
+        <article class="card cmd-card" data-category="日常操作" data-keywords="add patch" data-cmd="git add -p">
+          <div class="cmd-title">
+            <div>
+              <div class="badge">日常操作</div>
+              <div class="scene">交互式分块添加</div>
+            </div>
+          </div>
+          <div class="command">git add -p</div>
+          <div class="actions">
+            <button class="primary small copy-btn" data-command="git add -p">复制</button>
+          </div>
+        </article>
+        <article class="card cmd-card" data-category="日常操作" data-keywords="commit" data-cmd='git commit -m "feat: message"'>
+          <div class="cmd-title">
+            <div>
+              <div class="badge">日常操作</div>
+              <div class="scene">提交暂存区</div>
+            </div>
+          </div>
+          <div class="command">git commit -m "feat: message"</div>
+          <div class="actions">
+            <button class="primary small copy-btn" data-command='git commit -m "feat: message"'>复制</button>
+          </div>
+        </article>
+        <article class="card cmd-card" data-category="日常操作" data-keywords="commit amend" data-cmd="git commit --amend">
+          <div class="cmd-title">
+            <div>
+              <div class="badge">日常操作</div>
+              <div class="scene">修改上次提交</div>
+            </div>
+          </div>
+          <div class="command">git commit --amend</div>
+          <div class="actions">
+            <button class="primary small copy-btn" data-command="git commit --amend">复制</button>
+          </div>
+        </article>
+        <article class="card cmd-card" data-category="日常操作" data-keywords="push" data-cmd="git push">
+          <div class="cmd-title">
+            <div>
+              <div class="badge">日常操作</div>
+              <div class="scene">推送到远程</div>
+            </div>
+          </div>
+          <div class="command">git push</div>
+          <div class="actions">
+            <button class="primary small copy-btn" data-command="git push">复制</button>
+          </div>
+        </article>
+        <article class="card cmd-card danger" data-category="日常操作" data-keywords="force push" data-cmd="git push --force-with-lease">
+          <div class="cmd-title">
+            <div>
+              <div class="badge danger-badge">危险</div>
+              <div class="scene">安全强推（确认无他人更新）</div>
+            </div>
+          </div>
+          <div class="command">git push --force-with-lease</div>
+          <div class="actions">
+            <button class="primary small copy-btn" data-command="git push --force-with-lease">复制</button>
+          </div>
+        </article>
+        <article class="card cmd-card" data-category="日常操作" data-keywords="pull rebase" data-cmd="git pull --rebase">
+          <div class="cmd-title">
+            <div>
+              <div class="badge">日常操作</div>
+              <div class="scene">rebase 后合并，保持线性</div>
+            </div>
+          </div>
+          <div class="command">git pull --rebase</div>
+          <div class="actions">
+            <button class="primary small copy-btn" data-command="git pull --rebase">复制</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="git-section">
+      <h2 class="section-title">分支管理</h2>
+      <div class="grid" id="grid-branch">
+        <article class="card cmd-card" data-category="分支管理" data-keywords="branch list" data-cmd="git branch">
+          <div class="cmd-title">
+            <div>
+              <div class="badge">分支管理</div>
+              <div class="scene">列出本地分支</div>
+            </div>
+          </div>
+          <div class="command">git branch</div>
+          <div class="actions">
+            <button class="primary small copy-btn" data-command="git branch">复制</button>
+          </div>
+        </article>
+        <article class="card cmd-card" data-category="分支管理" data-keywords="switch new" data-cmd="git switch -c feature/login">
+          <div class="cmd-title">
+            <div>
+              <div class="badge">分支管理</div>
+              <div class="scene">创建并切换新分支</div>
+            </div>
+          </div>
+          <div class="command">git switch -c feature/login</div>
+          <div class="actions">
+            <button class="primary small copy-btn" data-command="git switch -c feature/login">复制</button>
+          </div>
+        </article>
+        <article class="card cmd-card" data-category="分支管理" data-keywords="checkout previous" data-cmd="git checkout -">
+          <div class="cmd-title">
+            <div>
+              <div class="badge">分支管理</div>
+              <div class="scene">回到上一个分支</div>
+            </div>
+          </div>
+          <div class="command">git checkout -</div>
+          <div class="actions">
+            <button class="primary small copy-btn" data-command="git checkout -">复制</button>
+          </div>
+        </article>
+        <article class="card cmd-card" data-category="分支管理" data-keywords="merge no-ff" data-cmd="git merge --no-ff feature/login">
+          <div class="cmd-title">
+            <div>
+              <div class="badge">分支管理</div>
+              <div class="scene">禁用快进合并，保留节点</div>
+            </div>
+          </div>
+          <div class="command">git merge --no-ff feature/login</div>
+          <div class="actions">
+            <button class="primary small copy-btn" data-command="git merge --no-ff feature/login">复制</button>
+          </div>
+        </article>
+        <article class="card cmd-card" data-category="分支管理" data-keywords="rebase" data-cmd="git rebase origin/main">
+          <div class="cmd-title">
+            <div>
+              <div class="badge">分支管理</div>
+              <div class="scene">在远端主干上重放</div>
+            </div>
+          </div>
+          <div class="command">git rebase origin/main</div>
+          <div class="actions">
+            <button class="primary small copy-btn" data-command="git rebase origin/main">复制</button>
+          </div>
+        </article>
+        <article class="card cmd-card" data-category="分支管理" data-keywords="remote prune" data-cmd="git remote prune origin">
+          <div class="cmd-title">
+            <div>
+              <div class="badge">分支管理</div>
+              <div class="scene">清理远端已删分支引用</div>
+            </div>
+          </div>
+          <div class="command">git remote prune origin</div>
+          <div class="actions">
+            <button class="primary small copy-btn" data-command="git remote prune origin">复制</button>
+          </div>
+        </article>
+        <article class="card cmd-card" data-category="分支管理" data-keywords="fetch prune" data-cmd="git fetch -p">
+          <div class="cmd-title">
+            <div>
+              <div class="badge">分支管理</div>
+              <div class="scene">获取远端并清理陈旧引用</div>
+            </div>
+          </div>
+          <div class="command">git fetch -p</div>
+          <div class="actions">
+            <button class="primary small copy-btn" data-command="git fetch -p">复制</button>
+          </div>
+        </article>
+        <article class="card cmd-card" data-category="分支管理" data-keywords="cherry pick" data-cmd="git cherry-pick <hash>">
+          <div class="cmd-title">
+            <div>
+              <div class="badge">分支管理</div>
+              <div class="scene">拣选提交到当前分支</div>
+            </div>
+          </div>
+          <div class="command">git cherry-pick &lt;hash&gt;</div>
+          <div class="actions">
+            <button class="primary small copy-btn" data-command="git cherry-pick <hash>">复制</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="git-section">
+      <h2 class="section-title">撤销与回滚</h2>
+      <div class="grid" id="grid-rollback">
+        <article class="card cmd-card" data-category="撤销与回滚" data-keywords="checkout discard" data-cmd="git checkout -- <file>">
+          <div class="cmd-title">
+            <div>
+              <div class="badge">撤销与回滚</div>
+              <div class="scene">丢弃工作区修改（旧用法）</div>
+            </div>
+          </div>
+          <div class="command">git checkout -- &lt;file&gt;</div>
+          <div class="actions">
+            <button class="primary small copy-btn" data-command="git checkout -- <file>">复制</button>
+          </div>
+        </article>
+        <article class="card cmd-card" data-category="撤销与回滚" data-keywords="restore" data-cmd="git restore <file>">
+          <div class="cmd-title">
+            <div>
+              <div class="badge">撤销与回滚</div>
+              <div class="scene">git restore 撤销工作区</div>
+            </div>
+          </div>
+          <div class="command">git restore &lt;file&gt;</div>
+          <div class="actions">
+            <button class="primary small copy-btn" data-command="git restore <file>">复制</button>
+          </div>
+        </article>
+        <article class="card cmd-card" data-category="撤销与回滚" data-keywords="reset soft" data-cmd="git reset HEAD^">
+          <div class="cmd-title">
+            <div>
+              <div class="badge">撤销与回滚</div>
+              <div class="scene">撤销最近提交保留修改</div>
+            </div>
+          </div>
+          <div class="command">git reset HEAD^</div>
+          <div class="actions">
+            <button class="primary small copy-btn" data-command="git reset HEAD^">复制</button>
+          </div>
+        </article>
+        <article class="card cmd-card danger" data-category="撤销与回滚" data-keywords="reset hard" data-cmd="git reset --hard HEAD~1">
+          <div class="cmd-title">
+            <div>
+              <div class="badge danger-badge">危险</div>
+              <div class="scene">强制回退并丢弃改动</div>
+            </div>
+          </div>
+          <div class="command">git reset --hard HEAD~1</div>
+          <div class="actions">
+            <button class="primary small copy-btn" data-command="git reset --hard HEAD~1">复制</button>
+          </div>
+        </article>
+        <article class="card cmd-card" data-category="撤销与回滚" data-keywords="revert" data-cmd="git revert <hash>">
+          <div class="cmd-title">
+            <div>
+              <div class="badge">撤销与回滚</div>
+              <div class="scene">生成反向提交回滚</div>
+            </div>
+          </div>
+          <div class="command">git revert &lt;hash&gt;</div>
+          <div class="actions">
+            <button class="primary small copy-btn" data-command="git revert <hash>">复制</button>
+          </div>
+        </article>
+        <article class="card cmd-card" data-category="撤销与回滚" data-keywords="reflog" data-cmd="git reflog">
+          <div class="cmd-title">
+            <div>
+              <div class="badge">撤销与回滚</div>
+              <div class="scene">查看引用变更记录</div>
+            </div>
+          </div>
+          <div class="command">git reflog</div>
+          <div class="actions">
+            <button class="primary small copy-btn" data-command="git reflog">复制</button>
+          </div>
+        </article>
+        <article class="card cmd-card" data-category="撤销与回滚" data-keywords="stash" data-cmd="git stash">
+          <div class="cmd-title">
+            <div>
+              <div class="badge">撤销与回滚</div>
+              <div class="scene">暂存当前工作</div>
+            </div>
+          </div>
+          <div class="command">git stash</div>
+          <div class="actions">
+            <button class="primary small copy-btn" data-command="git stash">复制</button>
+          </div>
+        </article>
+        <article class="card cmd-card" data-category="撤销与回滚" data-keywords="stash pop" data-cmd="git stash pop">
+          <div class="cmd-title">
+            <div>
+              <div class="badge">撤销与回滚</div>
+              <div class="scene">恢复最近一次 stash</div>
+            </div>
+          </div>
+          <div class="command">git stash pop</div>
+          <div class="actions">
+            <button class="primary small copy-btn" data-command="git stash pop">复制</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div id="emptyState" class="empty hidden">未找到匹配命令，试试其他关键词。</div>
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="git.js"></script>
+</body>
+</html>
