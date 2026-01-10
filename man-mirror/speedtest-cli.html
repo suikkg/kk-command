@@ -1,0 +1,59 @@
+<!DOCTYPE html><html lang="zh-cn">
+<!-- Mirrored from man.niaoge.com/speedtest-cli by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:07:42 GMT -->
+<head>
+<meta charset="UTF-8"/><meta name="renderer" content="webkit"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/><link href="public/style.css" rel="stylesheet" type="text/css" />
+<link href="public/index.css" rel="stylesheet" type="text/css" />
+<link href="public/img/favicon.ico" type="image/x-icon" rel="shortcut icon">
+<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script><script src="public/main.js"></script><title>speedtest-cli命令_Linux speedtest-cli 命令用法详解：命令行下测试服务器外网速度</title><link rel="canonical" href="speedtest-cli.html"/></head><body><div id="header" class="clearfix"><h2 id="logo" class="left"><a title="Linux命令大全" href="index.html">Linux命令大全</a></h2><ul id="menu-main" class="right toggle-target"><li id="menu-item-4" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-4"><a href="index.html">首页搜索</a></li><li id="menu-item-6" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6"><a href="par/2.html">系统管理</a></li><li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7"><a href="par/5.html">网络管理</a></li><li id="menu-item-8" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-8"><a href="par/4.html">软件·打印·开发·工具</a></li><li id="menu-item-9" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-9"><a href="par/1.html">文件和目录管理</a></li><li id="menu-item-10" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-10"><a href="par/3.html">硬件·内核·Shell·监测</a></li></ul> <span id="menu-main-toggle" class="toggle-btn" toggle-target="#menu-main"></span></div><div id="main-single" class="main-layout clearfix"><div class="right arc-wrap"><div id="position-wrap" class="clearfix"><div class="position left">当前位置：<a href="index.html">首页</a> &raquo; <a href="par/4.html" rel="category tag">软件·打印·开发·工具</a> &raquo; speedtest-cli</div></div><div id="title" class="clearfix"><h1 class="left">speedtest-cli命令</h1><div class="right"> <a href="sub/%e5%b8%b8%e7%94%a8%e5%b7%a5%e5%85%b7%e5%91%bd%e4%bb%a4.html" rel="tag">常用工具命令</a></div></div><div id="ad-arc-top" class="ad"></div><div id="arc-body"><p> <strong>speedtest-cli</strong>是一个使用python编写的命令行脚本，通过调用speedtest.net测试上下行的接口来完成速度测试，最后我会测试运维生存时间所在服务器的外网速度。项目地址：https://github.com/sivel/speedtest-cli</p><h3> 安装speedtest－cli<br/></h3><p> speedtest-cli需要在python 2.4-3.4的环境下，安装方法都很简单，自己选择以下最适合你的一种。</p><p> <strong>pip方式</strong></p><pre>
+＃ pip <span class="wp_keywordlink"><a href="install.html" title="install命令" target="_blank">install</a></span> speedtest－cli</pre><p> <strong>easy_install方式</strong></p><pre>
+＃ easy_install speedtest-cli</pre><p> <strong>github＋pip方式</strong></p><pre>
+＃ pip install git+https://github.com/sivel/speedtest-cli.git</pre><p> 或者</p><pre>
+＃ git clone https://github.com/sivel/speedtest-cli.git
+＃ python speedtest-cli/setup.py install</pre><p> <strong>下载脚本方式</strong></p><pre>
+＃ <span class="wp_keywordlink"><a href="wget.html" title="wget命令" target="_blank">wget</a></span> -O speedtest-cli https://raw.github.com/sivel/spe ... er/speedtest_cli.py
+＃ <span class="wp_keywordlink"><a href="chmod.html" title="chmod命令" target="_blank">chmod</a></span> +x speedtest-cli</pre><p> 或者</p><pre>
+＃ <span class="wp_keywordlink"><a href="curl.html" title="curl命令" target="_blank">curl</a></span> -o speedtest-cli https://raw.github.com/sivel/spe ... er/speedtest_cli.py
+＃ chmod +x speedtest-cli</pre><p> 直接下载脚本，给予执行权限即可。</p><h3> 用法<br/></h3><pre>
+-h, --<span class="wp_keywordlink"><a href="help.html" title="help命令" target="_blank">help</a></span>       show this help message and <span class="wp_keywordlink"><a href="exit.html" title="exit命令" target="_blank">exit</a></span>
+--share          分享你的网速，该命令会在speedtest网站上生成网速测试结果的图片。
+--simple         Suppress verbose output, only show basic information
+--list           根据距离显示speedtest.net的测试服务器列表。
+--server=SERVER  指定列表中<span class="wp_keywordlink"><a href="id.html" title="id命令" target="_blank">id</a></span>的服务器来做测试。
+--mini=MINI      URL of the Speedtest Mini server
+--source=SOURCE  Source <span class="wp_keywordlink"><a href="ip.html" title="ip命令" target="_blank">ip</a></span> address to <span class="wp_keywordlink"><a href="bind.html" title="bind命令" target="_blank">bind</a></span> to
+--version        Show the version number and exit</pre><h3> 实例<br/></h3><p> 列出所有在中国的测试服务器：</p><pre>
+[root@li229-122 ~]# speedtest-cli --list | <span class="wp_keywordlink"><a href="grep.html" title="grep命令" target="_blank">grep</a></span> China
+1185) China Unicom (Changchun, China) [10534.35 km]
+3784) China Mobile (Urumqi, China) [10581.15 km]
+2667) Beijing Normal University (Beijing, China) [11117.03 km]
+2529) Beijing Normal University (Beijing, China) [11117.03 km]
+2816) Capital Online Data <span class="wp_keywordlink"><a href="service.html" title="service命令" target="_blank">service</a></span> (Beijing, China) [11117.03 km]
+4354) SXmobile (Taiyuan, China) [11383.17 km]
+3973) China Telecom (Lanzhou, China) [11615.43 km]
+3633) China Telecom (Shanghai, China) [11983.37 km]
+3927) China Mobile Jiangsu Co., Ltd. (Suzhou, China) [11989.27 km]
+2461) China Unicom (Chengdu, China) [12213.35 km]
+1028) Shepherd Software (Xiamen, China) [12785.57 km]
+1628) Xiamen Guangdian Xinxu (Xiamen, China) [12785.57 km]
+3891) GZinternet (Guangzhou, China) [13005.36 km]
+3871) SZWCDMA (Shenzhen, China) [13059.20 km]
+3819) SZU (Shenzhen, China) [13059.20 km]
+1536) STC (Hong Kong, China) [13088.37 km]
+1890) Telin (Hong Kong, China) [13088.37 km]</pre><p> <strong>结果解释</strong></p><pre>
+3633) China Telecom (Shanghai, China) [11983.37 km]</pre><pre>
+3633: 服务器id
+china telecom：isp，这里是中国电信
+shanghai,china ：服务器所在地址
+11983.37 km：两台服务器地理位置之间距离，我这台机器在美国，和上海相距11983.37公里，很远呐.</pre><p> <strong>外网速度测试</strong></p><pre>
+[root@li229-122 ~]# speedtest-cli --server=3633 --share
+Retrieving speedtest.net configuration...
+Retrieving speedtest.net server list...
+Testing from Linode (173.255.219.122)...
+Hosted by China Telecom (Shanghai) [11983.37 km]: 23.603 ms
+Testing download speed........................................
+Download: 24.84 Mbit/s
+Testing upload speed..................................................
+Upload: 4.57 Mbit/s
+Share results: http://www.speedtest.net/result/3240988007.png</pre></div></div><div id="sidebar" class="left"><div class="box"><h3 class="title">相关命令</h3><ul class="body list-col-1 clearfix"><li><a href="rsync.html" title="rsync">rsync</a></li><li><a href="info.html" title="info">info</a></li><li><a href="gpm.html" title="gpm">gpm</a></li><li><a href="talk.html" title="talk">talk</a></li><li><a href="vdfuse.html" title="vdfuse">vdfuse</a></li><li><a href="consoletype.html" title="consoletype">consoletype</a></li><li><a href="ngrep.html" title="ngrep">ngrep</a></li><li><a href="hostid.html" title="hostid">hostid</a></li><li><a href="pssh.html" title="pssh">pssh</a></li><li><a href="mesg.html" title="mesg">mesg</a></li><li><a href="xargs.html" title="xargs">xargs</a></li><li><a href="whoami.html" title="whoami">whoami</a></li><li><a href="cal.html" title="cal">cal</a></li><li><a href="md5sum.html" title="md5sum">md5sum</a></li><li><a href="mattrib.html" title="mattrib">mattrib</a></li><li><a href="screen.html" title="screen">screen</a></li></ul></div><div id="sidebar_search_box" class="box"><form action="https://man.niaoge.com/" method="post"> <input class="search-input " type="text" name="ss" id="ss" value="命令直达(输入完整命令)" onfocus="if (value =='命令直达(输入完整命令)'){value =''}" onblur="if (value ==''){value='命令直达(输入完整命令)'}"/> <input class="search-submit button mobile-visible" type="submit" value="进入"/></form></div><div class="box"><h3 class="title"><a href="download/index.html">Linux下载</a></h3><ul class="body list-col-1 clearfix"><li><a href="download/Ubuntu.html">Ubuntu下载</a></li><li><a href="download/CentOS.html">CentOS下载</a></li></ul></div></div></div> ﻿<div id="footer-wrap"><div id="btn-backtop" title="返回顶部">返回顶部↑</div><div id="footer"><div class="info box"> <a href="index.html" title="Linux命令大全">Linux命令大全</a> <span class="split"></span> <a href="about_us.html" title="关于/联系">关于/联系</a> <span class="split"></span> 收藏本站请使用Ctrl+D <span class="split"></span> <a href="shell-script/index.html" target="_blank">Shell脚本攻略</a> <span class="split"></span> <a href="shell-regex.html" target="_blank">Shell正则表达式</a> <span class="split"></span> 共收录 <span style="font-size: 16px; color:#74b147;">581</span> 条Linux系统命令</div><div class="desc box">在Linux命令大全（man.niaoge.com）可以查询您所需要的Linux命令教程和相关实例。如果您觉得本站内容对您有所帮助，请推荐给更多需要帮助的人。</div></div></div> <script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?9afbd88b4e674f3b4af0a760c48a00ac"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script></body>
+<!-- Mirrored from man.niaoge.com/speedtest-cli by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:07:42 GMT -->
+</html>

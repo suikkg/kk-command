@@ -1,0 +1,50 @@
+<!DOCTYPE html><html lang="zh-cn">
+<!-- Mirrored from man.niaoge.com/crontab by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:03:56 GMT -->
+<head>
+<meta charset="UTF-8"/><meta name="renderer" content="webkit"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/><link href="public/style.css" rel="stylesheet" type="text/css" />
+<link href="public/index.css" rel="stylesheet" type="text/css" />
+<link href="public/img/favicon.ico" type="image/x-icon" rel="shortcut icon">
+<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script><script src="public/main.js"></script><title>crontab命令_Linux crontab 命令用法详解：提交和管理用户的需要周期性执行的任务</title></head><body><div id="header" class="clearfix"><h2 id="logo" class="left"><a title="Linux命令大全" href="index.html">Linux命令大全</a></h2><ul id="menu-main" class="right toggle-target"><li id="menu-item-4" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-4"><a href="index.html">首页搜索</a></li><li id="menu-item-6" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-6"><a href="par/2.html">系统管理</a></li><li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7"><a href="par/5.html">网络管理</a></li><li id="menu-item-8" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8"><a href="par/4.html">软件·打印·开发·工具</a></li><li id="menu-item-9" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-9"><a href="par/1.html">文件和目录管理</a></li><li id="menu-item-10" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-10"><a href="par/3.html">硬件·内核·Shell·监测</a></li></ul> <span id="menu-main-toggle" class="toggle-btn" toggle-target="#menu-main"></span></div><div id="main-single" class="main-layout clearfix"><div class="right arc-wrap"><div id="position-wrap" class="clearfix"><div class="position left">当前位置：<a href="index.html">首页</a> &raquo; <a href="par/2.html" rel="category tag">系统管理</a> &raquo; crontab</div></div><div id="title" class="clearfix"><h1 class="left">crontab命令</h1><div class="right"> <a href="sub/%e8%bf%9b%e7%a8%8b%e5%92%8c%e4%bd%9c%e4%b8%9a%e7%ae%a1%e7%90%86.html" rel="tag">进程和作业管理</a></div></div><div id="arc-body"><p> <strong>crontab命令</strong>被用来提交和管理用户的需要周期性执行的任务，与windows下的计划任务类似，当安装完成操作系统后，默认会安装此服务工具，并且会自动启动crond进程，crond进程每分钟会定期检查是否有要执行的任务，如果有要执行的任务，则自动执行该任务。</p><h3> 语法<br/></h3><pre>
+crontab(选项)(参数)</pre><h3> 选项<br/></h3><pre>
+-e：编辑该用户的计时器设置；
+-l：列出该用户的计时器设置；
+-r：删除该用户的计时器设置；
+-u&lt;用户名称&gt;：指定要设定计时器的用户名称。</pre><h3> 参数<br/></h3><p> crontab文件：指定包含待执行任务的crontab文件。</p><h3> 知识扩展<br/></h3><p> Linux下的任务调度分为两类：<strong>系统任务调度</strong>和<strong>用户任务调度</strong>。</p><p> <strong>系统任务调度：</strong>系统周期性所要执行的工作，比如写缓存数据到硬盘、日志清理等。在<code>/etc</code>目录下有一个crontab文件，这个就是系统任务调度的配置文件。</p><p> <code>/etc/crontab</code>文件包括下面几行：</p><pre>
+SHELL=/bin/bash
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=&quot;&quot;HOME=/
+
+# run-parts
+51 * * * * root run-parts /etc/cron.hourly
+24 7 * * * root run-parts /etc/cron.daily
+22 4 * * 0 root run-parts /etc/cron.weekly
+42 4 1 * * root run-parts /etc/cron.monthly</pre><p> 前四行是用来配置crond任务运行的环境变量，第一行SHELL变量指定了系统要使用哪个shell，这里是bash，第二行PATH变量指定了系统执行命令的路径，第三行MAILTO变量指定了crond的任务执行信息将通过电子邮件发送给root用户，如果MAILTO变量的值为空，则表示不发送任务执行信息给用户，第四行的HOME变量指定了在执行命令或者脚本时使用的主目录。</p><p> <strong>用户任务调度：</strong>用户定期要执行的工作，比如用户数据备份、定时邮件提醒等。用户可以使用&nbsp;crontab&nbsp;工具来定制自己的计划任务。所有用户定义的crontab文件都被保存在<code>/var/spool/cron</code>目录中。其文件名与用户名一致，使用者权限文件如下：</p><pre>
+/etc/cron.deny     该文件中所列用户不允许使用crontab命令
+/etc/cron.allow    该文件中所列用户允许使用crontab命令
+/var/spool/cron/   所有用户crontab文件存放的目录,以用户名命名</pre><p> crontab文件的含义：用户所建立的crontab文件中，每一行都代表一项任务，每行的每个字段代表一项设置，它的格式共分为六个字段，前五段是时间设定段，第六段是要执行的命令段，格式如下：</p><pre>
+minute   hour   day   month   week   <span class="wp_keywordlink"><a href="command.html" title="command命令" target="_blank">command</a></span>     <span style="color:#FF0000;">顺序：分 时 日 月 周</span></pre><p> 其中：</p><ul><li> minute：&nbsp;表示分钟，可以是从0到59之间的任何整数。</li><li> hour：表示小时，可以是从0到23之间的任何整数。</li><li> day：表示日期，可以是从1到31之间的任何整数。</li><li> month：表示月份，可以是从1到12之间的任何整数。</li><li> week：表示星期几，可以是从0到7之间的任何整数，这里的0或7代表星期日。</li><li> command：要执行的命令，可以是系统命令，也可以是自己编写的脚本文件。</li></ul><p> 在以上各个字段中，还可以使用以下特殊字符：</p><ul><li> 星号（*）：代表所有可能的值，例如month字段如果是星号，则表示在满足其它字段的制约条件后每月都执行该命令操作。</li><li> 逗号（,）：可以用逗号隔开的值指定一个列表范围，例如，&ldquo;1,2,5,7,8,9&rdquo;</li><li> 中杠（-）：可以用整数之间的中杠表示一个整数范围，例如&ldquo;2-6&rdquo;表示&ldquo;2,3,4,5,6&rdquo;</li><li> 正斜线（/）：可以用正斜线指定时间的间隔频率，例如&ldquo;0-23/2&rdquo;表示每两小时执行一次。同时正斜线可以和星号一起使用，例如*/10，如果用在minute字段，表示每十分钟执行一次。</li></ul><p> <strong>crond服务</strong></p><pre>
+/sbin/<span class="wp_keywordlink"><a href="service.html" title="service命令" target="_blank">service</a></span> crond start    //启动服务
+/sbin/service crond stop     //关闭服务
+/sbin/service crond restart  //重启服务
+/sbin/service crond reload   //重新载入配置</pre><p> 查看crontab服务状态：</p><pre>
+service crond status</pre><p> 手动启动crontab服务：</p><pre>
+service crond start</pre><p> 查看crontab服务是否已设置为开机启动，执行命令：</p><pre>
+<span class="wp_keywordlink"><a href="ntsysv.html" title="ntsysv命令" target="_blank">ntsysv</a></span></pre><p> 加入开机自动启动：</p><pre>
+<span class="wp_keywordlink"><a href="chkconfig.html" title="chkconfig命令" target="_blank">chkconfig</a></span> &ndash;level 35 crond on</pre><h3> 实例<br/></h3><p> 每1分钟执行一次command</p><pre>
+* * * * * command</pre><p> 每小时的第3和第15分钟执行</p><pre>
+3,15 * * * * command</pre><p> 在上午8点到11点的第3和第15分钟执行</p><pre>
+3,15 8-11 * * * command</pre><p> 每隔两天的上午8点到11点的第3和第15分钟执行</p><pre>
+3,15 8-11 */2 * * command</pre><p> 每个星期一的上午8点到11点的第3和第15分钟执行</p><pre>
+3,15 8-11 * * 1 command</pre><p> 每晚的21:30重启smb&nbsp;</p><pre>
+30 21 * * * /etc/<span class="wp_keywordlink"><a href="init.html" title="init命令" target="_blank">init</a></span>.d/smb restart</pre><p> 每月1、10、22日的4&nbsp;:&nbsp;45重启smb&nbsp;</p><pre>
+45 4 1,10,22 * * /etc/init.d/smb restart</pre><p> 每周六、周日的1:10重启smb</p><pre>
+10 1 * * 6,0 /etc/init.d/smb restart</pre><p> 每天18&nbsp;:&nbsp;00至23&nbsp;:&nbsp;00之间每隔30分钟重启smb&nbsp;</p><pre>
+0,30 18-23 * * * /etc/init.d/smb restart</pre><p> 每星期六的晚上11:00&nbsp;pm重启smb&nbsp;</p><pre>
+0 23 * * 6 /etc/init.d/smb restart</pre><p> 每一小时重启smb&nbsp;</p><pre>
+* */1 * * * /etc/init.d/smb restart</pre><p> 晚上11点到早上7点之间，每隔一小时重启smb</p><pre>
+* 23-7/1 * * * /etc/init.d/smb restart</pre><p> 每月的4号与每周一到周三的11点重启smb&nbsp;</p><pre>
+0 11 4 * mon-wed /etc/init.d/smb restart</pre><p> 一月一号的4点重启smb</p><pre>
+0 4 1 jan * /etc/init.d/smb restart</pre><p> 每小时执行<code>/etc/cron.hourly</code>目录内的脚本</p><pre>
+01 * * * * root run-parts /etc/cron.hourly</pre></div></div><div id="sidebar" class="left"><div class="box"><h3 class="title">相关命令</h3><ul class="body list-col-1 clearfix"><li><a href="watch.html" title="watch">watch</a></li><li><a href="systemctl.html" title="systemctl">systemctl</a></li><li><a href="pidof.html" title="pidof">pidof</a></li><li><a href="service.html" title="service">service</a></li><li><a href="nohup.html" title="nohup">nohup</a></li><li><a href="skill.html" title="skill">skill</a></li><li><a href="nice.html" title="nice">nice</a></li><li><a href="init.html" title="init">init</a></li><li><a href="pmap.html" title="pmap">pmap</a></li><li><a href="batch.html" title="batch">batch</a></li><li><a href="killall.html" title="killall">killall</a></li><li><a href="pkill.html" title="pkill">pkill</a></li><li><a href="renice.html" title="renice">renice</a></li><li><a href="pgrep.html" title="pgrep">pgrep</a></li><li><a href="atrm.html" title="atrm">atrm</a></li><li><a href="at.html" title="at">at</a></li><li><a href="telint.html" title="telint">telint</a></li><li><a href="ipcrm.html" title="ipcrm">ipcrm</a></li><li><a href="ps.html" title="ps">ps</a></li><li><a href="runlevel.html" title="runlevel">runlevel</a></li></ul></div><div id="sidebar_search_box" class="box"><form action="https://man.niaoge.com/" method="post"> <input class="search-input " type="text" name="ss" id="ss" value="命令直达(输入完整命令)" onfocus="if (value =='命令直达(输入完整命令)'){value =''}" onblur="if (value ==''){value='命令直达(输入完整命令)'}"/> <input class="search-submit button mobile-visible" type="submit" value="进入"/></form></div><div class="box"><h3 class="title"><a href="download/index.html">Linux下载</a></h3><ul class="body list-col-1 clearfix"><li><a href="download/Ubuntu.html">Ubuntu下载</a></li><li><a href="download/CentOS.html">CentOS下载</a></li></ul></div></div></div> ﻿<div id="footer-wrap"><div id="btn-backtop" title="返回顶部">返回顶部↑</div><div id="footer"><div class="info box"> <a href="index.html" title="Linux命令大全">Linux命令大全</a> <span class="split"></span> <a href="about_us.html" title="关于/联系">关于/联系</a> <span class="split"></span> 收藏本站请使用Ctrl+D <span class="split"></span> <a href="shell-script/index.html" target="_blank">Shell脚本攻略</a> <span class="split"></span> <a href="shell-regex.html" target="_blank">Shell正则表达式</a> <span class="split"></span> 共收录 <span style="font-size: 16px; color:#74b147;">593</span> 条Linux系统命令</div><div class="desc box">在Linux命令大全（man.niaoge.com）可以查询您所需要的Linux命令教程和相关实例。如果您觉得本站内容对您有所帮助，请推荐给更多需要帮助的人。</div></div></div> <script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?9afbd88b4e674f3b4af0a760c48a00ac"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script></body>
+<!-- Mirrored from man.niaoge.com/crontab by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:03:56 GMT -->
+</html>

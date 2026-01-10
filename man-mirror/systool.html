@@ -1,0 +1,184 @@
+<!DOCTYPE html><html lang="zh-cn">
+<!-- Mirrored from man.niaoge.com/systool by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:04:20 GMT -->
+<head>
+<meta charset="UTF-8"/><meta name="renderer" content="webkit"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/><link href="public/style.css" rel="stylesheet" type="text/css" />
+<link href="public/index.css" rel="stylesheet" type="text/css" />
+<link href="public/img/favicon.ico" type="image/x-icon" rel="shortcut icon">
+<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script><script src="public/main.js"></script><title>systool命令_Linux systool 命令用法详解：显示基于总线、类和拓扑显示系统中设备的信息</title><link rel="canonical" href="systool.html"/></head><body><div id="header" class="clearfix"><h2 id="logo" class="left"><a title="Linux命令大全" href="index.html">Linux命令大全</a></h2><ul id="menu-main" class="right toggle-target"><li id="menu-item-4" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home current-post-parent menu-item-4"><a href="index.html">首页搜索</a></li><li id="menu-item-6" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6"><a href="par/2.html">系统管理</a></li><li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7"><a href="par/5.html">网络管理</a></li><li id="menu-item-8" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8"><a href="par/4.html">软件·打印·开发·工具</a></li><li id="menu-item-9" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-9"><a href="par/1.html">文件和目录管理</a></li><li id="menu-item-10" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-10"><a href="par/3.html">硬件·内核·Shell·监测</a></li></ul> <span id="menu-main-toggle" class="toggle-btn" toggle-target="#menu-main"></span></div><div id="main-single" class="main-layout clearfix"><div class="right arc-wrap"><div id="position-wrap" class="clearfix"><div class="position left">当前位置：<a href="index.html">首页</a> &raquo; <a href="par/3.html" rel="category tag">硬件·内核·Shell·监测</a> &raquo; systool</div></div><div id="title" class="clearfix"><h1 class="left">systool命令</h1><div class="right"> <a href="sub/%e7%a1%ac%e4%bb%b6%e7%ae%a1%e7%90%86.html" rel="tag">硬件管理</a></div></div><div id="arc-body"><p> <strong>systool命令</strong>指令显示基于总线、类和拓扑显示系统中设备的信息。</p><h3> 语法<br/></h3><pre>
+systool(选项)(参数)</pre><h3> 选项<br/></h3><pre>
+-a：显示被请求资源的属性；
+-b&lt;总线&gt;：显示指定总线的信息；
+-c&lt;class&gt;：显示指定类的信息；
+-d：仅显示设备；
+-h：显示指令的用法；
+-m&lt;模块名称&gt;：显示指定模块的信息；
+-p：显示资源的&ldquo;sysfs&rdquo;绝对路径；
+-v：显示所有属性；
+-A&lt;属性&gt;：显示请求资源的属性值；
+-D：仅显示驱动程序信息；
+-P：显示设备的父类。</pre><h3> 参数<br/></h3><p> 设备：指定要查看信息的设备名称。</p><h3> 实例<br/></h3><pre>
+<span style="color:#B22222;">[root@localhost ~]# systool</span>
+Supported sysfs buses:
+        acpi
+        i2c
+        ide
+        pci_express
+        pci
+        pcmcia
+        platform
+        pnp
+        scsi
+        serio
+        usb
+Supported sysfs classes:
+        backlight
+        cpuid
+        dma_v3
+        firmware
+        graphics
+        hidraw
+        hwmon
+        i2c-adapter
+        input
+        leds
+        mem
+        misc
+        msr
+        net
+        pci_bus
+        pcmcia_socket
+        printer
+        raw
+        sas_device
+        sas_end_device
+        sas_expander
+        sas_host
+        sas_phy
+        sas_port
+        scsi_device
+        scsi_disk
+        scsi_generic
+        scsi_host
+        sound
+        tty
+        usb_device
+        usb_endpoint
+        usb_host
+        vc
+        vtconsole
+Supported sysfs devices:
+        acpi
+        pci0000:00
+        platform
+        pnp0
+        sequencer2
+        sequencer
+        <span class="wp_keywordlink"><a href="seq.html" title="seq命令" target="_blank">seq</a></span>
+        system
+        timer
+Supported sysfs modules:
+        8250
+        acpi_memhotplug
+        ac
+        asus_acpi
+        ata_piix
+        auth_rpcgss
+        backlight
+        battery
+        button
+        cifs
+        cpufreq
+        crypto_api
+        dell_wmi
+        dm_log
+        dm_mem_cache
+        dm_message
+        dm_mirror
+        dm_mod
+        dm_multipath
+        dm_raid45
+        dm_region_hash
+        dock
+        e1000e
+        edac_mc
+        ehci_hcd
+        <span class="wp_keywordlink"><a href="exportfs.html" title="exportfs命令" target="_blank">exportfs</a></span>
+        ext3
+        hwmon
+        i2c_core
+        i2c_ec
+        i2c_i801
+        i7core_edac
+        i8042
+        ip_conntrack_netbios_ns
+        ip_conntrack
+        ip_tables
+        iptable_filter
+        ipv6
+        it821x
+        jbd
+        joydev
+        keyboard
+        libata
+        lockd
+        <span class="wp_keywordlink"><a href="lp.html" title="lp命令" target="_blank">lp</a></span>
+        md_mod
+        mousedev
+        mpt2sas
+        nfnetlink
+        nfs_acl
+        nfsd
+        nls_utf8
+        ohci_hcd
+        parport_pc
+        parport
+        pci_hotplug
+        pcmcia
+        pcmcia_core
+        pcspkr
+        piix
+        power_meter
+        printk
+        processor
+        psmouse
+        rsrc_nonstatic
+        sbs
+        scsi_dh
+        scsi_mod
+        scsi_transport_sas
+        sd_mod
+        serio_raw
+        sg
+        shpchp
+        snd_hda_intel
+        snd_hwdep
+        snd_mixer_oss
+        snd_page_alloc
+        snd_pcm_oss
+        snd_pcm
+        snd_seq_device
+        snd_seq_dummy
+        snd_seq_midi_event
+        snd_seq_oss
+        snd_seq
+        snd_timer
+        snd
+        soundcore
+        sunrpc
+        tcp_bic
+        tpm_bios
+        tpm_tis
+        tpm
+        uhci_hcd
+        usbcore
+        usbhid
+        video
+        wmi
+        x_tables
+        xfrm_nalgo
+        xt_limit
+        xt_state
+        xt_tcpudp
+        yenta_socket</pre></div></div><div id="sidebar" class="left"><div class="box"><h3 class="title">相关命令</h3><ul class="body list-col-1 clearfix"><li><a href="losetup.html" title="losetup">losetup</a></li><li><a href="setpci.html" title="setpci">setpci</a></li><li><a href="hwclock.html" title="hwclock">hwclock</a></li><li><a href="cdrecord.html" title="cdrecord">cdrecord</a></li><li><a href="dmidecode.html" title="dmidecode">dmidecode</a></li><li><a href="lsusb.html" title="lsusb">lsusb</a></li><li><a href="volname.html" title="volname">volname</a></li><li><a href="lspci.html" title="lspci">lspci</a></li><li><a href="arch.html" title="arch">arch</a></li></ul></div><div id="sidebar_search_box" class="box"><form action="https://man.niaoge.com/" method="post"> <input class="search-input " type="text" name="ss" id="ss" value="命令直达(输入完整命令)" onfocus="if (value =='命令直达(输入完整命令)'){value =''}" onblur="if (value ==''){value='命令直达(输入完整命令)'}"/> <input class="search-submit button mobile-visible" type="submit" value="进入"/></form></div><div class="box"><h3 class="title"><a href="download/index.html">Linux下载</a></h3><ul class="body list-col-1 clearfix"><li><a href="download/Ubuntu.html">Ubuntu下载</a></li><li><a href="download/CentOS.html">CentOS下载</a></li></ul></div></div></div> ﻿<div id="footer-wrap"><div id="btn-backtop" title="返回顶部">返回顶部↑</div><div id="footer"><div class="info box"> <a href="index.html" title="Linux命令大全">Linux命令大全</a> <span class="split"></span> <a href="about_us.html" title="关于/联系">关于/联系</a> <span class="split"></span> 收藏本站请使用Ctrl+D <span class="split"></span> <a href="shell-script/index.html" target="_blank">Shell脚本攻略</a> <span class="split"></span> <a href="shell-regex.html" target="_blank">Shell正则表达式</a> <span class="split"></span> 共收录 <span style="font-size: 16px; color:#74b147;">585</span> 条Linux系统命令</div><div class="desc box">在Linux命令大全（man.niaoge.com）可以查询您所需要的Linux命令教程和相关实例。如果您觉得本站内容对您有所帮助，请推荐给更多需要帮助的人。</div></div></div> <script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?9afbd88b4e674f3b4af0a760c48a00ac"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script></body>
+<!-- Mirrored from man.niaoge.com/systool by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:04:20 GMT -->
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html><html lang="zh-cn">
+<!-- Mirrored from man.niaoge.com/tftp by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:04:29 GMT -->
+<head>
+<meta charset="UTF-8"/><meta name="renderer" content="webkit"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/><link href="public/style.css" rel="stylesheet" type="text/css" />
+<link href="public/index.css" rel="stylesheet" type="text/css" />
+<link href="public/img/favicon.ico" type="image/x-icon" rel="shortcut icon">
+<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script><script src="public/main.js"></script><title>tftp命令_Linux tftp 命令用法详解：在本机和tftp服务器之间使用TFTP协议传输文件</title><link rel="canonical" href="tftp.html"/></head><body><div id="header" class="clearfix"><h2 id="logo" class="left"><a title="Linux命令大全" href="index.html">Linux命令大全</a></h2><ul id="menu-main" class="right toggle-target"><li id="menu-item-4" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-4"><a href="index.html">首页搜索</a></li><li id="menu-item-6" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6"><a href="par/2.html">系统管理</a></li><li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7"><a href="par/5.html">网络管理</a></li><li id="menu-item-8" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8"><a href="par/4.html">软件·打印·开发·工具</a></li><li id="menu-item-9" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-9"><a href="par/1.html">文件和目录管理</a></li><li id="menu-item-10" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-10"><a href="par/3.html">硬件·内核·Shell·监测</a></li></ul> <span id="menu-main-toggle" class="toggle-btn" toggle-target="#menu-main"></span></div><div id="main-single" class="main-layout clearfix"><div class="right arc-wrap"><div id="position-wrap" class="clearfix"><div class="position left">当前位置：<a href="index.html">首页</a> &raquo; <a href="par/1.html" rel="category tag">文件和目录管理</a> &raquo; tftp</div></div><div id="title" class="clearfix"><h1 class="left">tftp命令</h1><div class="right"> <a href="sub/%e6%96%87%e4%bb%b6%e4%bc%a0%e8%be%93.html" rel="tag">文件传输</a></div></div><div id="arc-body"><p> <strong>tftp命令</strong>用在本机和tftp服务器之间使用TFTP协议传输文件。</p><p> TFTP是用来下载远程文件的最简单网络协议，它其于UDP协议而实现。嵌入式linux的tftp开发环境包括两个方面：一是linux服务器端的tftp-server支持，二是嵌入式目标系统的tftp-client支持。因为u-boot本身内置支持tftp-client，所以嵌入式目标系统端就不用配置了。下面就详细介绍一下linux服务器端tftp-server的配置。</p><h3> 语法<br/></h3><pre>
+tftp(选项)(参数)</pre><h3> 选项<br/></h3><pre>
+-c：指定与tftp服务器连接成功后，立即要执行的指令；
+-m：指定文件传输模式。可以是ASCII或者Binary；
+-v：显示指令详细执行过程；
+-V：显示指令版本信息。</pre><h3> 参数<br/></h3><p> 主机：指定tftp要联机的tftp服务器的<span class="wp_keywordlink"><a href="ip.html" title="ip命令" target="_blank">ip</a></span>地址或主机名。</p><h3> 实例<br/></h3><p> <strong>1、安装tftp服务器</strong></p><p> 需要安装xinetd、tftp和tftp-server 3个软件</p><p> 如果能上网，通过<span class="wp_keywordlink"><a href="yum.html" title="yum命令" target="_blank">yum</a></span>安装：</p><pre>
+yum <span class="wp_keywordlink"><a href="install.html" title="install命令" target="_blank">install</a></span> xinetd
+yum install tftp
+yum install tftp-server</pre><p> 如果不能上网，可以直接安装提供的<span class="wp_keywordlink"><a href="rpm.html" title="rpm命令" target="_blank">rpm</a></span>包：</p><pre>
+rpm -ivh xinetd-2.3.14-18.fc9.i386.rpm
+rpm -ivh tftp-0.48-3.fc9.i386.rpm
+rpm -ivh tftp-server-0.48-3.fc9.i386.rpm</pre><p> <strong>2、配置tftp服务器</strong></p><p> 修改/etc/xinetd.d/tftp文件，将其中的disable=<span class="wp_keywordlink"><a href="yes.html" title="yes命令" target="_blank">yes</a></span>改为disable=no。主要是设置TFTP服务器的根目录，开启服务。修改后的文件如下：</p><pre>
+<span class="wp_keywordlink"><a href="service.html" title="service命令" target="_blank">service</a></span> tftp
+{
+       socket_type           =dgram
+       protocol              =udp
+       <span class="wp_keywordlink"><a href="wait.html" title="wait命令" target="_blank">wait</a></span>                  =yes
+       user                  =root
+       server                =/usr/sbin/in.tftpd
+       server_args           =-s  /home/mike/tftpboot -c
+       disable               =no
+       per_source            =11
+       cps                   =100 2
+       flags                 =IPv4
+}</pre><p> 说明：修改项<code>server_args= -s &lt;path&gt; -c</code>，其中&lt;path&gt;处可以改为你的tftp-server的根目录，参数-s指定<span class="wp_keywordlink"><a href="chroot.html" title="chroot命令" target="_blank">chroot</a></span>，-c指定了可以创建文件。</p><p> <strong>3、启动tftp服务器并关闭防火墙</strong></p><pre>
+/etc/<span class="wp_keywordlink"><a href="init.html" title="init命令" target="_blank">init</a></span>.d/<span class="wp_keywordlink"><a href="iptables.html" title="iptables命令" target="_blank">iptables</a></span> stop        //关闭防火墙
+<span class="wp_keywordlink"><a href="sudo.html" title="sudo命令" target="_blank">sudo</a></span> /sbin/service xinetd start
+或
+service xinetd restart
+/etc/init.d/xinetd start</pre><p> 看到启动[OK]就可以了</p><p> 4、查看tftp服务是否开启</p><pre>
+<span class="wp_keywordlink"><a href="netstat.html" title="netstat命令" target="_blank">netstat</a></span> -a | <span class="wp_keywordlink"><a href="grep.html" title="grep命令" target="_blank">grep</a></span> tftp</pre><p> 显示结果为<code>udp 0 0 *:tftp *:*</code>表明服务已经开启，就表明tftp配置成功了。</p><p> <strong>5、tftp使用</strong></p><p> 复制一个文件到tftp服务器目录，然后在主机启动tftp软件，进行简单测试。</p><pre>
+tftp 192.168.1.2
+tftp&gt;get &lt;download <span class="wp_keywordlink"><a href="file.html" title="file命令" target="_blank">file</a></span>&gt; 
+
+tftp&gt;put &lt;upload file&gt;
+tftp&gt;q</pre><p> <strong>6、tftp命令用法如下</strong></p><pre>
+tftp your-ip-address</pre><p> 进入TFTP操作：</p><ul><li> connect：连接到远程tftp服务器</li><li> mode：文件传输模式</li><li> put：上传文件</li><li> get：下载文件</li><li> quit：退出</li><li> verbose：显示详细的处理信息</li><li> tarce：显示包路径</li><li> status：显示当前状态信息</li><li> binary：二进制传输模式</li><li> ascii：ascii 传送模式</li><li> rexmt：设置包传输的超时时间</li><li> timeout：设置重传的超时时间</li><li> <span class="wp_keywordlink"><a href="help.html" title="help命令" target="_blank">help</a></span>：帮助信息</li><li> ? ：帮助信息</li></ul><p> <strong>7、如果老是出现&ldquo;AVC Denial, click icon to view&rdquo;的错误，并不能传输文件，需要作如下修改</strong></p><p> 修改<code>/etc/sysconfig/selinux</code>,将SELINUX设定为disable，使用命令<code>setenforce 0</code>让selinux配置文件生效。</p><p> <strong>8、Busybox中tftp命令的用法</strong></p><p> 命令格式为：</p><pre>
+tftp [option] ... <span class="wp_keywordlink"><a href="host.html" title="host命令" target="_blank">host</a></span> [port]</pre><p> 如果要下载或上传文件的话是一定要用这些option的。</p><pre>
+-g 表示下载文件 (get)
+-p 表示上传文件 (put)
+-l 表示本地文件名 (local file)
+-r 表示远程主机的文件名 (remote file)</pre><p> 例如，要从远程主机192.168.1.2上下载 embedexpert，则应输入以下命令</p><pre>
+tftp -g -r embedexpert 192.168.1.2</pre></div></div><div id="sidebar" class="left"><div class="box"><h3 class="title">相关命令</h3><ul class="body list-col-1 clearfix"><li><a href="scp.html" title="scp">scp</a></li><li><a href="ncftp.html" title="ncftp">ncftp</a></li><li><a href="rcp.html" title="rcp">rcp</a></li><li><a href="bye.html" title="bye">bye</a></li><li><a href="ftp.html" title="ftp">ftp</a></li></ul></div><div id="sidebar_search_box" class="box"><form action="https://man.niaoge.com/" method="post"> <input class="search-input " type="text" name="ss" id="ss" value="命令直达(输入完整命令)" onfocus="if (value =='命令直达(输入完整命令)'){value =''}" onblur="if (value ==''){value='命令直达(输入完整命令)'}"/> <input class="search-submit button mobile-visible" type="submit" value="进入"/></form></div><div class="box"><h3 class="title"><a href="download/index.html">Linux下载</a></h3><ul class="body list-col-1 clearfix"><li><a href="download/Ubuntu.html">Ubuntu下载</a></li><li><a href="download/CentOS.html">CentOS下载</a></li></ul></div></div></div> ﻿<div id="footer-wrap"><div id="btn-backtop" title="返回顶部">返回顶部↑</div><div id="footer"><div class="info box"> <a href="index.html" title="Linux命令大全">Linux命令大全</a> <span class="split"></span> <a href="about_us.html" title="关于/联系">关于/联系</a> <span class="split"></span> 收藏本站请使用Ctrl+D <span class="split"></span> <a href="shell-script/index.html" target="_blank">Shell脚本攻略</a> <span class="split"></span> <a href="shell-regex.html" target="_blank">Shell正则表达式</a> <span class="split"></span> 共收录 <span style="font-size: 16px; color:#74b147;">585</span> 条Linux系统命令</div><div class="desc box">在Linux命令大全（man.niaoge.com）可以查询您所需要的Linux命令教程和相关实例。如果您觉得本站内容对您有所帮助，请推荐给更多需要帮助的人。</div></div></div> <script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?9afbd88b4e674f3b4af0a760c48a00ac"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script></body>
+<!-- Mirrored from man.niaoge.com/tftp by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:04:29 GMT -->
+</html>

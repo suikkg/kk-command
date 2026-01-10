@@ -1,0 +1,36 @@
+<!DOCTYPE html><html lang="zh-cn">
+<!-- Mirrored from man.niaoge.com/tune2fs by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:03:56 GMT -->
+<head>
+<meta charset="UTF-8"/><meta name="renderer" content="webkit"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/><link href="public/style.css" rel="stylesheet" type="text/css" />
+<link href="public/index.css" rel="stylesheet" type="text/css" />
+<link href="public/img/favicon.ico" type="image/x-icon" rel="shortcut icon">
+<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script><script src="public/main.js"></script><title>tune2fs命令_Linux tune2fs 命令用法详解：调整或查看ext2/ext3文件系统的文件系统参数</title><link rel="canonical" href="tune2fs.html"/></head><body><div id="header" class="clearfix"><h2 id="logo" class="left"><a title="Linux命令大全" href="index.html">Linux命令大全</a></h2><ul id="menu-main" class="right toggle-target"><li id="menu-item-4" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-4"><a href="index.html">首页搜索</a></li><li id="menu-item-6" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-6"><a href="par/2.html">系统管理</a></li><li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7"><a href="par/5.html">网络管理</a></li><li id="menu-item-8" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8"><a href="par/4.html">软件·打印·开发·工具</a></li><li id="menu-item-9" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-9"><a href="par/1.html">文件和目录管理</a></li><li id="menu-item-10" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-10"><a href="par/3.html">硬件·内核·Shell·监测</a></li></ul> <span id="menu-main-toggle" class="toggle-btn" toggle-target="#menu-main"></span></div><div id="main-single" class="main-layout clearfix"><div class="right arc-wrap"><div id="position-wrap" class="clearfix"><div class="position left">当前位置：<a href="index.html">首页</a> &raquo; <a href="par/2.html" rel="category tag">系统管理</a> &raquo; tune2fs</div></div><div id="title" class="clearfix"><h1 class="left">tune2fs命令</h1><div class="right"> <a href="sub/%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e7%ae%a1%e7%90%86.html" rel="tag">文件系统管理</a></div></div><div id="arc-body"><p> <strong>tune2fs命令</strong>允许系统管理员调整&ldquo;ext2/ext3&rdquo;文件系统中的可该参数。Windows下面如果出现意外断电死机情况，下次开机一般都会出现系统自检。Linux系统下面也有文件系统自检，而且是可以通过tune2fs命令，自行定义自检周期及方式。</p><h3> 语法<br/></h3><pre>
+tune2fs(选项)(参数)</pre><h3> 选项<br/></h3><pre>
+-c：调整最大加载次数；
+-C：设置文件系统已经被加载的次数；
+-e：设置内核代码检测到错误时的行为；
+-f：强制执行修改，即使发生错误；
+-i：设置相邻两次文件系统检查的相隔时间；
+-j：为&ldquo;ext2&rdquo;文件系统添加日志功能，将其转换为&ldquo;ext3&rdquo;文件系统；
+-l：显示文件超级块内容；
+-L：设置文件系统卷标；
+-m：显示文件保留块的百分比；
+-M：设置文件系统最后被加载到的目录；
+-o：设置或清除文件系统加载的特性或选项；
+-O：设置或清除文件系统的特性或选项；
+-r：设置文件系统保留块的大小；
+-T：设置文件系统上次被检查的时间；
+-u：设置可以使用文件系统保留块的用户；
+-U：设置文件系统的UUID。</pre><h3> 参数<br/></h3><p> 文件系统：指定调整的文件系统或者其对应的设备文件名。</p><h3> 实例<br/></h3><pre>
+tune2fs -c 30 /dev/hda1      设置强制检查前文件系统可以挂载的次数
+tune2fs -c -l /dev/hda1      关闭强制检查挂载次数限制。
+tune2fs -i 10 /dev/hda1      10天后检查
+tune2fs -i 1d /dev/hda1      1天后检查
+tune2fs -i 3w /dev/hda1      3周后检查
+tune2fs -i 6m /dev/hda1      半年后检查
+tune2fs -i 0 /dev/hda1       禁用时间检查
+tune2fs -j /dev/hda1         添加日志功能，将ext2转换成ext3文件系统
+tune2fs -r 40000 /dev/hda1   调整/dev/hda1分区的保留空间为40000个磁盘块
+tune2fs -o acl,user_xattr /dev/hda1       设置/dev/hda1挂载选项，启用Posix Access Control Lists和用户指定的扩展属性</pre></div></div><div id="sidebar" class="left"><div class="box"><h3 class="title">相关命令</h3><ul class="body list-col-1 clearfix"><li><a href="quotastats.html" title="quotastats">quotastats</a></li><li><a href="findfs.html" title="findfs">findfs</a></li><li><a href="quota.html" title="quota">quota</a></li><li><a href="dumpe2fs.html" title="dumpe2fs">dumpe2fs</a></li><li><a href="quotacheck.html" title="quotacheck">quotacheck</a></li><li><a href="quotaoff.html" title="quotaoff">quotaoff</a></li><li><a href="edquota.html" title="edquota">edquota</a></li><li><a href="e2label.html" title="e2label">e2label</a></li><li><a href="mkfs.html" title="mkfs">mkfs</a></li><li><a href="mke2fs.html" title="mke2fs">mke2fs</a></li><li><a href="mount.html" title="mount">mount</a></li><li><a href="e2fsck.html" title="e2fsck">e2fsck</a></li><li><a href="swapoff.html" title="swapoff">swapoff</a></li><li><a href="e2image.html" title="e2image">e2image</a></li><li><a href="repquota.html" title="repquota">repquota</a></li><li><a href="quotaon.html" title="quotaon">quotaon</a></li><li><a href="swapon.html" title="swapon">swapon</a></li><li><a href="fsck.html" title="fsck">fsck</a></li><li><a href="sync.html" title="sync">sync</a></li></ul></div><div id="sidebar_search_box" class="box"><form action="https://man.niaoge.com/" method="post"> <input class="search-input " type="text" name="ss" id="ss" value="命令直达(输入完整命令)" onfocus="if (value =='命令直达(输入完整命令)'){value =''}" onblur="if (value ==''){value='命令直达(输入完整命令)'}"/> <input class="search-submit button mobile-visible" type="submit" value="进入"/></form></div><div class="box"><h3 class="title"><a href="download/index.html">Linux下载</a></h3><ul class="body list-col-1 clearfix"><li><a href="download/Ubuntu.html">Ubuntu下载</a></li><li><a href="download/CentOS.html">CentOS下载</a></li></ul></div></div></div> ﻿<div id="footer-wrap"><div id="btn-backtop" title="返回顶部">返回顶部↑</div><div id="footer"><div class="info box"> <a href="index.html" title="Linux命令大全">Linux命令大全</a> <span class="split"></span> <a href="about_us.html" title="关于/联系">关于/联系</a> <span class="split"></span> 收藏本站请使用Ctrl+D <span class="split"></span> <a href="shell-script/index.html" target="_blank">Shell脚本攻略</a> <span class="split"></span> <a href="shell-regex.html" target="_blank">Shell正则表达式</a> <span class="split"></span> 共收录 <span style="font-size: 16px; color:#74b147;">585</span> 条Linux系统命令</div><div class="desc box">在Linux命令大全（man.niaoge.com）可以查询您所需要的Linux命令教程和相关实例。如果您觉得本站内容对您有所帮助，请推荐给更多需要帮助的人。</div></div></div> <script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?9afbd88b4e674f3b4af0a760c48a00ac"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script></body>
+<!-- Mirrored from man.niaoge.com/tune2fs by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:03:56 GMT -->
+</html>

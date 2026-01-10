@@ -1,0 +1,61 @@
+<!DOCTYPE html><html lang="zh-cn">
+<!-- Mirrored from man.niaoge.com/du by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:04:12 GMT -->
+<head>
+<meta charset="UTF-8"/><meta name="renderer" content="webkit"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/><link href="public/style.css" rel="stylesheet" type="text/css" />
+<link href="public/index.css" rel="stylesheet" type="text/css" />
+<link href="public/img/favicon.ico" type="image/x-icon" rel="shortcut icon">
+<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script><script src="public/main.js"></script><title>du命令_Linux du 命令用法详解：显示每个文件和目录的磁盘使用空间</title><link rel="canonical" href="du.html"/></head><body><div id="header" class="clearfix"><h2 id="logo" class="left"><a title="Linux命令大全" href="index.html">Linux命令大全</a></h2><ul id="menu-main" class="right toggle-target"><li id="menu-item-4" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home current-post-parent menu-item-4"><a href="index.html">首页搜索</a></li><li id="menu-item-6" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6"><a href="par/2.html">系统管理</a></li><li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7"><a href="par/5.html">网络管理</a></li><li id="menu-item-8" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8"><a href="par/4.html">软件·打印·开发·工具</a></li><li id="menu-item-9" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-9"><a href="par/1.html">文件和目录管理</a></li><li id="menu-item-10" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-10"><a href="par/3.html">硬件·内核·Shell·监测</a></li></ul> <span id="menu-main-toggle" class="toggle-btn" toggle-target="#menu-main"></span></div><div id="main-single" class="main-layout clearfix"><div class="right arc-wrap"><div id="position-wrap" class="clearfix"><div class="position left">当前位置：<a href="index.html">首页</a> &raquo; <a href="par/3.html" rel="category tag">硬件·内核·Shell·监测</a> &raquo; du</div></div><div id="title" class="clearfix"><h1 class="left">du命令</h1><div class="right"> <a href="sub/%e7%a3%81%e7%9b%98%e7%ae%a1%e7%90%86.html" rel="tag">磁盘管理</a></div></div><div id="arc-body"><p> <strong>du命令</strong>也是查看使用空间的，但是与<span class="wp_keywordlink"><a href="df.html" title="df命令" target="_blank">df</a></span>命令不同的是Linux du命令是对文件和目录磁盘使用的空间的查看，还是和df命令有一些区别的。</p><h3> 语法<br/></h3><pre>
+du [选项][文件]</pre><h3> 选项<br/></h3><pre>
+-a或-all 显示目录中个别文件的大小。
+-b或-bytes 显示目录或文件大小时，以byte为单位。
+-c或--total 除了显示个别目录或文件的大小外，同时也显示所有目录或文件的总和。
+-k或--kilobytes 以KB(1024bytes)为单位输出。
+-m或--megabytes 以MB为单位输出。
+-s或--summarize 仅显示总计，只列出最后加总的值。
+-h或--human-readable 以K，M，G为单位，提高信息的可读性。
+-x或--one-<span class="wp_keywordlink"><a href="file.html" title="file命令" target="_blank">file</a></span>-xystem 以一开始处理时的文件系统为准，若遇上其它不同的文件系统目录则略过。
+-L&lt;符号链接&gt;或--dereference&lt;符号链接&gt; 显示选项中所指定符号链接的源文件大小。
+-S或--separate-<span class="wp_keywordlink"><a href="dirs.html" title="dirs命令" target="_blank">dirs</a></span> 显示个别目录的大小时，并不含其子目录的大小。
+-X&lt;文件&gt;或--exclude-from=&lt;文件&gt; 在&lt;文件&gt;指定目录或文件。
+--exclude=&lt;目录或文件&gt; 略过指定的目录或文件。
+-D或--dereference-args 显示指定符号链接的源文件大小。
+-H或--si 与-h参数相同，但是K，M，G是以1000为换算单位。
+-l或--count-links 重复计算硬件链接的文件。</pre><h3> 实例<br/></h3><p> 显示目录或者文件所占空间：</p><pre>
+[root@localhost <span class="wp_keywordlink"><a href="test.html" title="test命令" target="_blank">test</a></span>]# du
+608 ./test6
+308 ./test4
+4 ./scf/lib
+4 ./scf/<span class="wp_keywordlink"><a href="service.html" title="service命令" target="_blank">service</a></span>/deploy/product
+4 ./scf/service/deploy/<span class="wp_keywordlink"><a href="info.html" title="info命令" target="_blank">info</a></span>
+12 ./scf/service/deploy
+16 ./scf/service
+4 ./scf/doc
+4 ./scf/bin
+32 ./scf
+8 ./test3
+1288 .</pre><p> 只显示当前目录下面的子目录的目录大小和当前目录的总的大小，最下面的1288为当前目录的总大小</p><p> 显示指定文件所占空间：</p><pre>
+[root@localhost test]# du log2012.log
+300 log2012.log</pre><p> 查看指定目录的所占空间：</p><pre>
+[root@localhost test]# du scf
+4 scf/lib
+4 scf/service/deploy/product
+4 scf/service/deploy/info
+12 scf/service/deploy
+16 scf/service
+4 scf/doc
+4 scf/bin
+32 scf</pre><p> 显示多个文件所占空间：</p><pre>
+[root@localhost test]# du log30.<span class="wp_keywordlink"><a href="tar.html" title="tar命令" target="_blank">tar</a></span>.gz log31.tar.gz
+4 log30.tar.gz
+4 log31.tar.gz</pre><p> 只显示总和的大小:</p><pre>
+[root@localhost test]# du -s
+1288 .
+
+[root@localhost test]# du -s scf
+32 scf
+
+[root@localhost test]# <span class="wp_keywordlink"><a href="cd.html" title="cd命令" target="_blank">cd</a></span> ..
+[root@localhost soft]# du -s test
+1288 test</pre></div></div><div id="sidebar" class="left"><div class="box"><h3 class="title">相关命令</h3><ul class="body list-col-1 clearfix"><li><a href="grub.html" title="grub">grub</a></li><li><a href="parted.html" title="parted">parted</a></li><li><a href="blockdev.html" title="blockdev">blockdev</a></li><li><a href="vgremove.html" title="vgremove">vgremove</a></li><li><a href="vgchange.html" title="vgchange">vgchange</a></li><li><a href="lvdisplay.html" title="lvdisplay">lvdisplay</a></li><li><a href="lvreduce.html" title="lvreduce">lvreduce</a></li><li><a href="blkid.html" title="blkid">blkid</a></li><li><a href="vgcreate.html" title="vgcreate">vgcreate</a></li><li><a href="vgscan.html" title="vgscan">vgscan</a></li><li><a href="pvchange.html" title="pvchange">pvchange</a></li><li><a href="convertquota.html" title="convertquota">convertquota</a></li><li><a href="lvremove.html" title="lvremove">lvremove</a></li><li><a href="lvscan.html" title="lvscan">lvscan</a></li><li><a href="mkinitrd.html" title="mkinitrd">mkinitrd</a></li><li><a href="vgreduce.html" title="vgreduce">vgreduce</a></li><li><a href="vgconvert.html" title="vgconvert">vgconvert</a></li><li><a href="df.html" title="df">df</a></li><li><a href="lilo.html" title="lilo">lilo</a></li><li><a href="partprobe.html" title="partprobe">partprobe</a></li></ul></div><div id="sidebar_search_box" class="box"><form action="https://man.niaoge.com/" method="post"> <input class="search-input " type="text" name="ss" id="ss" value="命令直达(输入完整命令)" onfocus="if (value =='命令直达(输入完整命令)'){value =''}" onblur="if (value ==''){value='命令直达(输入完整命令)'}"/> <input class="search-submit button mobile-visible" type="submit" value="进入"/></form></div><div class="box"><h3 class="title"><a href="download/index.html">Linux下载</a></h3><ul class="body list-col-1 clearfix"><li><a href="download/Ubuntu.html">Ubuntu下载</a></li><li><a href="download/CentOS.html">CentOS下载</a></li></ul></div></div></div> ﻿<div id="footer-wrap"><div id="btn-backtop" title="返回顶部">返回顶部↑</div><div id="footer"><div class="info box"> <a href="index.html" title="Linux命令大全">Linux命令大全</a> <span class="split"></span> <a href="about_us.html" title="关于/联系">关于/联系</a> <span class="split"></span> 收藏本站请使用Ctrl+D <span class="split"></span> <a href="shell-script/index.html" target="_blank">Shell脚本攻略</a> <span class="split"></span> <a href="shell-regex.html" target="_blank">Shell正则表达式</a> <span class="split"></span> 共收录 <span style="font-size: 16px; color:#74b147;">585</span> 条Linux系统命令</div><div class="desc box">在Linux命令大全（man.niaoge.com）可以查询您所需要的Linux命令教程和相关实例。如果您觉得本站内容对您有所帮助，请推荐给更多需要帮助的人。</div></div></div> <script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?9afbd88b4e674f3b4af0a760c48a00ac"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script></body>
+<!-- Mirrored from man.niaoge.com/du by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:04:12 GMT -->
+</html>

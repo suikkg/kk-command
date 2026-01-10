@@ -1,0 +1,50 @@
+<!DOCTYPE html><html lang="zh-cn">
+<!-- Mirrored from man.niaoge.com/tcpdump by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:04:05 GMT -->
+<head>
+<meta charset="UTF-8"/><meta name="renderer" content="webkit"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/><link href="public/style.css" rel="stylesheet" type="text/css" />
+<link href="public/index.css" rel="stylesheet" type="text/css" />
+<link href="public/img/favicon.ico" type="image/x-icon" rel="shortcut icon">
+<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script><script src="public/main.js"></script><title>tcpdump命令_Linux tcpdump 命令用法详解：一款sniffer工具</title><link rel="canonical" href="tcpdump.html"/></head><body><div id="header" class="clearfix"><h2 id="logo" class="left"><a title="Linux命令大全" href="index.html">Linux命令大全</a></h2><ul id="menu-main" class="right toggle-target"><li id="menu-item-4" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-4"><a href="index.html">首页搜索</a></li><li id="menu-item-6" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6"><a href="par/2.html">系统管理</a></li><li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-7"><a href="par/5.html">网络管理</a></li><li id="menu-item-8" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8"><a href="par/4.html">软件·打印·开发·工具</a></li><li id="menu-item-9" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-9"><a href="par/1.html">文件和目录管理</a></li><li id="menu-item-10" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-10"><a href="par/3.html">硬件·内核·Shell·监测</a></li></ul> <span id="menu-main-toggle" class="toggle-btn" toggle-target="#menu-main"></span></div><div id="main-single" class="main-layout clearfix"><div class="right arc-wrap"><div id="position-wrap" class="clearfix"><div class="position left">当前位置：<a href="index.html">首页</a> &raquo; <a href="par/5.html" rel="category tag">网络管理</a> &raquo; tcpdump</div></div><div id="title" class="clearfix"><h1 class="left">tcpdump命令</h1><div class="right"> <a href="sub/%e9%ab%98%e7%ba%a7%e7%bd%91%e7%bb%9c.html" rel="tag">高级网络</a></div></div><div id="arc-body"><p> <strong>tcpdump命令</strong>是一款sniffer工具，它可以打印所有经过网络接口的数据包的头信息，也可以使用<code>-<span class="wp_keywordlink"><a href="w.html" title="w命令" target="_blank">w</a></span></code>选项将数据包保存到文件中，方便以后分析。</p><h3> 语法<br/></h3><pre>
+tcpdump(选项)</pre><h3> 选项<br/></h3><pre>
+-a：尝试将网络和广播地址转换成名称；
+-c&lt;数据包数目&gt;：收到指定的数据包数目后，就停止进行倾倒操作；
+-d：把编译过的数据包编码转换成可阅读的格式，并倾倒到标准输出；
+-<span class="wp_keywordlink"><a href="dd.html" title="dd命令" target="_blank">dd</a></span>：把编译过的数据包编码转换成C语言的格式，并倾倒到标准输出；
+-ddd：把编译过的数据包编码转换成十进制数字的格式，并倾倒到标准输出；
+-e：在每列倾倒资料上显示连接层级的文件头；
+-f：用数字显示网际网络地址；
+-F&lt;表达文件&gt;：指定内含表达方式的文件；
+-i&lt;网络界面&gt;：使用指定的网络截面送出数据包；
+-l：使用标准输出列的缓冲区；
+-n：不把主机的网络地址转换成名字；
+-N：不列出域名；
+-O：不将数据包编码最佳化；
+-p：不让网络界面进入混杂模式；
+-q ：快速输出，仅列出少数的传输协议信息；
+-r&lt;数据包文件&gt;：从指定的文件读取数据包数据；
+-s&lt;数据包大小&gt;：设置每个数据包的大小；
+-S：用绝对而非相对数值列出TCP关联数；
+-t：在每列倾倒资料上不显示时间戳记；
+-tt： 在每列倾倒资料上显示未经格式化的时间戳记；
+-T&lt;数据包类型&gt;：强制将表达方式所指定的数据包转译成设置的数据包类型；
+-v：详细显示指令执行过程；
+-vv：更详细显示指令执行过程；
+-x：用十六进制字码列出数据包资料；
+-w&lt;数据包文件&gt;：把数据包数据写入指定的文件。</pre><h3> 实例<br/></h3><p> <strong>直接启动tcpdump将监视第一个网络接口上所有流过的数据包</strong></p><pre>
+tcpdump</pre><p> <strong>监视指定网络接口的数据包</strong></p><pre>
+tcpdump -i eth1</pre><p> 如果不指定网卡，默认tcpdump只会监视第一个网络接口，一般是eth0，下面的例子都没有指定网络接口。</p><p> <strong>监视指定主机的数据包</strong></p><p> 打印所有进入或离开sundown的数据包。</p><pre>
+tcpdump <span class="wp_keywordlink"><a href="host.html" title="host命令" target="_blank">host</a></span> sundown</pre><p> 也可以指定<span class="wp_keywordlink"><a href="ip.html" title="ip命令" target="_blank">ip</a></span>,例如截获所有210.27.48.1 的主机收到的和发出的所有的数据包</p><pre>
+tcpdump host 210.27.48.1</pre><p> 打印helios 与 hot 或者与 ace 之间通信的数据包</p><pre>
+tcpdump host helios and \( hot or ace \)</pre><p> 截获主机210.27.48.1 和主机210.27.48.2 或210.27.48.3的通信</p><pre>
+tcpdump host 210.27.48.1 and \ (210.27.48.2 or 210.27.48.3 \)</pre><p> 打印ace与任何其他主机之间通信的IP 数据包, 但不包括与helios之间的数据包.</p><pre>
+tcpdump ip host ace and not helios</pre><p> 如果想要获取主机210.27.48.1除了和主机210.27.48.2之外所有主机通信的ip包，使用命令：</p><pre>
+tcpdump ip host 210.27.48.1 and ! 210.27.48.2</pre><p> 截获主机<span class="wp_keywordlink"><a href="hostname.html" title="hostname命令" target="_blank">hostname</a></span>发送的所有数据</p><pre>
+tcpdump -i eth0 src host hostname</pre><p> 监视所有送到主机hostname的数据包</p><pre>
+tcpdump -i eth0 dst host hostname</pre><p> <strong>监视指定主机和端口的数据包</strong></p><p> 如果想要获取主机210.27.48.1接收或发出的<span class="wp_keywordlink"><a href="telnet.html" title="telnet命令" target="_blank">telnet</a></span>包，使用如下命令</p><pre>
+tcpdump tcp port 23 host 210.27.48.1</pre><p> 对本机的udp 123 端口进行监视 123 为ntp的服务端口</p><pre>
+tcpdump udp port 123</pre><p> <strong>监视指定网络的数据包</strong></p><p> 打印本地主机与Berkeley网络上的主机之间的所有通信数据包</p><pre>
+tcpdump net ucb-ether</pre><p> ucb-ether此处可理解为&ldquo;Berkeley网络&rdquo;的网络地址，此表达式最原始的含义可表达为：打印网络地址为ucb-ether的所有数据包</p><p> 打印所有通过网关snup的<span class="wp_keywordlink"><a href="ftp.html" title="ftp命令" target="_blank">ftp</a></span>数据包</p><pre>
+tcpdump &#39;gateway snup and (port ftp or ftp-data)&#39;</pre><p> 注意：表达式被单引号括起来了，这可以防止shell对其中的括号进行错误解析</p><p> 打印所有源地址或目标地址是本地主机的IP数据包</p><pre>
+tcpdump ip and not net localnet</pre><p> 如果本地网络通过网关连到了另一网络，则另一网络并不能算作本地网络。</p></div></div><div id="sidebar" class="left"><div class="box"><h3 class="title">相关命令</h3><ul class="body list-col-1 clearfix"><li><a href="iptraf.html" title="iptraf">iptraf</a></li><li><a href="nstat_rtacct.html" title="nstat/rtacct">nstat/rtacct</a></li><li><a href="iptables-restore.html" title="iptables-restore">iptables-restore</a></li><li><a href="lnstat.html" title="lnstat">lnstat</a></li><li><a href="ip6tables.html" title="ip6tables">ip6tables</a></li><li><a href="tcpreplay.html" title="tcpreplay">tcpreplay</a></li><li><a href="ss.html" title="ss">ss</a></li><li><a href="arpd.html" title="arpd">arpd</a></li><li><a href="ip6tables-save.html" title="ip6tables-save">ip6tables-save</a></li><li><a href="arptables.html" title="arptables">arptables</a></li><li><a href="ip6tables-restore.html" title="ip6tables-restore">ip6tables-restore</a></li><li><a href="ip.html" title="ip">ip</a></li><li><a href="iptables-save.html" title="iptables-save">iptables-save</a></li><li><a href="pfctl.html" title="pfctl">pfctl</a></li><li><a href="iptables.html" title="iptables">iptables</a></li></ul></div><div id="sidebar_search_box" class="box"><form action="https://man.niaoge.com/" method="post"> <input class="search-input " type="text" name="ss" id="ss" value="命令直达(输入完整命令)" onfocus="if (value =='命令直达(输入完整命令)'){value =''}" onblur="if (value ==''){value='命令直达(输入完整命令)'}"/> <input class="search-submit button mobile-visible" type="submit" value="进入"/></form></div><div class="box"><h3 class="title"><a href="download/index.html">Linux下载</a></h3><ul class="body list-col-1 clearfix"><li><a href="download/Ubuntu.html">Ubuntu下载</a></li><li><a href="download/CentOS.html">CentOS下载</a></li></ul></div></div></div> ﻿<div id="footer-wrap"><div id="btn-backtop" title="返回顶部">返回顶部↑</div><div id="footer"><div class="info box"> <a href="index.html" title="Linux命令大全">Linux命令大全</a> <span class="split"></span> <a href="about_us.html" title="关于/联系">关于/联系</a> <span class="split"></span> 收藏本站请使用Ctrl+D <span class="split"></span> <a href="shell-script/index.html" target="_blank">Shell脚本攻略</a> <span class="split"></span> <a href="shell-regex.html" target="_blank">Shell正则表达式</a> <span class="split"></span> 共收录 <span style="font-size: 16px; color:#74b147;">581</span> 条Linux系统命令</div><div class="desc box">在Linux命令大全（man.niaoge.com）可以查询您所需要的Linux命令教程和相关实例。如果您觉得本站内容对您有所帮助，请推荐给更多需要帮助的人。</div></div></div> <script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?9afbd88b4e674f3b4af0a760c48a00ac"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script></body>
+<!-- Mirrored from man.niaoge.com/tcpdump by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:04:05 GMT -->
+</html>

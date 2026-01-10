@@ -1,0 +1,42 @@
+<!DOCTYPE html><html lang="zh-cn">
+<!-- Mirrored from man.niaoge.com/blkid by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:04:11 GMT -->
+<head>
+<meta charset="UTF-8"/><meta name="renderer" content="webkit"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/><link href="public/style.css" rel="stylesheet" type="text/css" />
+<link href="public/index.css" rel="stylesheet" type="text/css" />
+<link href="public/img/favicon.ico" type="image/x-icon" rel="shortcut icon">
+<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script><script src="public/main.js"></script><title>blkid命令_Linux blkid 命令用法详解：查看块设备的文件系统类型、LABEL、UUID等信息</title></head><body><div id="header" class="clearfix"><h2 id="logo" class="left"><a title="Linux命令大全" href="index.html">Linux命令大全</a></h2><ul id="menu-main" class="right toggle-target"><li id="menu-item-4" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home current-post-parent menu-item-4"><a href="index.html">首页搜索</a></li><li id="menu-item-6" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6"><a href="par/2.html">系统管理</a></li><li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7"><a href="par/5.html">网络管理</a></li><li id="menu-item-8" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8"><a href="par/4.html">软件·打印·开发·工具</a></li><li id="menu-item-9" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-9"><a href="par/1.html">文件和目录管理</a></li><li id="menu-item-10" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-10"><a href="par/3.html">硬件·内核·Shell·监测</a></li></ul> <span id="menu-main-toggle" class="toggle-btn" toggle-target="#menu-main"></span></div><div id="main-single" class="main-layout clearfix"><div class="right arc-wrap"><div id="position-wrap" class="clearfix"><div class="position left">当前位置：<a href="index.html">首页</a> &raquo; <a href="par/3.html" rel="category tag">硬件·内核·Shell·监测</a> &raquo; blkid</div></div><div id="title" class="clearfix"><h1 class="left">blkid命令</h1><div class="right"> <a href="sub/%e7%a3%81%e7%9b%98%e7%ae%a1%e7%90%86.html" rel="tag">磁盘管理</a></div></div><div id="arc-body"><p> 在Linux下可以使用<strong>blkid命令</strong>对查询设备上所采用文件系统类型进行查询。blkid主要用来对系统的块设备（包括交换分区）所使用的文件系统类型、LABEL、UUID等信息进行查询。要使用这个命令必须安装e2fsprogs软件包。</p><h3> 语法<br/></h3><pre>
+blkid -L | -U
+blkid [-c ] [-ghlLv] [-o] [-s ][-t ] [-<span class="wp_keywordlink"><a href="w.html" title="w命令" target="_blank">w</a></span> ] [ ...]
+blkid -p [-s ] [-O ] [-S ][-o] ...
+blkid -i [-s ] [-o] ...</pre><h3> 选项<br/></h3><pre>
+-c &lt;<span class="wp_keywordlink"><a href="file.html" title="file命令" target="_blank">file</a></span>&gt;   指定cache文件(default: /etc/blkid.tab, /dev/null = none)
+-d          don&#39;t encode non-printing characters
+-h          显示帮助信息
+-g          garbage collect the blkid cache
+-o &lt;format&gt; 指定输出格式
+-k          list all known filesystems/RAIDs and <span class="wp_keywordlink"><a href="exit.html" title="exit命令" target="_blank">exit</a></span>
+-s &lt;tag&gt;    显示指定信息，默认显示所有信息
+-t &lt;token&gt;  <span class="wp_keywordlink"><a href="find.html" title="find命令" target="_blank">find</a></span> device with a specific token (NAME=value pair)
+-l          <span class="wp_keywordlink"><a href="look.html" title="look命令" target="_blank">look</a></span> up only first device with token specified by -t
+-L &lt;label&gt;  convert LABEL to device name
+-U &lt;uuid&gt;   convert UUID to device name
+-v          显示版本信息
+-w &lt;file&gt;   <span class="wp_keywordlink"><a href="write.html" title="write命令" target="_blank">write</a></span> cache to different file (/dev/null = no write)
+&lt;dev&gt;       specify device(s) to probe (default: all devices)
+Low-level probing options:
+-p          low-level superblocks probing (bypass cache)
+-i          gather information about I/O limits
+-S &lt;size&gt;   overwrite device size
+-O &lt;offset&gt; probe <span class="wp_keywordlink"><a href="at.html" title="at命令" target="_blank">at</a></span> the given offset
+-u &lt;list&gt;   filter by &quot;usage&quot; (e.g. -u filesystem,raid)
+-n &lt;list&gt;   filter by filesystem <span class="wp_keywordlink"><a href="type.html" title="type命令" target="_blank">type</a></span> (e.g. -n vfat,ext3)</pre><h3> 实例<br/></h3><p> 1、列出当前系统中所有已挂载文件系统的类型：</p><pre>
+<span class="wp_keywordlink"><a href="sudo.html" title="sudo命令" target="_blank">sudo</a></span> blkid</pre><p> 2、显示指定设备 UUID：</p><pre>
+sudo blkid -s UUID /dev/sda5</pre><p> 3、显示所有设备 UUID：</p><pre>
+sudo blkid -s UUID</pre><p> 4、显示指定设备 LABEL：</p><pre>
+sudo blkid -s LABEL /dev/sda5</pre><p> 5、显示所有设备 LABEL：</p><pre>
+sudo blkid -s LABEL</pre><p> 6、显示所有设备文件系统：</p><pre>
+sudo blkid -s TYPE</pre><p> 7、显示所有设备：</p><pre>
+sudo blkid -o device</pre><p> 8、以列表方式查看详细信息：</p><pre>
+sudo blkid -o list</pre></div></div><div id="sidebar" class="left"><div class="box"><h3 class="title">相关命令</h3><ul class="body list-col-1 clearfix"><li><a href="lvreduce.html" title="lvreduce">lvreduce</a></li><li><a href="lvextend.html" title="lvextend">lvextend</a></li><li><a href="df.html" title="df">df</a></li><li><a href="lsblk.html" title="lsblk">lsblk</a></li><li><a href="vgextend.html" title="vgextend">vgextend</a></li><li><a href="lvscan.html" title="lvscan">lvscan</a></li><li><a href="partprobe.html" title="partprobe">partprobe</a></li><li><a href="blockdev.html" title="blockdev">blockdev</a></li><li><a href="fdisk.html" title="fdisk">fdisk</a></li><li><a href="pvchange.html" title="pvchange">pvchange</a></li><li><a href="pvs.html" title="pvs">pvs</a></li><li><a href="pvdisplay.html" title="pvdisplay">pvdisplay</a></li><li><a href="hdparm.html" title="hdparm">hdparm</a></li><li><a href="pvremove.html" title="pvremove">pvremove</a></li><li><a href="convertquota.html" title="convertquota">convertquota</a></li><li><a href="vgremove.html" title="vgremove">vgremove</a></li><li><a href="mkinitrd.html" title="mkinitrd">mkinitrd</a></li><li><a href="lvremove.html" title="lvremove">lvremove</a></li><li><a href="vgcreate.html" title="vgcreate">vgcreate</a></li><li><a href="vgconvert.html" title="vgconvert">vgconvert</a></li></ul></div><div id="sidebar_search_box" class="box"><form action="https://man.niaoge.com/" method="post"> <input class="search-input " type="text" name="ss" id="ss" value="命令直达(输入完整命令)" onfocus="if (value =='命令直达(输入完整命令)'){value =''}" onblur="if (value ==''){value='命令直达(输入完整命令)'}"/> <input class="search-submit button mobile-visible" type="submit" value="进入"/></form></div><div class="box"><h3 class="title"><a href="download/index.html">Linux下载</a></h3><ul class="body list-col-1 clearfix"><li><a href="download/Ubuntu.html">Ubuntu下载</a></li><li><a href="download/CentOS.html">CentOS下载</a></li></ul></div></div></div> ﻿<div id="footer-wrap"><div id="btn-backtop" title="返回顶部">返回顶部↑</div><div id="footer"><div class="info box"> <a href="index.html" title="Linux命令大全">Linux命令大全</a> <span class="split"></span> <a href="about_us.html" title="关于/联系">关于/联系</a> <span class="split"></span> 收藏本站请使用Ctrl+D <span class="split"></span> <a href="shell-script/index.html" target="_blank">Shell脚本攻略</a> <span class="split"></span> <a href="shell-regex.html" target="_blank">Shell正则表达式</a> <span class="split"></span> 共收录 <span style="font-size: 16px; color:#74b147;">593</span> 条Linux系统命令</div><div class="desc box">在Linux命令大全（man.niaoge.com）可以查询您所需要的Linux命令教程和相关实例。如果您觉得本站内容对您有所帮助，请推荐给更多需要帮助的人。</div></div></div> <script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?9afbd88b4e674f3b4af0a760c48a00ac"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script></body>
+<!-- Mirrored from man.niaoge.com/blkid by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:04:12 GMT -->
+</html>

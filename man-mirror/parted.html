@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<!-- Mirrored from man.niaoge.com/parted by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:04:20 GMT -->
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+    <link href="public/style.css" rel="stylesheet" type="text/css"/>
+    <link href="public/index.css" rel="stylesheet" type="text/css"/>
+    <link href="public/img/favicon.ico" type="image/x-icon" rel="shortcut icon">
+    <script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="public/main.js"></script>
+    <title>parted命令_Linux parted 命令用法详解：磁盘分区和分区大小调整工具</title>
+    <link rel="canonical" href="parted.html"/>
+</head>
+<body>
+<div id="header" class="clearfix"><h2 id="logo" class="left"><a title="Linux命令大全" href="index.html">Linux命令大全</a></h2>
+    <ul id="menu-main" class="right toggle-target">
+        <li id="menu-item-4"
+            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home current-post-parent menu-item-4">
+            <a href="index.html">首页搜索</a></li>
+        <li id="menu-item-6" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6"><a
+                href="par/2.html">系统管理</a></li>
+        <li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7"><a
+                href="par/5.html">网络管理</a></li>
+        <li id="menu-item-8" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8"><a
+                href="par/4.html">软件·打印·开发·工具</a></li>
+        <li id="menu-item-9" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-9"><a
+                href="par/1.html">文件和目录管理</a></li>
+        <li id="menu-item-10"
+            class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-10">
+            <a href="par/3.html">硬件·内核·Shell·监测</a></li>
+    </ul>
+    <span id="menu-main-toggle" class="toggle-btn" toggle-target="#menu-main"></span></div>
+<div id="main-single" class="main-layout clearfix">
+    <div class="right arc-wrap">
+        <div id="position-wrap" class="clearfix">
+            <div class="position left">当前位置：<a href="index.html">首页</a> &raquo; <a href="par/3.html" rel="category tag">硬件·内核·Shell·监测</a> &raquo;
+                parted
+            </div>
+        </div>
+        <div id="title" class="clearfix"><h1 class="left">parted命令</h1>
+
+            <div class="right"><a href="sub/%e7%a3%81%e7%9b%98%e7%ae%a1%e7%90%86.html" rel="tag">磁盘管理</a></div>
+        </div>
+        <div id="ad-arc-top" class="ad"></div>
+        <div id="arc-body">
+            <p><strong>parted命令</strong>是由GNU组织开发的一款功能强大的磁盘分区和分区大小调整工具，与<span class="wp_keywordlink"><a
+                href="fdisk.html" title="fdisk命令" target="_blank">fdisk</a></span>不同，它支持调整分区的大小。作为一种设计用于Linux的工具，它没有构建成处理与fdisk关联的多种分区类型，但是，它可以处理最常见的分区格式，包括：ext2、ext3、ext4、fat16、fat32、NTFS、ReiserFS、JFS、XFS、UFS、HFS以及Linux交换分区。
+        </p>
+            <p>通常使用较多的磁盘管理工具为<span class="wp_keywordlink"><a
+                    href="fdisk.html" title="fdisk命令" target="_blank">fdisk</a></span>，但由于磁盘越来越廉价，且磁盘空间越来越大，而fdisk工具分区存在大小限制，只能划分小于2T的磁盘。因此需要使用Parted工具来实现对GPT磁盘进行分区操作，parted工具同样具有两种模式：命令行模式和交互模式。
+                GPT格式的磁盘相当于原来MBR磁盘中原来保留的4个partition table的4*16个字节，只留第一个16个字节，类似于扩展分区，真正的partitiontable在512字节之后，GPT磁盘没有四个主分区的限制。</p>
+            <p><strong>MBR 与 GPT：有什么区别？</strong>GPT是GUID Partition Table的缩写，是物理硬盘上分区表的布局标准，使用全局唯一标识符（GUID）。MBR 是另一种分区表。它是“Master Boot Record”的缩写。相对而言，MBR 比 GPT 更老，因此它更兼容比较旧的操作系统。而 GPT 更适合新的操作系统。</p>
+
+            <h3> 语法<br/></h3><pre>
+parted(选项)(参数)</pre>
+            <h3> 选项<br/></h3><pre>
+-h：显示帮助信息；
+-i：交互式模式；
+-s：脚本模式，不提示用户；
+-v：显示版本号。</pre>
+            <h3> 参数<br/></h3>
+            <ul>
+                <li> 设备：指定要分区的硬盘所对应的设备文件；</li>
+                <li> 命令：要执行的parted命令。</li>
+            </ul>
+            <h3> 实例<br/></h3>
+
+            <p>列出所有块设备上的分区布局：</p>
+
+            <pre>[root@linuxprobe ~]# parted -l</pre>
+
+            <p> 从串行技术出现以来，越来越多用户选择使用大容量的SATA硬盘创建磁盘阵列；特别是MD1000/MD3000，很轻易就突破2T的LUN，故在此给大家一些指引。</p>
+
+            <p> 红帽企业 Linux 4 Update 4供对大于 2 terabytes（TB）的磁盘设备的支持。</p>
+
+            <p> 请参考以下操作步骤使用 parted 进行分区：</p>
+
+            <p> 注：</p>
+            <ul>
+                <li> 绿色代表你需要使用的命令。</li>
+                <li> 红色代表你需要注意到的输出信息，在后续需要使用。</li>
+            </ul><pre>
+[root@localhost ~]# <span style="color:#008000;">fdisk -l</span>
+Disk /dev/sda: 35.8 GB, 35862976512 bytes
+255 heads, 63 sectors/track, 4360 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes
+   Device Boot      Start         End      Blocks   <span class="wp_keywordlink"><a href="id.html" title="id命令"
+                                                                                    target="_blank">id</a></span>  System
+/dev/sda1   *           1          13      104391   83  Linux
+/dev/sda2              14         144     1052257+  82  Linux swap
+/dev/sda3             145        4360    33865020   83  Linux
+Disk /dev/sdb: 2147 MB, 2147483648 bytes
+255 heads, 63 sectors/track, 261 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes
+<span style="color:#FF0000;">Disk /dev/sdb doesn&#39;t contain a valid partition table</span></pre><pre>
+[root@localhost ~]# <span style="color:#008000;">parted /dev/sdb</span>
+GNU Parted Copyright (C) 1998 - 2004 <span class="wp_keywordlink"><a href="free.html" title="free命令"
+                                                                     target="_blank">free</a></span> Software Foundation, Inc.
+This program is free software, covered by the GNU General Public License.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for <span class="wp_keywordlink"><a href="more.html" title="more命令"
+                                                                                            target="_blank">more</a></span> details.
+使用/dev/sdb
+(parted)<span style="color:#008000;">mklabel gpt</span>
+(parted)<span style="color:#008000;">print</span>
+/dev/sdb的磁盘几何结构：<span style="color:#FF0000;">0.000-2048.000</span>兆字节
+磁盘标签类型：<span style="color:#FF0000;">gpt</span>
+Minor   起始点       终止点 文件系统   名称                 标志
+(parted)<span style="color:#008000;">mkpart primary 0 2048</span>  <span
+                    style="color:#FF0000;">&lt;-----上面print显示的数字</span>
+(parted)<span style="color:#008000;">print</span>
+/dev/sdb的磁盘几何结构：0.000-2048.000兆字节
+磁盘标签类型：gpt
+Minor   起始点       终止点 文件系统   名称                 标志
+<span style="color:#FF0000;">1          0.017   2047.983</span>
+(parted)<span style="color:#008000;">quit</span>
+</pre>
+            <p> 如果必要，不要忘记更新<code>/etc/fstab</code>。</p><pre>
+[root@localhost ~]# <span style="color:#FF0000;">fdisk -l</span>
+Disk /dev/sda: 35.8 GB, 35862976512 bytes
+255 heads, 63 sectors/track, 4360 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sda1   *           1          13      104391   83  Linux
+/dev/sda2              14         144     1052257+  82  Linux swap
+/dev/sda3             145        4360    33865020   83  Linux
+<span style="color:#FF0000;">WARNING: GPT (GUID Partition Table) detected on &#39;/dev/sdb&#39;! The util fdisk doesn&#39;t support GPT. Use GNU Parted.
+ 
+Disk /dev/sdb: 2147 MB, 2147483648 bytes
+255 heads, 63 sectors/track, 261 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sdb1               1         262     2097151+  ee  EFI GPT
+Partition 1 has different physical/logical beginnings (non-Linux?):
+     phys=(0, 0, 1) logical=(0,0, 2)
+Partition 1 has different physical/logical endings:
+     phys=(1023, 254, 63) logical=(261, 21, 16)</span></pre><pre>
+[root@localhost ~]# <span style="color:#008000;"><span class="wp_keywordlink"><a href="mkfs.html" title="mkfs命令"
+                                                                                 target="_blank">mkfs</a></span>.ext4 /dev/sdb1</span>
+<span class="wp_keywordlink"><a href="mke2fs.html" title="mke2fs命令" target="_blank">mke2fs</a></span> 1.35 (28-Feb-2004)
+Filesystem label=
+OS <span class="wp_keywordlink"><a href="type.html" title="type命令" target="_blank">type</a></span>: Linux
+Block size=4096 (log=2)
+Fragment size=4096 (log=2)
+262144 inodes, 524279 blocks
+26213 blocks (5.00%) reserved for the super user
+First data block=0
+Maximum filesystem blocks=536870912
+16 block <span class="wp_keywordlink"><a href="groups.html" title="groups命令" target="_blank">groups</a></span>
+32768 blocks per group, 32768 fragments per group
+16384 inodes per group
+Superblock backups stored on blocks:
+        32768, 98304, 163840, 229376, 294912
+Writing inode tables: done
+Creating journal (8192 blocks): done
+Writing superblocks and filesystem accounting information: done
+This filesystem will be automatically checked every 28 mounts or
+180 days, whichever comes first.  Use <span class="wp_keywordlink"><a href="tune2fs.html" title="tune2fs命令" target="_blank">tune2fs</a></span> -c or -i to override.</pre><pre>
+[root@localhost ~]# <span style="color:#008000;"><span class="wp_keywordlink"><a href="mount.html" title="mount命令"
+                                                                                 target="_blank">mount</a></span> /dev/sdb1 /mnt</span>
+[root@localhost ~]# <span style="color:#008000;"><span class="wp_keywordlink"><a href="df.html" title="df命令"
+                                                                                 target="_blank">df</a></span> -h</span>
+Filesystem            容量  已用 可用 已用% 挂载点
+/dev/sda3              &lt;?xml:namespace prefix = st1 /&gt;32G  2.6G   28G   9% /
+/dev/sda1              99M   12M   82M  13% /boot
+none                  252M     0  252M   0% /dev/shm
+/dev/sdb1             2.0G   36M  1.9G   2% /mnt</pre>
+            <p>参考：https://www.redhat.com/sysadmin/partitions-parted</p>
+        </div>
+    </div>
+    <div id="sidebar" class="left">
+        <div class="box"><h3 class="title">相关命令</h3>
+            <ul class="body list-col-1 clearfix">
+                <li><a href="lvremove.html" title="lvremove">lvremove</a></li>
+                <li><a href="lvreduce.html" title="lvreduce">lvreduce</a></li>
+                <li><a href="pvck.html" title="pvck">pvck</a></li>
+                <li><a href="vgscan.html" title="vgscan">vgscan</a></li>
+                <li><a href="lvscan.html" title="lvscan">lvscan</a></li>
+                <li><a href="lvresize.html" title="lvresize">lvresize</a></li>
+                <li><a href="mkinitrd.html" title="mkinitrd">mkinitrd</a></li>
+                <li><a href="vgcreate.html" title="vgcreate">vgcreate</a></li>
+                <li><a href="vgremove.html" title="vgremove">vgremove</a></li>
+                <li><a href="vgconvert.html" title="vgconvert">vgconvert</a></li>
+                <li><a href="pvremove.html" title="pvremove">pvremove</a></li>
+                <li><a href="pvscan.html" title="pvscan">pvscan</a></li>
+                <li><a href="mkswap.html" title="mkswap">mkswap</a></li>
+                <li><a href="blockdev.html" title="blockdev">blockdev</a></li>
+                <li><a href="fdisk.html" title="fdisk">fdisk</a></li>
+                <li><a href="lsblk.html" title="lsblk">lsblk</a></li>
+                <li><a href="mknod.html" title="mknod">mknod</a></li>
+                <li><a href="pvchange.html" title="pvchange">pvchange</a></li>
+                <li><a href="pvdisplay.html" title="pvdisplay">pvdisplay</a></li>
+                <li><a href="convertquota.html" title="convertquota">convertquota</a></li>
+            </ul>
+        </div>
+        <div id="sidebar_search_box" class="box">
+            <form action="https://man.niaoge.com/" method="post"><input class="search-input " type="text" name="ss" id="ss"
+                                                  value="命令直达(输入完整命令)" onfocus="if (value =='命令直达(输入完整命令)'){value =''}"
+                                                  onblur="if (value ==''){value='命令直达(输入完整命令)'}"/> <input
+                    class="search-submit button mobile-visible" type="submit" value="进入"/></form>
+        </div>
+        <div class="box"><h3 class="title"><a href="download/index.html">Linux下载</a></h3>
+            <ul class="body list-col-1 clearfix">
+                <li><a href="download/Ubuntu.html">Ubuntu下载</a></li>
+                <li><a href="download/CentOS.html">CentOS下载</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+﻿
+<div id="footer-wrap">
+    <div id="btn-backtop" title="返回顶部">返回顶部↑</div>
+    <div id="footer">
+        <div class="info box"><a href="index.html" title="Linux命令大全">Linux命令大全</a> <span class="split"></span> <a
+                href="about_us.html" title="关于/联系">关于/联系</a> <span class="split"></span> 收藏本站请使用Ctrl+D <span
+                class="split"></span> <a href="shell-script/index.html" target="_blank">Shell脚本攻略</a> <span class="split"></span>
+            <a href="shell-regex.html" target="_blank">Shell正则表达式</a> <span class="split"></span> 共收录 <span
+                    style="font-size: 16px; color:#74b147;">581</span> 条Linux系统命令
+        </div>
+        <div class="desc box">在Linux命令大全（man.niaoge.com）可以查询您所需要的Linux命令教程和相关实例。如果您觉得本站内容对您有所帮助，请推荐给更多需要帮助的人。</div>
+    </div>
+</div>
+<script> var _hmt = _hmt || [];
+(function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?9afbd88b4e674f3b4af0a760c48a00ac";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})(); </script>
+</body>
+
+<!-- Mirrored from man.niaoge.com/parted by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:04:20 GMT -->
+</html>

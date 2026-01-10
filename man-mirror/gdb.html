@@ -1,0 +1,171 @@
+<!DOCTYPE html><html lang="zh-cn">
+<!-- Mirrored from man.niaoge.com/gdb by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:06:46 GMT -->
+<head>
+<meta charset="UTF-8"/><meta name="renderer" content="webkit"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/><link href="public/style.css" rel="stylesheet" type="text/css" />
+<link href="public/index.css" rel="stylesheet" type="text/css" />
+<link href="public/img/favicon.ico" type="image/x-icon" rel="shortcut icon">
+<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script><script src="public/main.js"></script><title>gdb命令_Linux gdb 命令用法详解：功能强大的程序调试器</title><link rel="canonical" href="gdb.html"/></head><body><div id="header" class="clearfix"><h2 id="logo" class="left"><a title="Linux命令大全" href="index.html">Linux命令大全</a></h2><ul id="menu-main" class="right toggle-target"><li id="menu-item-4" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-4"><a href="index.html">首页搜索</a></li><li id="menu-item-6" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6"><a href="par/2.html">系统管理</a></li><li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7"><a href="par/5.html">网络管理</a></li><li id="menu-item-8" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-8"><a href="par/4.html">软件·打印·开发·工具</a></li><li id="menu-item-9" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-9"><a href="par/1.html">文件和目录管理</a></li><li id="menu-item-10" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-10"><a href="par/3.html">硬件·内核·Shell·监测</a></li></ul> <span id="menu-main-toggle" class="toggle-btn" toggle-target="#menu-main"></span></div><div id="main-single" class="main-layout clearfix"><div class="right arc-wrap"><div id="position-wrap" class="clearfix"><div class="position left">当前位置：<a href="index.html">首页</a> &raquo; <a href="par/4.html" rel="category tag">软件·打印·开发·工具</a> &raquo; gdb</div></div><div id="title" class="clearfix"><h1 class="left">gdb命令</h1><div class="right"> <a href="sub/%e7%bc%96%e7%a8%8b%e5%bc%80%e5%8f%91.html" rel="tag">编程开发</a></div></div><div id="arc-body"><p> <strong>gdb命令</strong>包含在GNU的<span class="wp_keywordlink"><a href="gcc.html" title="gcc命令" target="_blank">gcc</a></span>开发套件中，是功能强大的程序调试器。GDB中的命令固然很多，但我们只需掌握其中十个左右的命令，就大致可以完成日常的基本的程序调试工作。</p><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><th> 命令</th><th> 解释</th><th> 示例</th></tr><tr><td> <span class="wp_keywordlink"><a href="file.html" title="file命令" target="_blank">file</a></span> &lt;文件名&gt;</td><td> 加载被调试的可执行程序文件。<br/> 因为一般都在被调试程序所在目录下执行GDB，因而文本名不需要带路径。</td><td> (gdb) file gdb-sample</td></tr><tr><td> r</td><td> Run的简写，运行被调试的程序。<br/> 如果此前没有下过断点，则执行完整个程序；如果有断点，则程序暂停在第一个可用断点处。</td><td> (gdb) r</td></tr><tr><td> c</td><td> Continue的简写，继续执行被调试程序，直至下一个断点或程序结束。</td><td> (gdb) c</td></tr><tr><td> b &lt;行号&gt;<br/> b &lt;函数名称&gt;<br/> b *&lt;函数名称&gt;<br/> b *&lt;代码地址&gt; d [编号]</td><td> b: Breakpoint的简写，设置断点。两可以使用&ldquo;行号&rdquo;&ldquo;函数名称&rdquo;&ldquo;执行地址&rdquo;等方式指定断点位置。<br/> 其中在函数名称前面加&ldquo;*&rdquo;符号表示将断点设置在&ldquo;由编译器生成的prolog代码处&rdquo;。如果不了解汇编，可以不予理会此用法。 d: Delete breakpoint的简写，删除指定编号的某个断点，或删除所有断点。断点编号从1开始递增。</td><td> (gdb) b 8<br/> (gdb) b main<br/> (gdb) b *main<br/> (gdb) b *0x804835c (gdb) d</td></tr><tr><td> s, n</td><td> s: 执行一行源程序代码，如果此行代码中有函数调用，则进入该函数；<br/> n: 执行一行源程序代码，此行代码中的函数调用也一并执行。 s 相当于其它调试器中的&ldquo;Step Into (单步跟踪进入)&rdquo;；<br/> n 相当于其它调试器中的&ldquo;Step Over (单步跟踪)&rdquo;。 这两个命令必须在有源代码调试信息的情况下才可以使用（GCC编译时使用&ldquo;-g&rdquo;参数）。</td><td> (gdb) s<br/> (gdb) n</td></tr><tr><td> si, ni</td><td> si命令类似于s命令，ni命令类似于n命令。所不同的是，这两个命令（si/ni）所针对的是汇编指令，而s/n针对的是源代码。</td><td> (gdb) si<br/> (gdb) ni</td></tr><tr><td> p &lt;变量名称&gt;</td><td> Print的简写，显示指定变量（临时变量或全局变量）的值。</td><td> (gdb) p i<br/> (gdb) p nGlobalVar</td></tr><tr><td> display ... undisplay &lt;编号&gt;</td><td> display，设置程序中断后欲显示的数据及其格式。<br/> 例如，如果希望每次程序中断后可以看到即将被执行的下一条汇编指令，可以使用命令<br/> &ldquo;display /i $pc&rdquo;<br/> 其中 $pc 代表当前汇编指令，/i 表示以十六进行显示。当需要关心汇编代码时，此命令相当有用。 undispaly，取消先前的display设置，编号从1开始递增。</td><td> (gdb) display /i $pc (gdb) undisplay 1</td></tr><tr><td> i</td><td> <span class="wp_keywordlink"><a href="info.html" title="info命令" target="_blank">info</a></span>的简写，用于显示各类信息，详情请查阅&ldquo;<span class="wp_keywordlink"><a href="help.html" title="help命令" target="_blank">help</a></span> i&rdquo;。</td><td> (gdb) i r</td></tr><tr><td> q</td><td> Quit的简写，退出GDB调试环境。</td><td> (gdb) q</td></tr><tr><td> help [命令名称]</td><td> GDB帮助命令，提供对GDB名种命令的解释说明。<br/> 如果指定了&ldquo;命令名称&rdquo;参数，则显示该命令的详细说明；如果没有指定参数，则分类显示所有GDB命令，供用户进一步浏览和查询。</td><td> (gdb) help</td></tr></tbody></table><h3> 语法<br/></h3><pre>
+gdb(选项)(参数)</pre><h3> 选项<br/></h3><pre>
+-<span class="wp_keywordlink"><a href="cd.html" title="cd命令" target="_blank">cd</a></span>：设置工作目录；
+-q：安静模式，不打印介绍信息和版本信息；
+-d：添加文件查找路径；
+-x：从指定文件中执行GDB指令；
+-s：设置读取的符号表文件。</pre><h3> 参数<br/></h3><p> 文件：二进制可执行程序。</p><h3> 实例<br/></h3><p> 以下是linux下dgb调试的一个实例，先给出一个示例用的小程序，C语言代码：</p><pre>
+#include &lt;stdio.h&gt;
+int nGlobalVar = 0;
+
+int tempFunction(int a, int b)
+{
+    <span class="wp_keywordlink"><a href="printf.html" title="printf命令" target="_blank">printf</a></span>(&quot;tempFunction is called, a = %d, b = %d /n&quot;, a, b);
+    return (a + b);
+}
+
+int main()
+{
+    int n;
+        n = 1;
+        n++;
+        n--;
+
+        nGlobalVar += 100;
+        nGlobalVar -= 12;
+
+    printf(&quot;n = %d, nGlobalVar = %d /n&quot;, n, nGlobalVar);
+
+        n = tempFunction(1, 2);
+    printf(&quot;n = %d&quot;, n);
+
+    return 0;
+}</pre><p> 请将此代码复制出来并保存到文件 gdb-sample.c 中，然后切换到此文件所在目录，用GCC编译之：</p><pre>
+gcc gdb-sample.c -o gdb-sample -g</pre><p> 在上面的命令行中，使用 -o 参数指定了编译生成的可执行文件名为 gdb-sample，使用参数 -g 表示将源代码信息编译到可执行文件中。如果不使用参数 -g，会给后面的GDB调试造成不便。当然，如果我们没有程序的源代码，自然也无从使用 -g 参数，调试/跟踪时也只能是汇编代码级别的调试/跟踪。</p><p> 下面&ldquo;gdb&rdquo;命令启动GDB，将首先显示GDB说明，不管它：</p><pre>
+GNU gdb Red Hat Linux (5.3post-0.20021129.18rh)
+Copyright 2003 <span class="wp_keywordlink"><a href="free.html" title="free命令" target="_blank">free</a></span> Software Foundation, Inc.
+GDB is free software, covered by the GNU General Public License, and you are
+welcome to change it and/or distribute copies of it under certain conditions.
+<span class="wp_keywordlink"><a href="type.html" title="type命令" target="_blank">type</a></span> &quot;show copying&quot; to see the conditions.
+There is absolutely no warranty for GDB. Type &quot;show warranty&quot; for details.
+This GDB was configured <span class="wp_keywordlink"><a href="as.html" title="as命令" target="_blank">as</a></span> &quot;i386-redhat-linux-gnu&quot;.
+(gdb)</pre><p> 上面最后一行&ldquo;(gdb)&rdquo;为GDB内部命令引导符，等待用户输入GDB命令。</p><p> 下面使用&ldquo;file&rdquo;命令载入被调试程序 gdb-sample（这里的 gdb-sample 即前面 GCC 编译输出的可执行文件）：</p><pre>
+(gdb) file gdb-sample
+Reading symbols from gdb-sample...done.</pre><p> 上面最后一行提示已经加载成功。</p><p> 下面使用&ldquo;r&rdquo;命令执行（Run）被调试文件，因为尚未设置任何断点，将直接执行到程序结束：</p><pre>
+(gdb) r
+Starting program: /home/liigo/temp/test_jmp/test_jmp/gdb-sample
+n = 1, nGlobalVar = 88
+tempFunction is called, a = 1, b = 2
+n = 3
+Program exited normally.</pre><p> 下面使用&ldquo;b&rdquo;命令在 main 函数开头设置一个断点（Breakpoint）：</p><pre>
+(gdb) b main
+Breakpoint 1 <span class="wp_keywordlink"><a href="at.html" title="at命令" target="_blank">at</a></span> 0x804835c: file gdb-sample.c, line 19.</pre><p> 上面最后一行提示已经成功设置断点，并给出了该断点信息：在源文件 gdb-sample.c 第19行处设置断点；这是本程序的第一个断点（序号为1）；断点处的代码地址为 0x804835c（此值可能仅在本次调试过程中有效）。回过头去看源代码，第19行中的代码为&ldquo;n = 1&rdquo;，恰好是 main 函数中的第一个可执行语句（前面的&ldquo;int n;&rdquo;为变量定义语句，并非可执行语句）。</p><p> 再次使用&ldquo;r&rdquo;命令执行（Run）被调试程序：</p><pre>
+(gdb) r
+Starting program: /home/liigo/temp/gdb-sample
+
+Breakpoint 1, main () at gdb-sample.c:19
+19 n = 1;</pre><p> 程序中断在gdb-sample.c第19行处，即main函数是第一个可执行语句处。</p><p> 上面最后一行信息为：下一条将要执行的源代码为&ldquo;n = 1;&rdquo;，它是源代码文件gdb-sample.c中的第19行。</p><p> 下面使用&ldquo;s&rdquo;命令（Step）执行下一行代码（即第19行&ldquo;n = 1;&rdquo;）：</p><pre>
+(gdb) s
+20 n++;</pre><p> 上面的信息表示已经执行完&ldquo;n = 1;&rdquo;，并显示下一条要执行的代码为第20行的&ldquo;n++;&rdquo;。</p><p> 既然已经执行了&ldquo;n = 1;&rdquo;，即给变量 n 赋值为 1，那我们用&ldquo;p&rdquo;命令（Print）看一下变量 n 的值是不是 1 ：</p><pre>
+(gdb) p n
+$1 = 1</pre><p> 果然是 1。（$1大致是表示这是第一次使用&ldquo;p&rdquo;命令&mdash;&mdash;再次执行&ldquo;p n&rdquo;将显示&ldquo;$2 = 1&rdquo;&mdash;&mdash;此信息应该没有什么用处。）</p><p> 下面我们分别在第26行、tempFunction 函数开头各设置一个断点（分别使用命令&ldquo;b 26&rdquo;&ldquo;b tempFunction&rdquo;）：</p><pre>
+(gdb) b 26
+Breakpoint 2 at 0x804837b: file gdb-sample.c, line 26.
+(gdb) b tempFunction
+Breakpoint 3 at 0x804832e: file gdb-sample.c, line 12.</pre><p> 使用&ldquo;c&rdquo;命令继续（Continue）执行被调试程序，程序将中断在第二 个断点（26行），此时全局变量 nGlobalVar 的值应该是 88；再一次执行&ldquo;c&rdquo;命令，程序将中断于第三个断点（12行，tempFunction 函数开头处），此时tempFunction 函数的两个参数 a、b 的值应分别是 1 和 2：</p><pre>
+(gdb) c
+Continuing.
+
+Breakpoint 2, main () at gdb-sample.c:26
+26 printf(&quot;n = %d, nGlobalVar = %d /n&quot;, n, nGlobalVar);
+(gdb) p nGlobalVar
+$2 = 88
+(gdb) c
+Continuing.
+n = 1, nGlobalVar = 88
+
+Breakpoint 3, tempFunction (a=1, b=2) at gdb-sample.c:12
+12 printf(&quot;tempFunction is called, a = %d, b = %d /n&quot;, a, b);
+(gdb) p a
+$3 = 1
+(gdb) p b
+$4 = 2</pre><p> 上面反馈的信息一切都在我们预料之中~~</p><p> 再一次执行&ldquo;c&rdquo;命令（Continue），因为后面再也没有其它断点，程序将一直执行到结束：</p><pre>
+(gdb) c
+Continuing.
+tempFunction is called, a = 1, b = 2
+n = 3
+Program exited normally.</pre><p> 有时候需要看到编译器生成的汇编代码，以进行汇编级的调试或跟踪，又该如何操作呢？</p><p> 这就要用到display命令&ldquo;display /i $pc&rdquo;了（此命令前面已有详细解释）：</p><pre>
+(gdb) display /i $pc
+(gdb)</pre><p> 此后程序再中断时，就可以显示出汇编代码了：</p><pre>
+(gdb) r
+Starting program: /home/liigo/temp/test_jmp/test_jmp/gdb-sample
+
+Breakpoint 1, main () at gdb-sample.c:19
+19 n = 1;
+1: x/i $pc 0x804835c &lt;main+16&gt;: movl $0x1,0xfffffffc(%ebp)</pre><p> 看到了汇编代码，&ldquo;n = 1;&rdquo;对应的汇编代码是&ldquo;movl $0x1,0xfffffffc(%ebp)&rdquo;。</p><p> 并且以后程序每次中断都将显示下一条汇编指定（&ldquo;si&rdquo;命令用于执行一条汇编代码&mdash;&mdash;区别于&ldquo;s&rdquo;执行一行C代码）：</p><pre>
+(gdb) si
+20 n++;
+1: x/i $pc 0x8048363 &lt;main+23&gt;: lea 0xfffffffc(%ebp),%eax
+(gdb) si
+0x08048366 20 n++;
+1: x/i $pc 0x8048366 &lt;main+26&gt;: incl (%eax)
+(gdb) si
+21 n--;
+1: x/i $pc 0x8048368 &lt;main+28&gt;: lea 0xfffffffc(%ebp),%eax
+(gdb) si
+0x0804836b 21 n--;
+1: x/i $pc 0x804836b &lt;main+31&gt;: decl (%eax)
+(gdb) si
+23 nGlobalVar += 100;
+1: x/i $pc 0x804836d &lt;main+33&gt;: addl $0x64,0x80494fc</pre><p> 接下来我们试一下命令&ldquo;b *&lt;函数名称&gt;&rdquo;。</p><p> 为了更简明，有必要先删除目前所有断点（使用&ldquo;d&rdquo;命令&mdash;&mdash;Delete breakpoint）：</p><pre>
+(gdb) d
+Delete all breakpoints? (y or n) y
+(gdb)</pre><p> 当被询问是否删除所有断点时，输入&ldquo;y&rdquo;并按回车键即可。</p><p> 下面使用命令&ldquo;b *main&rdquo;在 main 函数的 prolog 代码处设置断点（prolog、epilog，分别表示编译器在每个函数的开头和结尾自行插入的代码）：</p><pre>
+(gdb) b *main
+Breakpoint 4 at 0x804834c: file gdb-sample.c, line 17.
+(gdb) r
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/liigo/temp/test_jmp/test_jmp/gdb-sample
+
+Breakpoint 4, main () at gdb-sample.c:17
+17 {
+1: x/i $pc 0x804834c &lt;main&gt;: push %ebp
+(gdb) si
+0x0804834d 17 {
+1: x/i $pc 0x804834d &lt;main+1&gt;: mov %esp,%ebp
+(gdb) si
+0x0804834f in main () at gdb-sample.c:17
+17 {
+1: x/i $pc 0x804834f &lt;main+3&gt;: sub $0x8,%esp
+(gdb) si
+0x08048352 17 {
+1: x/i $pc 0x8048352 &lt;main+6&gt;: and $0xfffffff0,%esp
+(gdb) si
+0x08048355 17 {
+1: x/i $pc 0x8048355 &lt;main+9&gt;: mov $0x0,%eax
+(gdb) si
+0x0804835a 17 {
+1: x/i $pc 0x804835a &lt;main+14&gt;: sub %eax,%esp
+(gdb) si
+19 n = 1;
+1: x/i $pc 0x804835c &lt;main+16&gt;: movl $0x1,0xfffffffc(%ebp)</pre><p> 此时可以使用&ldquo;i r&rdquo;命令显示寄存器中的当前值&mdash;&mdash;&mdash;&ldquo;i r&rdquo;即&ldquo;Infomation Register&rdquo;：</p><pre>
+(gdb) i r
+eax 0xbffff6a4 -1073744220
+ecx 0x42015554 1107383636
+edx 0x40016bc8 1073834952
+ebx 0x42130a14 1108544020
+esp 0xbffff6a0 0xbffff6a0
+ebp 0xbffff6a8 0xbffff6a8
+esi 0x40015360 1073828704
+edi 0x80483f0 134513648
+eip 0x8048366 0x8048366
+eflags 0x386 902
+cs 0x23 35
+<span class="wp_keywordlink"><a href="ss.html" title="ss命令" target="_blank">ss</a></span> 0x2b 43
+ds 0x2b 43
+es 0x2b 43
+fs 0x0 0
+gs 0x33 51</pre><p> 当然也可以显示任意一个指定的寄存器值：</p><pre>
+(gdb) i r eax
+eax 0xbffff6a4 -1073744220</pre><p> 最后一个要介绍的命令是&ldquo;q&rdquo;，退出（Quit）GDB调试环境：</p><pre>
+(gdb) q
+The program is running. <span class="wp_keywordlink"><a href="exit.html" title="exit命令" target="_blank">exit</a></span> anyway? (y or n)</pre></div></div><div id="sidebar" class="left"><div class="box"><h3 class="title">相关命令</h3><ul class="body list-col-1 clearfix"><li><a href="mktemp.html" title="mktemp">mktemp</a></li><li><a href="objdump.html" title="objdump">objdump</a></li><li><a href="as.html" title="as">as</a></li><li><a href="nm.html" title="nm">nm</a></li><li><a href="expr.html" title="expr">expr</a></li><li><a href="gcov.html" title="gcov">gcov</a></li><li><a href="test.html" title="test">test</a></li><li><a href="ldconfig.html" title="ldconfig">ldconfig</a></li><li><a href="protoize.html" title="protoize">protoize</a></li><li><a href="pstack.html" title="pstack">pstack</a></li><li><a href="ld.html" title="ld">ld</a></li><li><a href="unprotoize.html" title="unprotoize">unprotoize</a></li><li><a href="gcc.html" title="gcc">gcc</a></li><li><a href="readelf.html" title="readelf">readelf</a></li><li><a href="ldd.html" title="ldd">ldd</a></li><li><a href="make.html" title="make">make</a></li><li><a href="php.html" title="php">php</a></li><li><a href="perl.html" title="perl">perl</a></li><li><a href="indent.html" title="indent">indent</a></li></ul></div><div id="sidebar_search_box" class="box"><form action="https://man.niaoge.com/" method="post"> <input class="search-input " type="text" name="ss" id="ss" value="命令直达(输入完整命令)" onfocus="if (value =='命令直达(输入完整命令)'){value =''}" onblur="if (value ==''){value='命令直达(输入完整命令)'}"/> <input class="search-submit button mobile-visible" type="submit" value="进入"/></form></div><div class="box"><h3 class="title"><a href="download/index.html">Linux下载</a></h3><ul class="body list-col-1 clearfix"><li><a href="download/Ubuntu.html">Ubuntu下载</a></li><li><a href="download/CentOS.html">CentOS下载</a></li></ul></div></div></div> ﻿<div id="footer-wrap"><div id="btn-backtop" title="返回顶部">返回顶部↑</div><div id="footer"><div class="info box"> <a href="index.html" title="Linux命令大全">Linux命令大全</a> <span class="split"></span> <a href="about_us.html" title="关于/联系">关于/联系</a> <span class="split"></span> 收藏本站请使用Ctrl+D <span class="split"></span> <a href="shell-script/index.html" target="_blank">Shell脚本攻略</a> <span class="split"></span> <a href="shell-regex.html" target="_blank">Shell正则表达式</a> <span class="split"></span> 共收录 <span style="font-size: 16px; color:#74b147;">585</span> 条Linux系统命令</div><div class="desc box">在Linux命令大全（man.niaoge.com）可以查询您所需要的Linux命令教程和相关实例。如果您觉得本站内容对您有所帮助，请推荐给更多需要帮助的人。</div></div></div> <script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?9afbd88b4e674f3b4af0a760c48a00ac"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script></body>
+<!-- Mirrored from man.niaoge.com/gdb by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:06:46 GMT -->
+</html>

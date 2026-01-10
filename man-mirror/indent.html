@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang="zh-cn">
+<!-- Mirrored from man.niaoge.com/indent by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:06:46 GMT -->
+<head>
+<meta charset="UTF-8"/><meta name="renderer" content="webkit"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/><link href="public/style.css" rel="stylesheet" type="text/css" />
+<link href="public/index.css" rel="stylesheet" type="text/css" />
+<link href="public/img/favicon.ico" type="image/x-icon" rel="shortcut icon">
+<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script><script src="public/main.js"></script><title>indent命令_Linux indent 命令用法详解：格式化C语言的源文件</title><link rel="canonical" href="indent.html"/></head><body><div id="header" class="clearfix"><h2 id="logo" class="left"><a title="Linux命令大全" href="index.html">Linux命令大全</a></h2><ul id="menu-main" class="right toggle-target"><li id="menu-item-4" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-4"><a href="index.html">首页搜索</a></li><li id="menu-item-6" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6"><a href="par/2.html">系统管理</a></li><li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7"><a href="par/5.html">网络管理</a></li><li id="menu-item-8" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-8"><a href="par/4.html">软件·打印·开发·工具</a></li><li id="menu-item-9" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-9"><a href="par/1.html">文件和目录管理</a></li><li id="menu-item-10" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-10"><a href="par/3.html">硬件·内核·Shell·监测</a></li></ul> <span id="menu-main-toggle" class="toggle-btn" toggle-target="#menu-main"></span></div><div id="main-single" class="main-layout clearfix"><div class="right arc-wrap"><div id="position-wrap" class="clearfix"><div class="position left">当前位置：<a href="index.html">首页</a> &raquo; <a href="par/4.html" rel="category tag">软件·打印·开发·工具</a> &raquo; indent</div></div><div id="title" class="clearfix"><h1 class="left">indent命令</h1><div class="right"> <a href="sub/%e7%bc%96%e7%a8%8b%e5%bc%80%e5%8f%91.html" rel="tag">编程开发</a></div></div><div id="arc-body"><p> <strong>indent命令</strong>可辨识C的原始代码文件，并加以格式化，以方便程序员阅读、修改等操作。</p><h3> 语法<br/></h3><pre>
+indent(选项)(源文件)
+或
+indent（选项)(源文件)(-o 目标文件)</pre><h3> 选项<br/></h3><pre>
+-bad：在声明区加上空白行；
+-bap：添加空白行；
+-bbb：在注释后面添加空白行；
+-<span class="wp_keywordlink"><a href="bc.html" title="bc命令" target="_blank">bc</a></span>：在声明段中，如果出现逗号就换行；
+-bl：if（或是else、for等）与后面执行区段的&ldquo;{&rdquo;不同行，且&ldquo;}&rdquo;自成一行-bli&lt;缩排格数&gt;设置{}缩排的格数；
+-br：if（或是else、for等）与后面执行区段的&ldquo;{&rdquo;同行，且&ldquo;}&rdquo;自成一行；
+-bs：在sizeof之后空一格；
+-c&lt;栏数&gt;：将注释置于程序右侧指定的栏位；
+-<span class="wp_keywordlink"><a href="cd.html" title="cd命令" target="_blank">cd</a></span>&lt;栏数&gt;：将注释置于声明右侧指定的栏位；
+-cdb：注释符号自成一行；
+-ce：将else置于&ldquo;}&rdquo;（if执行区段的结尾）之后；
+-ci：&lt;缩排格数&gt;：叙述过长而换行时，指定换行后缩排的格数；
+-cli&lt;缩排格数&gt;：使用case时，switch缩排的格数；
+-<span class="wp_keywordlink"><a href="cp.html" title="cp命令" target="_blank">cp</a></span>&lt;栏数&gt;：将注释置于else与elseif叙述右侧指定的栏位；
+-cs：在case之后空一格；
+-d&lt;缩排格数&gt;：针对不是放在程序码右侧的注释，设置其缩排格数；
+-di&lt;栏数&gt;：将声明区段的变量置于指定的栏位；
+-fc1：针对放在每行最前端的注释，设置其格式；
+-fca：设置所有注释的格式；
+-gnu：使用指定的GNU格式，该参数为默认值；
+-i&lt;格数&gt;：设置缩排的格数；
+-<span class="wp_keywordlink"><a href="ip.html" title="ip命令" target="_blank">ip</a></span>&lt;格数&gt;：设置参数的缩排格数；
+-kr：指定使用Kernighan&amp;Ritchie的格式；
+-<span class="wp_keywordlink"><a href="lp.html" title="lp命令" target="_blank">lp</a></span>：叙述过长而换行，且叙述中包含了括号时，将括号中的每行起始栏位内容垂直对其排列；
+-nbad：在声明区段后不要加上空白行；
+-nbap：在程序后面不添加空白行；
+-nbbb：在注释段后面不添加空白行；
+-nbc：在声明段中，即使出现逗号，也不换行；
+-ncdb：注释符号不自成一行；
+-nce：不将else置于&ldquo;}&rdquo;后面；
+-ncs：不在case后面空一格；
+-nfc1：不要格式化放在每行最前端的注释；
+-nfca：不用格式化任何的注释；
+-nip：参数不要缩排；
+-nlp：叙述过长而换行，且叙述中包含了括号时，不用将括号中的每行起始栏位垂直对其排列；
+-npcs：在调用函数名之后，不要添加空格；
+-npro：不要读取indent的配置文件&ldquo;.indent.pro&rdquo;；
+-npsl：程序类型与程序名称放在同一行；
+-nsc：注释左侧不要添加星号；
+-nsob：不用处理多余的空白行；
+-nss：若for或while区段仅有一行时，在分号前不加空格；
+-nv：不显示详细的信息；
+-orig：使用berkeley格式；
+-pcs：在调用函数名与&ldquo;{&rdquo;之间添加空格；
+-psl：程序类型置于程序名称的前一行；
+-sc：在每行注释左侧添加星号；
+-sob：删除多余的空白行；
+-<span class="wp_keywordlink"><a href="ss.html" title="ss命令" target="_blank">ss</a></span>：若for或swile区段仅有一行时，在分号前加上空格；
+-st：将结果显示在标准输出设备上；
+-T：数据类型名称缩排；
+-ts&lt;格数&gt;：设置tab的长度；
+-v：显示详细的执行过程；
+--version：显示版本信息。</pre><h3> 实例<br/></h3><p> 使用indent命令将C语言源文件&quot;<span class="wp_keywordlink"><a href="test.html" title="test命令" target="_blank">test</a></span>.c&quot;中所有的sizeof后面添加一个空格，输入如下命令：</p><pre>
+indent -bs /home/rootlocal/桌面/test.c</pre><p> 执行上面的命令后，用户可以打开指定的源文件查看在sizeof后面是否都添加了一个空格。由于该命令的参数非常多，所以用户可以根据实际需要选择适合的参数进行使用即可。</p></div></div><div id="sidebar" class="left"><div class="box"><h3 class="title">相关命令</h3><ul class="body list-col-1 clearfix"><li><a href="perl.html" title="perl">perl</a></li><li><a href="make.html" title="make">make</a></li><li><a href="nm.html" title="nm">nm</a></li><li><a href="objdump.html" title="objdump">objdump</a></li><li><a href="protoize.html" title="protoize">protoize</a></li><li><a href="test.html" title="test">test</a></li><li><a href="pstack.html" title="pstack">pstack</a></li><li><a href="gcov.html" title="gcov">gcov</a></li><li><a href="ld.html" title="ld">ld</a></li><li><a href="ldd.html" title="ldd">ldd</a></li><li><a href="mktemp.html" title="mktemp">mktemp</a></li><li><a href="gdb.html" title="gdb">gdb</a></li><li><a href="expr.html" title="expr">expr</a></li><li><a href="as.html" title="as">as</a></li><li><a href="php.html" title="php">php</a></li><li><a href="readelf.html" title="readelf">readelf</a></li><li><a href="ldconfig.html" title="ldconfig">ldconfig</a></li><li><a href="gcc.html" title="gcc">gcc</a></li><li><a href="unprotoize.html" title="unprotoize">unprotoize</a></li></ul></div><div id="sidebar_search_box" class="box"><form action="https://man.niaoge.com/" method="post"> <input class="search-input " type="text" name="ss" id="ss" value="命令直达(输入完整命令)" onfocus="if (value =='命令直达(输入完整命令)'){value =''}" onblur="if (value ==''){value='命令直达(输入完整命令)'}"/> <input class="search-submit button mobile-visible" type="submit" value="进入"/></form></div><div class="box"><h3 class="title"><a href="download/index.html">Linux下载</a></h3><ul class="body list-col-1 clearfix"><li><a href="download/Ubuntu.html">Ubuntu下载</a></li><li><a href="download/CentOS.html">CentOS下载</a></li></ul></div></div></div> ﻿<div id="footer-wrap"><div id="btn-backtop" title="返回顶部">返回顶部↑</div><div id="footer"><div class="info box"> <a href="index.html" title="Linux命令大全">Linux命令大全</a> <span class="split"></span> <a href="about_us.html" title="关于/联系">关于/联系</a> <span class="split"></span> 收藏本站请使用Ctrl+D <span class="split"></span> <a href="shell-script/index.html" target="_blank">Shell脚本攻略</a> <span class="split"></span> <a href="shell-regex.html" target="_blank">Shell正则表达式</a> <span class="split"></span> 共收录 <span style="font-size: 16px; color:#74b147;">585</span> 条Linux系统命令</div><div class="desc box">在Linux命令大全（man.niaoge.com）可以查询您所需要的Linux命令教程和相关实例。如果您觉得本站内容对您有所帮助，请推荐给更多需要帮助的人。</div></div></div> <script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?9afbd88b4e674f3b4af0a760c48a00ac"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script></body>
+<!-- Mirrored from man.niaoge.com/indent by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:06:46 GMT -->
+</html>

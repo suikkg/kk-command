@@ -1,0 +1,1058 @@
+[
+  {
+    "id": "linux-find-large",
+    "category": "Linux",
+    "scene": "查找大文件",
+    "command": "find / -type f -size +100M",
+    "params": "-type f: 文件；-size +100M: 大于100M",
+    "notes": "适合磁盘排查，可用 -xdev 避免跨设备"
+  },
+  {
+    "id": "linux-du-top",
+    "category": "Linux",
+    "scene": "按目录统计空间占用",
+    "command": "du -ah --max-depth=1 /var | sort -hr | head",
+    "params": "--max-depth=1: 只看一级；-h: 人类可读",
+    "notes": "快速定位占用大的子目录"
+  },
+  {
+    "id": "linux-ports",
+    "category": "Linux",
+    "scene": "排查端口占用",
+    "command": "sudo ss -lntp | grep :80",
+    "params": "-l: 监听；-n: 不反查域名；-t: TCP；-p: 显示进程",
+    "notes": "可替换 :80 为其他端口"
+  },
+  {
+    "id": "linux-tail-service",
+    "category": "Linux",
+    "scene": "实时查看服务日志",
+    "command": "journalctl -u nginx -f -n 50",
+    "params": "-u: 单个服务；-f: 跟随；-n 50: 最近50行",
+    "notes": "systemd 系统可用，非 systemd 可用 tail -f"
+  },
+  {
+    "id": "linux-md5",
+    "category": "Linux",
+    "scene": "校验固件完整性",
+    "command": "md5sum firmware.bin",
+    "params": "无额外参数，输出校验值",
+    "notes": "配合上游提供的 MD5 校验固件传输"
+  },
+  {
+    "id": "linux-ip-brief",
+    "category": "Linux",
+    "scene": "快速查看网卡与地址",
+    "command": "ip -br a",
+    "params": "-br: 简洁输出",
+    "notes": "比 ifconfig 简洁，busybox 也常支持"
+  },
+  {
+    "id": "linux-route-show",
+    "category": "Linux",
+    "scene": "查看路由表/默认网关",
+    "command": "ip route show",
+    "params": "无额外参数",
+    "notes": "可结合 ip rule show 查看策略路由"
+  },
+  {
+    "id": "linux-df",
+    "category": "Linux",
+    "scene": "查看分区空间占用",
+    "command": "df -h",
+    "params": "-h: 人类可读",
+    "notes": "嵌入式镜像常用来看 overlay/ubi 使用率"
+  },
+  {
+    "id": "linux-tcpdump-dns",
+    "category": "Linux",
+    "scene": "抓取 DNS 流量",
+    "command": "sudo tcpdump -i any -nn port 53 -vv -s 0",
+    "params": "-nn: 不反查；-vv: 详细；-s 0: 全长抓包",
+    "notes": "可替换 port 80/443 分析 HTTP/HTTPS 握手"
+  },
+  {
+    "id": "linux-nc-probe",
+    "category": "Linux",
+    "scene": "探测远端端口连通",
+    "command": "nc -zv 192.168.1.1 22",
+    "params": "-z: 仅探测；-v: 输出详情",
+    "notes": "连通性排查，失败时结合 traceroute"
+  },
+  {
+    "id": "linux-curl-head",
+    "category": "Linux",
+    "scene": "快速检查 HTTP 服务",
+    "command": "curl -I http://192.168.1.1",
+    "params": "-I: 仅请求 HEAD",
+    "notes": "看返回码/Server 头定位服务是否存活"
+  },
+  {
+    "id": "linux-lsof-port",
+    "category": "Linux",
+    "scene": "查看端口占用进程",
+    "command": "sudo lsof -i :80",
+    "params": "-i :80: 过滤端口",
+    "notes": "无 lsof 时用 ss -lntp 或 netstat -lntp"
+  },
+  {
+    "id": "linux-top-batch",
+    "category": "Linux",
+    "scene": "无交互查看前 N 进程",
+    "command": "top -b -n 1 | head -20",
+    "params": "-b: 批处理；-n 1: 一次输出",
+    "notes": "用于日志采集/无人值守诊断"
+  },
+  {
+    "id": "linux-iperf-server",
+    "category": "Linux",
+    "scene": "启动带宽测试服务",
+    "command": "iperf3 -s",
+    "params": "-s: 服务端模式",
+    "notes": "CPE/MiFi 场景常配合客户端打流"
+  },
+  {
+    "id": "linux-iperf-client",
+    "category": "Linux",
+    "scene": "下行带宽压测",
+    "command": "iperf3 -c 192.168.1.1 -t 30 -R",
+    "params": "-c: 服务器地址；-t 30: 测试 30 秒；-R: 反向（下行）",
+    "notes": "不支持 -R 时用 -d 双向"
+  },
+  {
+    "id": "linux-scp",
+    "category": "Linux",
+    "scene": "拷贝文件到设备",
+    "command": "scp firmware.bin root@192.168.1.1:/tmp/",
+    "params": "root@ip:/path: 目标路径",
+    "notes": "确保设备开启 SSH；也可用 sftp/rsync"
+  },
+  {
+    "id": "linux-rsync",
+    "category": "Linux",
+    "scene": "增量同步目录",
+    "command": "rsync -avP ./logs/ root@192.168.1.1:/tmp/logs/",
+    "params": "-a: 归档；-v: 详细；-P: 断点续传 + 进度",
+    "notes": "大日志同步/对比配置常用"
+  },
+  {
+    "id": "linux-chmod",
+    "category": "Linux",
+    "scene": "赋予脚本执行权限",
+    "command": "chmod +x ./debug.sh",
+    "params": "+x: 增加可执行",
+    "notes": "上传脚本后需赋权再运行"
+  },
+  {
+    "id": "linux-strace",
+    "category": "Linux",
+    "scene": "跟踪疑难进程系统调用",
+    "command": "sudo strace -f -p $(pidof app) -s 200 -o trace.log",
+    "params": "-f: 跟踪子进程；-s 200: 字符串长度；-o: 输出文件",
+    "notes": "排查崩溃/阻塞/配置读取失败"
+  },
+  {
+    "id": "linux-logread",
+    "category": "Linux",
+    "scene": "OpenWrt/BusyBox 查看环形日志",
+    "command": "logread -f",
+    "params": "-f: 跟随输出",
+    "notes": "没有 systemd 的 CPE/MiFi 常用"
+  },
+  {
+    "id": "linux-find-core",
+    "category": "Linux",
+    "scene": "定位 core dump 文件",
+    "command": "find / -maxdepth 4 -name 'core*' -type f",
+    "params": "-maxdepth 4: 限制目录深度",
+    "notes": "配合 ulimit -c unlimited 开启 core"
+  },
+  {
+    "id": "linux-uci-show",
+    "category": "Linux",
+    "scene": "OpenWrt 网络配置查看",
+    "command": "uci show network",
+    "params": "无额外参数",
+    "notes": "CPE 设备快速核对 WAN/LAN 配置"
+  },
+  {
+    "id": "linux-uci-reload",
+    "category": "Linux",
+    "scene": "修改并应用网络配置",
+    "command": "uci set network.lan.ipaddr=192.168.2.1 && uci commit network && /etc/init.d/network restart",
+    "params": "uci set: 设置；commit: 写入；restart: 生效",
+    "notes": "远程修改谨慎操作，避免失联"
+  },
+  {
+    "id": "linux-ps-grep",
+    "category": "Linux",
+    "scene": "查找进程并定位 PID",
+    "command": "ps -ef | grep nginx | grep -v grep",
+    "params": "ps -ef: 全量进程；grep -v grep: 去掉自身",
+    "notes": "匹配后可用 kill/strace 等进一步处理"
+  },
+  {
+    "id": "linux-kill9",
+    "category": "Linux",
+    "scene": "强制结束卡死进程",
+    "command": "kill -9 1234",
+    "params": "-9: SIGKILL 强制结束",
+    "notes": "先尝试正常 kill，再使用 -9；避免数据损坏"
+  },
+  {
+    "id": "linux-pkill-f",
+    "category": "Linux",
+    "scene": "按命令行匹配批量结束进程",
+    "command": "pkill -f gunicorn",
+    "params": "-f: 按完整命令行匹配",
+    "notes": "确认匹配范围，避免误杀其他进程"
+  },
+  {
+    "id": "linux-systemctl-status",
+    "category": "Linux",
+    "scene": "查看服务状态与日志摘要",
+    "command": "systemctl status nginx",
+    "params": "服务名: systemd 服务单元",
+    "notes": "非 systemd 系统用 service/nginx -t 等替代"
+  },
+  {
+    "id": "linux-systemctl-restart",
+    "category": "Linux",
+    "scene": "重启服务并应用配置",
+    "command": "sudo systemctl restart nginx",
+    "params": "restart: 重启服务",
+    "notes": "重启前确保配置可用，必要时先 systemctl reload"
+  },
+  {
+    "id": "linux-ping",
+    "category": "Linux基础",
+    "scene": "连通性测试",
+    "command": "ping -c 4 8.8.8.8",
+    "params": "-c 4: 发送 4 个包",
+    "notes": "如被防火墙阻断可改用 tcping/Traceroute"
+  },
+  {
+    "id": "linux-traceroute",
+    "category": "Linux基础",
+    "scene": "排查链路路径",
+    "command": "traceroute 8.8.8.8",
+    "params": "目的 IP/域名",
+    "notes": "ICMP 被屏蔽时可用 mtr 或 -T TCP 模式"
+  },
+  {
+    "id": "linux-dig",
+    "category": "Linux基础",
+    "scene": "DNS 解析检查",
+    "command": "dig @8.8.8.8 www.example.com",
+    "params": "@dns: 指定 DNS 服务器",
+    "notes": "检查返回的 A/AAAA/CNAME 等记录"
+  },
+  {
+    "id": "linux-curl-verbose",
+    "category": "Linux基础",
+    "scene": "调试 HTTP 接口",
+    "command": "curl -v https://example.com/api/health",
+    "params": "-v: 显示请求/响应头",
+    "notes": "可加 -k 忽略证书，-H/-d 设置头与数据"
+  },
+  {
+    "id": "linux-wget",
+    "category": "Linux基础",
+    "scene": "断点续传下载文件",
+    "command": "wget -c https://example.com/firmware.bin",
+    "params": "-c: 断点续传",
+    "notes": "下载固件/日志时常用，注意存储空间"
+  },
+  {
+    "id": "linux-tar-extract",
+    "category": "Linux基础",
+    "scene": "解压 tar.gz 包",
+    "command": "tar -xzvf package.tar.gz -C /tmp",
+    "params": "-x: 解包；-z: gzip；-v: 进度；-f: 文件；-C: 目标目录",
+    "notes": "解压前确认目标路径权限与空间"
+  },
+  {
+    "id": "linux-zip",
+    "category": "Linux基础",
+    "scene": "创建 zip 压缩包",
+    "command": "zip -r logs.zip /var/log",
+    "params": "-r: 递归",
+    "notes": "发送日志给支持团队时常用"
+  },
+  {
+    "id": "linux-unzip",
+    "category": "Linux基础",
+    "scene": "解压 zip 文件",
+    "command": "unzip logs.zip -d /tmp/logs",
+    "params": "-d: 指定解压目录",
+    "notes": "确保目标目录存在或可写"
+  },
+  {
+    "id": "linux-ln-s",
+    "category": "Linux基础",
+    "scene": "创建符号链接",
+    "command": "ln -s /mnt/data/config.yaml /etc/myapp/config.yaml",
+    "params": "-s: 软链接",
+    "notes": "路径写成绝对路径更稳；覆盖前需移除旧链接"
+  },
+  {
+    "id": "linux-chown",
+    "category": "Linux基础",
+    "scene": "递归修改属主属组",
+    "command": "sudo chown -R www-data:www-data /var/www/html",
+    "params": "-R: 递归；user:group: 设置属主属组",
+    "notes": "修改权限前备份关键目录"
+  },
+  {
+    "id": "linux-find-name",
+    "category": "Linux基础",
+    "scene": "按文件名快速查找",
+    "command": "find /etc -maxdepth 2 -name \"*.conf\"",
+    "params": "-maxdepth: 限制深度；-name: 名称匹配",
+    "notes": "大目录搜索可配合 -prune 排除路径"
+  },
+  {
+    "id": "linux-grep-recursive",
+    "category": "Linux基础",
+    "scene": "递归搜索关键字",
+    "command": "grep -R \"timeout\" /etc/nginx",
+    "params": "-R: 递归目录",
+    "notes": "结合 -n 显示行号，-C2 查看上下文"
+  },
+  {
+    "id": "linux-less",
+    "category": "Linux基础",
+    "scene": "分页查看长文件",
+    "command": "less /var/log/messages",
+    "params": "空格/上下键分页；/: 搜索",
+    "notes": "比 cat/tail 更易滚动与搜索"
+  },
+  {
+    "id": "linux-free",
+    "category": "Linux基础",
+    "scene": "查看内存占用",
+    "command": "free -h",
+    "params": "-h: 可读单位",
+    "notes": "快速判断是否内存不足或 swap 占用异常"
+  },
+  {
+    "id": "linux-uname",
+    "category": "Linux基础",
+    "scene": "查看内核与架构信息",
+    "command": "uname -a",
+    "params": "-a: 全部信息",
+    "notes": "确认内核版本/架构/编译时间等"
+  },
+  {
+    "id": "linux-date-iso",
+    "category": "Linux基础",
+    "scene": "打印精确时间戳",
+    "command": "date -Iseconds",
+    "params": "-Iseconds: ISO8601 到秒",
+    "notes": "日志标记、比对时钟漂移"
+  },
+  {
+    "id": "linux-lsblk",
+    "category": "Linux基础",
+    "scene": "查看块设备/分区",
+    "command": "lsblk -f",
+    "params": "-f: 显示文件系统与 LABEL/UUID",
+    "notes": "挂载磁盘、确认分区类型时使用"
+  },
+  {
+    "id": "linux-dmesg",
+    "category": "Linux基础",
+    "scene": "查看内核日志",
+    "command": "dmesg -T | tail -n 50",
+    "params": "-T: 可读时间；tail: 末尾 50 行",
+    "notes": "驱动/USB/网卡异常排查"
+  },
+  {
+    "id": "linux-lsmod",
+    "category": "Linux基础",
+    "scene": "列出已加载内核模块",
+    "command": "lsmod | head",
+    "params": "无额外参数",
+    "notes": "确认驱动是否加载，如无线/USB 模块"
+  },
+  {
+    "id": "linux-modinfo",
+    "category": "Linux基础",
+    "scene": "查看内核模块信息",
+    "command": "modinfo ath9k",
+    "params": "模块名: 驱动名称",
+    "notes": "检查模块版本、依赖、作者等"
+  },
+  {
+    "id": "linux-iptables-list",
+    "category": "Linux",
+    "scene": "查看防火墙规则",
+    "command": "sudo iptables -L -n -v",
+    "params": "-L: 列表；-n: 不反查；-v: 计数",
+    "notes": "CPE/MiFi 调试 NAT/过滤时使用"
+  },
+  {
+    "id": "linux-route-add",
+    "category": "Linux",
+    "scene": "添加静态路由",
+    "command": "ip route add 10.0.0.0/24 via 192.168.1.1 dev eth0",
+    "params": "via: 下一跳；dev: 出接口",
+    "notes": "测试多网口或旁路路由时使用"
+  },
+  {
+    "id": "linux-mount",
+    "category": "Linux基础",
+    "scene": "挂载本地设备",
+    "command": "sudo mount /dev/sdb1 /mnt/usb",
+    "params": "源设备 目标目录",
+    "notes": "挂载 U 盘/移动硬盘，卸载用 umount /mnt/usb"
+  },
+  {
+    "id": "linux-umount",
+    "category": "Linux基础",
+    "scene": "卸载挂载点",
+    "command": "sudo umount /mnt/usb",
+    "params": "挂载路径或设备",
+    "notes": "卸载失败时检查占用：lsof /mnt/usb"
+  },
+  {
+    "id": "linux-basic-pwd",
+    "category": "Linux基础",
+    "scene": "查看当前目录",
+    "command": "pwd",
+    "params": "无额外参数",
+    "notes": "常用于确认路径，脚本里可配合 $(pwd) 取绝对路径"
+  },
+  {
+    "id": "linux-basic-ls",
+    "category": "Linux基础",
+    "scene": "列出目录内容与权限",
+    "command": "ls -lah",
+    "params": "-l: 详细；-a: 隐藏文件；-h: 可读大小",
+    "notes": "排查权限/大小/时间戳的常规入口"
+  },
+  {
+    "id": "linux-basic-cd-up",
+    "category": "Linux基础",
+    "scene": "返回上级目录",
+    "command": "cd ..",
+    "params": "..: 父目录",
+    "notes": "注意相对路径，脚本中尽量用绝对路径避免混乱"
+  },
+  {
+    "id": "linux-basic-mkdir",
+    "category": "Linux基础",
+    "scene": "递归创建目录",
+    "command": "mkdir -p /tmp/logs/archive",
+    "params": "-p: 需要时自动创建父目录",
+    "notes": "适合脚本里一次性准备目录"
+  },
+  {
+    "id": "linux-basic-cp",
+    "category": "Linux基础",
+    "scene": "保留属性复制文件/目录",
+    "command": "cp -a /etc/config /tmp/config.bak",
+    "params": "-a: 归档，保留权限/时间戳/软链接",
+    "notes": "配置修改前的快速备份"
+  },
+  {
+    "id": "linux-basic-mv",
+    "category": "Linux基础",
+    "scene": "移动或重命名文件",
+    "command": "mv app.log app.log.bak",
+    "params": "源 目标: 依次写",
+    "notes": "日志轮转或覆盖前请确认目标路径"
+  },
+  {
+    "id": "linux-basic-rm-safe",
+    "category": "Linux基础",
+    "scene": "交互式删除文件",
+    "command": "rm -i file.txt",
+    "params": "-i: 每次删除前确认",
+    "notes": "生产环境避免误删；目录删除需谨慎使用 -r"
+  },
+  {
+    "id": "linux-basic-grep",
+    "category": "Linux基础",
+    "scene": "按关键字过滤文本",
+    "command": "grep -n \"error\" app.log",
+    "params": "-n: 显示行号",
+    "notes": "结合 -C2 查看上下文，或 -r 递归目录"
+  },
+  {
+    "id": "linux-basic-tail",
+    "category": "Linux基础",
+    "scene": "跟随查看日志尾部",
+    "command": "tail -n 50 -f app.log",
+    "params": "-n 50: 显示 50 行；-f: 跟随",
+    "notes": "现场排查常用，配合 grep 联合过滤"
+  },
+  {
+    "id": "linux-basic-head",
+    "category": "Linux基础",
+    "scene": "查看文件开头",
+    "command": "head -n 20 README.md",
+    "params": "-n 20: 前 20 行",
+    "notes": "快速了解文件结构/格式"
+  },
+  {
+    "id": "linux-basic-sed",
+    "category": "Linux基础",
+    "scene": "按行范围查看或替换",
+    "command": "sed -n '1,10p' config.ini",
+    "params": "-n '1,10p': 只打印 1-10 行",
+    "notes": "替换示例：sed -i 's/old/new/g' file"
+  },
+  {
+    "id": "linux-basic-awk",
+    "category": "Linux基础",
+    "scene": "按分隔符取字段",
+    "command": "awk -F: '{print $1, $3}' /etc/passwd",
+    "params": "-F: 指定分隔符",
+    "notes": "快速提取用户名与 UID 等字段"
+  },
+  {
+    "id": "linux-basic-tar-gz",
+    "category": "Linux基础",
+    "scene": "打包并压缩目录",
+    "command": "tar -czvf backup.tar.gz /etc",
+    "params": "-c: 创建；-z: gzip；-v: 进度；-f: 指定文件",
+    "notes": "常用于备份配置或拷贝到其他设备"
+  },
+  {
+    "id": "linux-basic-du-top",
+    "category": "Linux基础",
+    "scene": "快速找出占用大的子目录",
+    "command": "du -sh ./* | sort -hr | head",
+    "params": "-s: 汇总；-h: 可读；sort -hr: 按大小逆序",
+    "notes": "与 find 大文件互补，用于磁盘排查"
+  },
+  {
+    "id": "jffs2-extract",
+    "category": "JFFS2",
+    "scene": "提取 jffs2 文件系统",
+    "command": "jefferson rootfs.jffs2 -d outdir",
+    "params": "-d: 输出目录",
+    "notes": "只读分析，固件不可修改"
+  },
+  {
+    "id": "jffs2-mtd-dump",
+    "category": "JFFS2",
+    "scene": "从 mtd 分区导出镜像",
+    "command": "nanddump -o -f dump.bin /dev/mtd3",
+    "params": "-o: 保留 OOB；-f: 指定输出文件",
+    "notes": "导出后可用 jefferson 分析"
+  },
+  {
+    "id": "jffs2-ram-mount",
+    "category": "JFFS2",
+    "scene": "在内存中挂载 jffs2 镜像",
+    "command": "modprobe mtdram total_size=65536 erase_size=128 && modprobe mtdblock && dd if=rootfs.jffs2 of=/dev/mtd0 && mount -t jffs2 /dev/mtdblock0 /mnt/jffs2",
+    "params": "total_size: 分配内存大小(KB)；erase_size: 擦除块大小(KB)",
+    "notes": "仅测试环境使用，注意内存占用"
+  },
+  {
+    "id": "jffs2-mkfs",
+    "category": "JFFS2",
+    "scene": "从目录生成 jffs2 镜像",
+    "command": "mkfs.jffs2 -r rootfs_dir -o rootfs.jffs2 -e 0x20000 -s 0x800",
+    "params": "-e: 擦除块大小；-s: 页面大小",
+    "notes": "需匹配目标闪存擦除/页大小，避免挂载失败"
+  },
+  {
+    "id": "jffs2-sumtool",
+    "category": "JFFS2",
+    "scene": "生成带 summary 的 jffs2",
+    "command": "sumtool -i rootfs.jffs2 -o rootfs.sum.jffs2 -e 0x20000 -p 0x800",
+    "params": "-i: 输入；-o: 输出；-e/-p: 同 mkfs 参数",
+    "notes": "summary 可加快挂载，需与 mkfs 参数一致"
+  },
+  {
+    "id": "jffs2-dump-cleanmarkers",
+    "category": "JFFS2",
+    "scene": "查看 cleanmarker/头信息",
+    "command": "jffs2dump -c -v -o /tmp/jffs2.dump rootfs.jffs2",
+    "params": "-c: 显示 cleanmarker；-v: 详细；-o: 输出解析",
+    "notes": "检查镜像是否包含正确 cleanmarker"
+  },
+  {
+    "id": "jffs2-flash-erase",
+    "category": "JFFS2",
+    "scene": "刷写前擦除 mtd 分区",
+    "command": "flash_erase /dev/mtd3 0 0",
+    "params": "0 0: 从头到尾全部擦除",
+    "notes": "危险操作，务必确认 mtd 号"
+  },
+  {
+    "id": "jffs2-nandwrite",
+    "category": "JFFS2",
+    "scene": "写入 jffs2 镜像到 nand",
+    "command": "nandwrite -p /dev/mtd3 rootfs.jffs2",
+    "params": "-p: 保留 OOB/ECC 信息",
+    "notes": "写前先 flash_erase；设备掉电风险自行评估"
+  },
+  {
+    "id": "jffs2-reader",
+    "category": "JFFS2",
+    "scene": "离线读取 jffs2 文件列表",
+    "command": "jffs2reader rootfs.jffs2 -d outdir",
+    "params": "-d: 输出目录",
+    "notes": "无需挂载内核模块即可浏览内容"
+  },
+  {
+    "id": "ext4-mount",
+    "category": "EXT4",
+    "scene": "挂载 ext4 镜像只读查看",
+    "command": "sudo mount -o loop,ro rootfs.ext4 /mnt/ext4",
+    "params": "-o loop,ro: 只读环回挂载",
+    "notes": "确保安全，不要写回"
+  },
+  {
+    "id": "ext4-check",
+    "category": "EXT4",
+    "scene": "校验并修复 ext4 镜像",
+    "command": "sudo e2fsck -f rootfs.ext4",
+    "params": "-f: 强制检查，即便标记为干净",
+    "notes": "修复前建议备份镜像"
+  },
+  {
+    "id": "ext4-resize",
+    "category": "EXT4",
+    "scene": "缩小 ext4 镜像",
+    "command": "sudo resize2fs rootfs.ext4 600M",
+    "params": "600M: 目标大小，可用 -M 自动最小化",
+    "notes": "缩小前先 e2fsck，避免数据丢失"
+  },
+  {
+    "id": "ext4-create-image",
+    "category": "EXT4",
+    "scene": "从目录生成 ext4 镜像",
+    "command": "dd if=/dev/zero of=rootfs.ext4 bs=1M count=512 && mkfs.ext4 -F rootfs.ext4 && mkdir -p /mnt/ext4 && sudo mount -o loop rootfs.ext4 /mnt/ext4 && sudo cp -a rootfs_dir/. /mnt/ext4/ && sudo umount /mnt/ext4",
+    "params": "bs/count: 镜像大小；-F: 强制创建",
+    "notes": "创建后可配合 resize2fs 调整容量"
+  },
+  {
+    "id": "ext4-losetup",
+    "category": "EXT4",
+    "scene": "查看/创建 loop 设备并挂载",
+    "command": "sudo losetup -fP rootfs.ext4 && sudo mount /dev/loop0 /mnt/ext4",
+    "params": "-f: 找可用 loop；-P: 解析分区",
+    "notes": "多个镜像时用 losetup -a 查看映射"
+  },
+  {
+    "id": "ext4-tune2fs",
+    "category": "EXT4",
+    "scene": "查看 ext4 超级块信息",
+    "command": "sudo tune2fs -l rootfs.ext4 | head",
+    "params": "-l: 列出超级块元数据",
+    "notes": "确认 UUID/label/特性，方便 fstab 配置"
+  },
+  {
+    "id": "ext4-debugfs",
+    "category": "EXT4",
+    "scene": "离线查看文件元数据",
+    "command": "sudo debugfs -R \"stat /etc/passwd\" rootfs.ext4",
+    "params": "-R: 运行命令；stat: 查看 inode",
+    "notes": "无需挂载即可查权限/时间戳"
+  },
+  {
+    "id": "ext4-e2image",
+    "category": "EXT4",
+    "scene": "备份 ext4 元数据以便恢复",
+    "command": "sudo e2image -r -p rootfs.ext4 rootfs.e2img",
+    "params": "-r: 原始模式；-p: 进度",
+    "notes": "灾难恢复前的保险备份"
+  },
+  {
+    "id": "ext4-sparse-shrink",
+    "category": "EXT4",
+    "scene": "自动收缩到最小再导出",
+    "command": "sudo e2fsck -f rootfs.ext4 && sudo resize2fs -M rootfs.ext4",
+    "params": "-M: 收缩到最小可能大小",
+    "notes": "常用于固件打包前的瘦身"
+  },
+  {
+    "id": "fw-binwalk",
+    "category": "固件分析",
+    "scene": "自动提取固件内容",
+    "command": "binwalk -e firmware.bin",
+    "params": "-e: 遇到文件系统自动解包",
+    "notes": "生成 _firmware.bin.extracted 目录"
+  },
+  {
+    "id": "fw-strings",
+    "category": "固件分析",
+    "scene": "快速搜索可见字符串",
+    "command": "strings -n 6 firmware.bin | grep root",
+    "params": "-n 6: 最小长度 6；grep root: 过滤关键字",
+    "notes": "可用于找默认账号、域名等"
+  },
+  {
+    "id": "fw-hexdump",
+    "category": "固件分析",
+    "scene": "十六进制查看文件头",
+    "command": "hexdump -C firmware.bin | head",
+    "params": "-C: Canonical 显示；head: 只看前 10 行",
+    "notes": "判定文件类型或魔数"
+  },
+  {
+    "id": "fw-binwalk-me",
+    "category": "固件分析",
+    "scene": "递归提取固件（含插件）",
+    "command": "binwalk -Me firmware.bin",
+    "params": "-M: 递归；-e: 自动解包",
+    "notes": "可能较慢，注意输出目录大小"
+  },
+  {
+    "id": "fw-file",
+    "category": "固件分析",
+    "scene": "识别固件类型/压缩格式",
+    "command": "file firmware.bin",
+    "params": "无额外参数",
+    "notes": "可初步判断是否为 uImage/squashfs/uboot"
+  },
+  {
+    "id": "fw-unsquashfs",
+    "category": "固件分析",
+    "scene": "解压 squashfs 根文件系统",
+    "command": "unsquashfs -d squashfs-root rootfs.squashfs",
+    "params": "-d: 输出目录",
+    "notes": "若提示版本不匹配，需对应 mksquashfs 版本"
+  },
+  {
+    "id": "fw-mount-offset",
+    "category": "固件分析",
+    "scene": "按偏移挂载文件系统段",
+    "command": "sudo mount -o loop,offset=$((0x200000)),ro firmware.bin /mnt/fw",
+    "params": "offset: 字节偏移（十六进制需换算）",
+    "notes": "先用 binwalk 确定偏移；只读挂载避免破坏"
+  },
+  {
+    "id": "fw-crc32",
+    "category": "固件分析",
+    "scene": "计算固件 CRC32 校验",
+    "command": "crc32 firmware.bin",
+    "params": "无额外参数",
+    "notes": "busybox 自带，常用于厂商定制校验"
+  },
+  {
+    "id": "fw-dd-split-kernel",
+    "category": "固件分析",
+    "scene": "按偏移切割内核分区",
+    "command": "dd if=firmware.bin of=kernel.bin bs=1M skip=1 count=4",
+    "params": "skip: 起始偏移（块）；count: 大小",
+    "notes": "参数需按实际布局修改，切割前确认 binwalk 结果"
+  },
+  {
+    "id": "fw-grep-raw",
+    "category": "固件分析",
+    "scene": "在固件中搜索关键字符串",
+    "command": "grep -a \"admin\" -C2 firmware.bin",
+    "params": "-a: 按文本处理；-C2: 上下文",
+    "notes": "快速找默认账号/域名/密钥片段"
+  },
+  {
+    "id": "fw-sha256sum",
+    "category": "固件分析",
+    "scene": "校验固件完整性（强校验）",
+    "command": "sha256sum firmware.bin",
+    "params": "无额外参数",
+    "notes": "发布/验收环节比 MD5 更可靠"
+  },
+  {
+    "id": "fw-7z",
+    "category": "固件分析",
+    "scene": "尝试通用解包",
+    "command": "7z x firmware.bin",
+    "params": "无额外参数",
+    "notes": "对少数厂商自解压包有效，失败则回退 binwalk"
+  },
+  {
+    "id": "selenium-open-browser",
+    "category": "Selenium",
+    "scene": "打开浏览器访问页面",
+    "command": "Open Browser    https://example.com    chrome",
+    "params": "chrome/firefox/edge: 浏览器类型",
+    "notes": "需安装对应驱动；示例源自 SeleniumLibrary 基础用法"
+  },
+  {
+    "id": "selenium-go-to",
+    "category": "Selenium",
+    "scene": "在已打开浏览器跳转页面",
+    "command": "Go To    https://example.com/login",
+    "params": "URL: 目标地址",
+    "notes": "常与 Open Browser 组合使用"
+  },
+  {
+    "id": "selenium-click-element",
+    "category": "Selenium",
+    "scene": "点击元素（CSS 选择器）",
+    "command": "Click Element    css:button.submit",
+    "params": "css/xpath/id/name 等定位方式",
+    "notes": "来自 Selenium 定位章节示例"
+  },
+  {
+    "id": "selenium-input-text",
+    "category": "Selenium",
+    "scene": "输入文本到输入框",
+    "command": "Input Text    id=username    admin",
+    "params": "第 1 个参数: 定位符；第 2 个: 文本",
+    "notes": "配合密码字段使用 Input Password 保持安全"
+  },
+  {
+    "id": "selenium-clear-element",
+    "category": "Selenium",
+    "scene": "清空输入框内容",
+    "command": "Clear Element Text    id=search",
+    "params": "定位符: 支持 css/xpath/id 等",
+    "notes": "输入前先清空可避免残留值"
+  },
+  {
+    "id": "selenium-wait-visible",
+    "category": "Selenium",
+    "scene": "等待元素可见",
+    "command": "Wait Until Element Is Visible    xpath=//div[@id='status']    10s",
+    "params": "最后参数: 超时，默认 5s",
+    "notes": "同步加载/异步请求场景常用"
+  },
+  {
+    "id": "selenium-wait-page",
+    "category": "Selenium",
+    "scene": "等待页面包含指定文本",
+    "command": "Wait Until Page Contains    登录成功    15s",
+    "params": "文本: 需匹配的字符串",
+    "notes": "表单提交后校验提示信息"
+  },
+  {
+    "id": "selenium-get-text",
+    "category": "Selenium",
+    "scene": "读取元素文本",
+    "command": "Get Text    css:.result",
+    "params": "定位符: 目标元素",
+    "notes": "可与 Should Be Equal 比较断言"
+  },
+  {
+    "id": "selenium-select-value",
+    "category": "Selenium",
+    "scene": "下拉框按值选择",
+    "command": "Select From List By Value    id=country    CN",
+    "params": "第三个参数: option 的 value",
+    "notes": "也可用 Select From List By Label 选择显示文本"
+  },
+  {
+    "id": "selenium-choose-file",
+    "category": "Selenium",
+    "scene": "文件上传",
+    "command": "Choose File    id=upload    ${CURDIR}/firmware.bin",
+    "params": "第二个参数: 本地文件路径",
+    "notes": "路径需对 Selenium 进程可见"
+  },
+  {
+    "id": "selenium-execute-js",
+    "category": "Selenium",
+    "scene": "执行自定义 JavaScript",
+    "command": "Execute JavaScript    return document.title;",
+    "params": "JS 代码: 可返回值",
+    "notes": "高级操作或无现成关键字时使用"
+  },
+  {
+    "id": "selenium-screenshot",
+    "category": "Selenium",
+    "scene": "截图保存页面",
+    "command": "Capture Page Screenshot    ${OUTPUT DIR}/shot.png",
+    "params": "路径: 输出文件名",
+    "notes": "失败定位、回归对比常用"
+  },
+  {
+    "id": "selenium-find-id",
+    "category": "Selenium",
+    "scene": "通过 ID 查找元素",
+    "command": "Find Element    id:username",
+    "params": "id: 前缀 + 元素 ID",
+    "notes": "与文档“通过ID查找元素”一致"
+  },
+  {
+    "id": "selenium-find-name",
+    "category": "Selenium",
+    "scene": "通过 Name 查找元素",
+    "command": "Find Element    name:q",
+    "params": "name: 前缀 + name 属性",
+    "notes": "表单字段常用"
+  },
+  {
+    "id": "selenium-find-xpath",
+    "category": "Selenium",
+    "scene": "通过 XPath 查找元素",
+    "command": "Find Element    xpath=//input[@type='submit']",
+    "params": "xpath=: XPath 表达式",
+    "notes": "文档定位章节示例"
+  },
+  {
+    "id": "selenium-find-css",
+    "category": "Selenium",
+    "scene": "通过 CSS 选择器查找元素",
+    "command": "Find Element    css:button.submit",
+    "params": "css: 前缀 + 选择器",
+    "notes": "快速定位 class/id/属性"
+  },
+  {
+    "id": "selenium-wait-clickable",
+    "category": "Selenium",
+    "scene": "等待元素可点击",
+    "command": "Wait Until Element Is Enabled    css:button.submit    10s",
+    "params": "超时时间: 默认 5s",
+    "notes": "表单按钮异步加载时使用"
+  },
+  {
+    "id": "selenium-press-keys",
+    "category": "Selenium",
+    "scene": "模拟键盘输入",
+    "command": "Press Keys    id=search    ENTER",
+    "params": "目标元素 + 键名",
+    "notes": "回车提交/组合键操作"
+  },
+  {
+    "id": "selenium-mouse-over",
+    "category": "Selenium",
+    "scene": "鼠标悬停触发菜单",
+    "command": "Mouse Over    css:.nav-item",
+    "params": "定位符: 目标元素",
+    "notes": "下拉菜单或 tooltip 触发"
+  },
+  {
+    "id": "selenium-handle-alert",
+    "category": "Selenium",
+    "scene": "处理浏览器弹框",
+    "command": "Handle Alert    action=ACCEPT",
+    "params": "action: ACCEPT/DISMISS/LEAVE",
+    "notes": "配合触发弹窗的步骤使用"
+  },
+  {
+    "id": "selenium-switch-window",
+    "category": "Selenium",
+    "scene": "切换到新窗口/标签",
+    "command": "Switch Window    NEW",
+    "params": "NEW/PREVIOUS/TITLE=xxx 等",
+    "notes": "处理弹窗或多标签页"
+  },
+  {
+    "id": "selenium-implicit-wait",
+    "category": "Selenium",
+    "scene": "设置全局隐式等待",
+    "command": "Set Selenium Implicit Wait    5 seconds",
+    "params": "时间: 等待时长",
+    "notes": "配合显式等待，避免元素偶现的 NoSuchElement"
+  },
+  {
+    "id": "selenium-close-browser",
+    "category": "Selenium",
+    "scene": "关闭当前浏览器",
+    "command": "Close Browser",
+    "params": "无额外参数",
+    "notes": "测试用例结束后释放资源"
+  },
+  {
+    "id": "selenium-close-all",
+    "category": "Selenium",
+    "scene": "关闭所有浏览器会话",
+    "command": "Close All Browsers",
+    "params": "无额外参数",
+    "notes": "清理遗留会话，防止后续用例冲突"
+  },
+  {
+    "id": "ride-launch",
+    "category": "RIDE",
+    "scene": "启动 RIDE 图形界面",
+    "command": "ride.py",
+    "params": "无额外参数",
+    "notes": "确保已安装 robotframework-ride，未在 PATH 时用 python -m robotide"
+  },
+  {
+    "id": "ride-launch-no-update",
+    "category": "RIDE",
+    "scene": "启动 RIDE 并跳过更新检查",
+    "command": "ride.py --noupdate",
+    "params": "--noupdate: 启动时不检查更新",
+    "notes": "离线环境加速启动，避免提示更新"
+  },
+  {
+    "id": "ride-launch-debug",
+    "category": "RIDE",
+    "scene": "调试模式启动 RIDE",
+    "command": "ride.py --debug",
+    "params": "--debug: 输出调试日志",
+    "notes": "排查插件或编码问题时使用"
+  },
+  {
+    "id": "ride-validate",
+    "category": "RIDE",
+    "scene": "校验测试用例语法",
+    "command": "ride.py --validate tests/",
+    "params": "--validate 路径: 检查指定目录",
+    "notes": "CI 前先校验，避免运行时语法报错"
+  },
+  {
+    "id": "ride-robot-run",
+    "category": "RIDE",
+    "scene": "运行 Robot 测试套件",
+    "command": "robot tests/",
+    "params": "tests/: 测试目录或文件",
+    "notes": "RIDE 中保存后可直接运行，同命令行一致"
+  },
+  {
+    "id": "ride-robot-tag",
+    "category": "RIDE",
+    "scene": "按标签执行冒烟用例",
+    "command": "robot -i smoke -v ENV:staging tests/",
+    "params": "-i: 包含标签；-v: 设置变量",
+    "notes": "同 RIDE Run Config，可切环境与标签"
+  },
+  {
+    "id": "ride-robot-dryrun",
+    "category": "RIDE",
+    "scene": "干跑检查关键字拼写",
+    "command": "robot --dryrun tests/",
+    "params": "--dryrun: 不执行关键字，只做解析",
+    "notes": "提前发现缺失库/关键字命名错误"
+  },
+  {
+    "id": "ride-robot-loglevel",
+    "category": "RIDE",
+    "scene": "提高日志级别便于定位",
+    "command": "robot --loglevel TRACE tests/",
+    "params": "--loglevel: 指定日志级别",
+    "notes": "与 RIDE 的日志级别设置一致"
+  },
+  {
+    "id": "ride-rebot-rerunfailed",
+    "category": "RIDE",
+    "scene": "重跑上次失败用例",
+    "command": "rebot --rerunfailed output.xml --output rerun.xml tests/",
+    "params": "--rerunfailed: 读取失败列表；--output: 生成新结果",
+    "notes": "先 rerun 再 rebot --merge 合并报告"
+  },
+  {
+    "id": "ride-rebot-merge",
+    "category": "RIDE",
+    "scene": "合并多次执行的报告",
+    "command": "rebot --merge output.xml rerun.xml",
+    "params": "--merge: 合并多个输出",
+    "notes": "常用于失败重跑后汇总报告"
+  },
+  {
+    "id": "ride-libdoc",
+    "category": "RIDE",
+    "scene": "生成库/关键字文档",
+    "command": "python -m robot.libdoc SeleniumLibrary SeleniumLibrary.html",
+    "params": "库名 输出文件: 生成 HTML 文档",
+    "notes": "离线生成，RIDE 可导入 HTML 参考"
+  },
+  {
+    "id": "ride-selenium-open",
+    "category": "RIDE",
+    "scene": "SeleniumLibrary 打开网页示例",
+    "command": "Open Browser    https://example.com    chrome",
+    "params": "Open Browser: 关键字；chrome: 浏览器类型",
+    "notes": "在 RIDE 用例中直接作为关键字行，示例来自 Selenium 使用说明"
+  }
+]

@@ -1,0 +1,96 @@
+<!DOCTYPE html><html lang="zh-cn">
+<!-- Mirrored from man.niaoge.com/nstat_rtacct by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:06:46 GMT -->
+<head>
+<meta charset="UTF-8"/><meta name="renderer" content="webkit"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/><link href="public/style.css" rel="stylesheet" type="text/css" />
+<link href="public/index.css" rel="stylesheet" type="text/css" />
+<link href="public/img/favicon.ico" type="image/x-icon" rel="shortcut icon">
+<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script><script src="public/main.js"></script><title>nstat/rtacct命令_Linux nstat/rtacct 命令用法详解：监视SNMP计数器和网络接口状态</title><link rel="canonical" href="nstat_rtacct.html"/></head><body><div id="header" class="clearfix"><h2 id="logo" class="left"><a title="Linux命令大全" href="index.html">Linux命令大全</a></h2><ul id="menu-main" class="right toggle-target"><li id="menu-item-4" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-4"><a href="index.html">首页搜索</a></li><li id="menu-item-6" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6"><a href="par/2.html">系统管理</a></li><li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-7"><a href="par/5.html">网络管理</a></li><li id="menu-item-8" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8"><a href="par/4.html">软件·打印·开发·工具</a></li><li id="menu-item-9" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-9"><a href="par/1.html">文件和目录管理</a></li><li id="menu-item-10" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-10"><a href="par/3.html">硬件·内核·Shell·监测</a></li></ul> <span id="menu-main-toggle" class="toggle-btn" toggle-target="#menu-main"></span></div><div id="main-single" class="main-layout clearfix"><div class="right arc-wrap"><div id="position-wrap" class="clearfix"><div class="position left">当前位置：<a href="index.html">首页</a> &raquo; <a href="par/5.html" rel="category tag">网络管理</a> &raquo; nstat/rtacct</div></div><div id="title" class="clearfix"><h1 class="left">nstat/rtacct命令</h1><div class="right"> <a href="sub/%e9%ab%98%e7%ba%a7%e7%bd%91%e7%bb%9c.html" rel="tag">高级网络</a></div></div><div id="arc-body"><p> <strong>nstat命令</strong>和<strong>rtacct命令</strong>是一个简单的监视内核的SNMP计数器和网络接口状态的实用工具。</p><h3> 语法<br/></h3><pre>
+nstat/rtacct(选项)</pre><h3> 选项<br/></h3><pre>
+-h：显示帮助信息；
+-V：显示指令版本信息；
+-z：显示0计数器；
+-r：清零历史统计；
+-n：不显示任何内容，仅更新历史；
+-a：显示计数器的绝对值；
+-s：不更新历史；
+-d：以守护进程的方式运行本指令。</pre><p> 实例</p><pre>
+<span style="color:#FF0000;">[root@localhost ~]# nstat</span>
+#kernel
+IpInReceives                    15766482           0.0
+IpInDelivers                    15538384           0.0
+IpOutRequests                   9746938            0.0
+IpReasmReqds                    8                  0.0
+IpReasmOKs                      4                  0.0
+IcmpInErrors                    28701              0.0
+IcmpInDestUnreachs              405                0.0
+IcmpInTimeExcds                 1812               0.0
+IcmpInParmProbs                 173                0.0
+IcmpInEchoReps                  26613              0.0
+IcmpInTimestamps                100                0.0
+IcmpOutErrors                   27065              0.0
+IcmpOutTimeExcds                331                0.0
+IcmpOutEchoReps                 121                0.0
+IcmpOutTimestamps               26613              0.0
+IcmpMsgInType0                  100                0.0
+IcmpMsgInType3                  1812               0.0
+IcmpMsgInType8                  26613              0.0
+IcmpMsgInType11                 173                0.0
+IcmpMsgOutType0                 26613              0.0
+IcmpMsgOutType3                 331                0.0
+IcmpMsgOutType8                 121                0.0
+TcpActiveOpens                  24760              0.0
+TcpPassiveOpens                 573863             0.0
+TcpAttemptFails                 18347              0.0
+TcpEstabResets                  67353              0.0
+TcpInSegs                       15324047           0.0
+TcpOutSegs                      9296351            0.0
+TcpRetransSegs                  118479             0.0
+TcpInErrs                       560                0.0
+TcpOutRsts                      15269              0.0
+UdpInDatagrams                  185300             0.0
+UdpNoPorts                      331                0.0
+UdpOutDatagrams                 305043             0.0
+TcpExtSyncookiesFailed          14328              0.0
+TcpExtEmbryonicRsts             15116              0.0
+TcpExtOutOfWindowIcmps          79                 0.0
+TcpExtTW                        158436             0.0
+TcpExtDelayedACKs               123597             0.0
+TcpExtDelayedACKLocked          1087               0.0
+TcpExtDelayedACKLost            55670              0.0
+TcpExtTCPPrequeued              288438             0.0
+TcpExtTCPDirectCopyFromBacklog  11229302           0.0
+TcpExtTCPDirectCopyFromPrequeue 669949             0.0
+TcpExtTCPHPHits                 7539804            0.0
+TcpExtTCPHPHitsToUser           7700               0.0
+TcpExtTCPPureAcks               2743573            0.0
+TcpExtTCPHPAcks                 1742135            0.0
+TcpExtTCPRenoRecovery           51                 0.0
+TcpExtTCPSackRecovery           15556              0.0
+TcpExtTCPSACKReneging           13                 0.0
+TcpExtTCPFACKReorder            199                0.0
+TcpExtTCPSACKReorder            63                 0.0
+TcpExtTCPTSReorder              220                0.0
+TcpExtTCPFullUndo               213                0.0
+TcpExtTCPPartialUndo            868                0.0
+TcpExtTCPDSACKUndo              2831               0.0
+TcpExtTCPLossUndo               2320               0.0
+TcpExtTCPLoss                   22652              0.0
+TcpExtTCPLostRetransmit         2                  0.0
+TcpExtTCPRenoFailures           26                 0.0
+TcpExtTCPSackFailures           4765               0.0
+TcpExtTCPLossFailures           2155               0.0
+TcpExtTCPFastRetrans            28636              0.0
+TcpExtTCPForwardRetrans         3341               0.0
+TcpExtTCPSlowStartRetrans       25393              0.0
+TcpExtTCPTimeouts               28215              0.0
+TcpExtTCPRenoRecoveryFail       26                 0.0
+TcpExtTCPSackRecoveryFail       2892               0.0
+TcpExtTCPDSACKOldSent           55916              0.0
+TcpExtTCPDSACKOfoSent           299                0.0
+TcpExtTCPDSACKRecv              11680              0.0
+TcpExtTCPDSACKOfoRecv           35                 0.0
+TcpExtTCPAbortOnData            1193               0.0
+TcpExtTCPAbortOnClose           14                 0.0
+TcpExtTCPAbortOnTimeout         3041               0.0</pre></div></div><div id="sidebar" class="left"><div class="box"><h3 class="title">相关命令</h3><ul class="body list-col-1 clearfix"><li><a href="iptables-save.html" title="iptables-save">iptables-save</a></li><li><a href="pfctl.html" title="pfctl">pfctl</a></li><li><a href="ip6tables.html" title="ip6tables">ip6tables</a></li><li><a href="iptraf.html" title="iptraf">iptraf</a></li><li><a href="iptables.html" title="iptables">iptables</a></li><li><a href="tcpreplay.html" title="tcpreplay">tcpreplay</a></li><li><a href="ip.html" title="ip">ip</a></li><li><a href="arpd.html" title="arpd">arpd</a></li><li><a href="tcpdump.html" title="tcpdump">tcpdump</a></li><li><a href="ss.html" title="ss">ss</a></li><li><a href="arptables.html" title="arptables">arptables</a></li><li><a href="ip6tables-save.html" title="ip6tables-save">ip6tables-save</a></li><li><a href="iptables-restore.html" title="iptables-restore">iptables-restore</a></li><li><a href="lnstat.html" title="lnstat">lnstat</a></li><li><a href="ip6tables-restore.html" title="ip6tables-restore">ip6tables-restore</a></li></ul></div><div id="sidebar_search_box" class="box"><form action="https://man.niaoge.com/" method="post"> <input class="search-input " type="text" name="ss" id="ss" value="命令直达(输入完整命令)" onfocus="if (value =='命令直达(输入完整命令)'){value =''}" onblur="if (value ==''){value='命令直达(输入完整命令)'}"/> <input class="search-submit button mobile-visible" type="submit" value="进入"/></form></div><div class="box"><h3 class="title"><a href="download/index.html">Linux下载</a></h3><ul class="body list-col-1 clearfix"><li><a href="download/Ubuntu.html">Ubuntu下载</a></li><li><a href="download/CentOS.html">CentOS下载</a></li></ul></div></div></div> ﻿<div id="footer-wrap"><div id="btn-backtop" title="返回顶部">返回顶部↑</div><div id="footer"><div class="info box"> <a href="index.html" title="Linux命令大全">Linux命令大全</a> <span class="split"></span> <a href="about_us.html" title="关于/联系">关于/联系</a> <span class="split"></span> 收藏本站请使用Ctrl+D <span class="split"></span> <a href="shell-script/index.html" target="_blank">Shell脚本攻略</a> <span class="split"></span> <a href="shell-regex.html" target="_blank">Shell正则表达式</a> <span class="split"></span> 共收录 <span style="font-size: 16px; color:#74b147;">585</span> 条Linux系统命令</div><div class="desc box">在Linux命令大全（man.niaoge.com）可以查询您所需要的Linux命令教程和相关实例。如果您觉得本站内容对您有所帮助，请推荐给更多需要帮助的人。</div></div></div> <script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?9afbd88b4e674f3b4af0a760c48a00ac"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script></body>
+<!-- Mirrored from man.niaoge.com/nstat_rtacct by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:06:46 GMT -->
+</html>

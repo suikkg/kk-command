@@ -1,0 +1,39 @@
+<!DOCTYPE html><html lang="zh-cn">
+<!-- Mirrored from man.niaoge.com/traceroute by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:04:06 GMT -->
+<head>
+<meta charset="UTF-8"/><meta name="renderer" content="webkit"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/><link href="public/style.css" rel="stylesheet" type="text/css" />
+<link href="public/index.css" rel="stylesheet" type="text/css" />
+<link href="public/img/favicon.ico" type="image/x-icon" rel="shortcut icon">
+<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script><script src="public/main.js"></script><title>traceroute命令_Linux traceroute 命令用法详解：显示数据包到主机间的路径</title><link rel="canonical" href="traceroute.html"/></head><body><div id="header" class="clearfix"><h2 id="logo" class="left"><a title="Linux命令大全" href="index.html">Linux命令大全</a></h2><ul id="menu-main" class="right toggle-target"><li id="menu-item-4" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-4"><a href="index.html">首页搜索</a></li><li id="menu-item-6" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6"><a href="par/2.html">系统管理</a></li><li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-7"><a href="par/5.html">网络管理</a></li><li id="menu-item-8" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8"><a href="par/4.html">软件·打印·开发·工具</a></li><li id="menu-item-9" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-9"><a href="par/1.html">文件和目录管理</a></li><li id="menu-item-10" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-10"><a href="par/3.html">硬件·内核·Shell·监测</a></li></ul> <span id="menu-main-toggle" class="toggle-btn" toggle-target="#menu-main"></span></div><div id="main-single" class="main-layout clearfix"><div class="right arc-wrap"><div id="position-wrap" class="clearfix"><div class="position left">当前位置：<a href="index.html">首页</a> &raquo; <a href="par/5.html" rel="category tag">网络管理</a> &raquo; traceroute</div></div><div id="title" class="clearfix"><h1 class="left">traceroute命令</h1><div class="right"> <a href="sub/%e7%bd%91%e7%bb%9c%e6%b5%8b%e8%af%95.html" rel="tag">网络测试</a></div></div><div id="arc-body"><p> <strong>traceroute命令</strong>用于追踪数据包在网络上的传输时的全部路径，它默认发送的数据包大小是40字节。</p><p> 通过traceroute我们可以知道信息从你的计算机到互联网另一端的主机是走的什么路径。当然每次数据包由某一同样的出发点（source）到达某一同样的目的地(destination)走的路径可能会不一样，但基本上来说大部分时候所走的路由是相同的。</p><p> traceroute通过发送小的数据包到目的设备直到其返回，来测量其需要多长时间。一条路径上的每个设备traceroute要测3次。输出结果中包括每次测试的时间(ms)和设备的名称（如有的话）及其<span class="wp_keywordlink"><a href="ip.html" title="ip命令" target="_blank">ip</a></span>地址。</p><h3> 语法<br/></h3><pre>
+traceroute(选项)(参数)</pre><h3> 选项<br/></h3><pre>
+-d：使用Socket层级的排错功能；
+-f&lt;存活数值&gt;：设置第一个检测数据包的存活数值TTL的大小；
+-F：设置勿离断位；
+-g&lt;网关&gt;：设置来源路由网关，最多可设置8个；
+-i&lt;网络界面&gt;：使用指定的网络界面送出数据包；
+-I：使用ICMP回应取代UDP资料信息；
+-m&lt;存活数值&gt;：设置检测数据包的最大存活数值TTL的大小；
+-n：直接使用IP地址而非主机名称；
+-p&lt;通信端口&gt;：设置UDP传输协议的通信端口；
+-r：忽略普通的Routing Table，直接将数据包送到远端主机上。
+-s&lt;来源地址&gt;：设置本地主机送出数据包的IP地址；
+-t&lt;服务类型&gt;：设置检测数据包的TOS数值；
+-v：详细显示指令的执行过程；
+-<span class="wp_keywordlink"><a href="w.html" title="w命令" target="_blank">w</a></span>&lt;超时秒数&gt;：设置等待远端主机回报的时间；
+-x：开启或关闭数据包的正确性检验。</pre><h3> 参数<br/></h3><p> 主机：指定目的主机IP地址或主机名。</p><h3> 实例<br/></h3><pre>
+<span style="color:#FF0000;">traceroute www.58.com</span>
+traceroute to www.58.com (211.151.111.30), 30 hops max, 40 byte packets
+ 1  unknown (192.168.2.1)  3.453 ms  3.801 ms  3.937 ms
+ 2  221.6.45.33 (221.6.45.33)  7.768 ms  7.816 ms  7.840 ms
+ 3  221.6.0.233 (221.6.0.233)  13.784 ms  13.827 ms 221.6.9.81 (221.6.9.81)  9.758 ms
+ 4  221.6.2.169 (221.6.2.169)  11.777 ms 122.96.66.13 (122.96.66.13)  34.952 ms 221.6.2.53 (221.6.2.53)  41.372 ms
+ 5  219.158.96.149 (219.158.96.149)  39.167 ms  39.210 ms  39.238 ms
+ 6  123.126.0.194 (123.126.0.194)  37.270 ms 123.126.0.66 (123.126.0.66)  37.163 ms  37.441 ms
+ 7  124.65.57.26 (124.65.57.26)  42.787 ms  42.799 ms  42.809 ms
+ 8  61.148.146.210 (61.148.146.210)  30.176 ms 61.148.154.98 (61.148.154.98)  32.613 ms  32.675 ms
+ 9  202.106.42.102 (202.106.42.102)  44.563 ms  44.600 ms  44.627 ms
+10  210.77.139.150 (210.77.139.150)  53.302 ms  53.233 ms  53.032 ms
+11  211.151.104.6 (211.151.104.6)  39.585 ms  39.502 ms  39.598 ms
+12  211.151.111.30 (211.151.111.30)  35.161 ms  35.938 ms  36.005 ms</pre><p> 记录按序列号从1开始，每个纪录就是一跳&nbsp;，每跳表示一个网关，我们看到每行有三个时间，单位是ms，其实就是<code>-q</code>的默认参数。探测数据包向每个网关发送三个数据包后，网关响应后返回的时间；如果用<code>traceroute&nbsp;-q&nbsp;4&nbsp;www.58.com</code>，表示向每个网关发送4个数据包。</p><p> 有时我们traceroute一台主机时，会看到有一些行是以星号表示的。出现这样的情况，可能是防火墙封掉了ICMP的返回信息，所以我们得不到什么相关的数据包返回数据。</p><p> 有时我们在某一网关处延时比较长，有可能是某台网关比较阻塞，也可能是物理设备本身的原因。当然如果某台DNS出现问题时，不能解析主机名、域名时，也会&nbsp;有延时长的现象；您可以加<code>-n</code>参数来避免DNS解析，以IP格式输出数据。</p><p> 如果在局域网中的不同网段之间，我们可以通过traceroute&nbsp;来排查问题所在，是主机的问题还是网关的问题。如果我们通过远程来访问某台服务器遇到问题时，我们用到traceroute&nbsp;追踪数据包所经过的网关，提交IDC服务商，也有助于解决问题；但目前看来在国内解决这样的问题是比较困难的，就是我们发现问题所在，IDC服务商也不可能帮助我们解决。</p></div></div><div id="sidebar" class="left"><div class="box"><h3 class="title">相关命令</h3><ul class="body list-col-1 clearfix"><li><a href="iperf.html" title="iperf">iperf</a></li><li><a href="netstat.html" title="netstat">netstat</a></li><li><a href="hping3.html" title="hping3">hping3</a></li><li><a href="arpwatch.html" title="arpwatch">arpwatch</a></li><li><a href="ping.html" title="ping">ping</a></li><li><a href="tracepath.html" title="tracepath">tracepath</a></li><li><a href="nc_netcat.html" title="nc/netcat">nc/netcat</a></li><li><a href="arping.html" title="arping">arping</a></li><li><a href="nslookup.html" title="nslookup">nslookup</a></li><li><a href="host.html" title="host">host</a></li><li><a href="arp.html" title="arp">arp</a></li><li><a href="dig.html" title="dig">dig</a></li></ul></div><div id="sidebar_search_box" class="box"><form action="https://man.niaoge.com/" method="post"> <input class="search-input " type="text" name="ss" id="ss" value="命令直达(输入完整命令)" onfocus="if (value =='命令直达(输入完整命令)'){value =''}" onblur="if (value ==''){value='命令直达(输入完整命令)'}"/> <input class="search-submit button mobile-visible" type="submit" value="进入"/></form></div><div class="box"><h3 class="title"><a href="download/index.html">Linux下载</a></h3><ul class="body list-col-1 clearfix"><li><a href="download/Ubuntu.html">Ubuntu下载</a></li><li><a href="download/CentOS.html">CentOS下载</a></li></ul></div></div></div> ﻿<div id="footer-wrap"><div id="btn-backtop" title="返回顶部">返回顶部↑</div><div id="footer"><div class="info box"> <a href="index.html" title="Linux命令大全">Linux命令大全</a> <span class="split"></span> <a href="about_us.html" title="关于/联系">关于/联系</a> <span class="split"></span> 收藏本站请使用Ctrl+D <span class="split"></span> <a href="shell-script/index.html" target="_blank">Shell脚本攻略</a> <span class="split"></span> <a href="shell-regex.html" target="_blank">Shell正则表达式</a> <span class="split"></span> 共收录 <span style="font-size: 16px; color:#74b147;">585</span> 条Linux系统命令</div><div class="desc box">在Linux命令大全（man.niaoge.com）可以查询您所需要的Linux命令教程和相关实例。如果您觉得本站内容对您有所帮助，请推荐给更多需要帮助的人。</div></div></div> <script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?9afbd88b4e674f3b4af0a760c48a00ac"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script></body>
+<!-- Mirrored from man.niaoge.com/traceroute by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:04:06 GMT -->
+</html>
