@@ -1119,6 +1119,24 @@
     "notes": "精细控制提交内容"
   },
   {
+    "id": "git-add-A",
+    "category": "Git",
+    "sub": "日常操作",
+    "scene": "暂存所有变更",
+    "command": "git add -A",
+    "params": "-A: 暂存所有变更",
+    "notes": "新增、修改、删除，作用范围为整个仓库，包括已删除文件；等同git add --all"
+  },
+  {
+    "id": "git-add-.",
+    "category": "Git",
+    "sub": "日常操作",
+    "scene": "暂存所有变更",
+    "command": "git add .",
+    "params": ".: 路径参数，表示当前目录，递归作用于其子目录",
+    "notes": "暂存当前目录及子目录的新增、修改，不包含已删除文件"
+  },
+  {
     "id": "git-commit",
     "category": "Git",
     "sub": "日常操作",
