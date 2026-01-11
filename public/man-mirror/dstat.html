@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang="zh-cn">
+<!-- Mirrored from man.niaoge.com/dstat by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:04:12 GMT -->
+<head>
+<meta charset="UTF-8"/><meta name="renderer" content="webkit"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/><link href="public/style.css" rel="stylesheet" type="text/css" />
+<link href="public/index.css" rel="stylesheet" type="text/css" />
+<link href="public/img/favicon.ico" type="image/x-icon" rel="shortcut icon">
+<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script><script src="public/main.js"></script><title>dstat命令_Linux dstat 命令用法详解：通用的系统资源统计工具</title></head><body><div id="header" class="clearfix"><h2 id="logo" class="left"><a title="Linux命令大全" href="index.html">Linux命令大全</a></h2><ul id="menu-main" class="right toggle-target"><li id="menu-item-4" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home current-post-parent menu-item-4"><a href="index.html">首页搜索</a></li><li id="menu-item-6" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6"><a href="par/2.html">系统管理</a></li><li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7"><a href="par/5.html">网络管理</a></li><li id="menu-item-8" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8"><a href="par/4.html">软件·打印·开发·工具</a></li><li id="menu-item-9" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-9"><a href="par/1.html">文件和目录管理</a></li><li id="menu-item-10" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-10"><a href="par/3.html">硬件·内核·Shell·监测</a></li></ul> <span id="menu-main-toggle" class="toggle-btn" toggle-target="#menu-main"></span></div><div id="main-single" class="main-layout clearfix"><div class="right arc-wrap"><div id="position-wrap" class="clearfix"><div class="position left">当前位置：<a href="index.html">首页</a> &raquo; <a href="par/3.html" rel="category tag">硬件·内核·Shell·监测</a> &raquo; dstat</div></div><div id="title" class="clearfix"><h1 class="left">dstat命令</h1><div class="right"> <a href="sub/%e6%80%a7%e8%83%bd%e7%9b%91%e6%b5%8b%e4%b8%8e%e4%bc%98%e5%8c%96.html" rel="tag">性能监测与优化</a></div></div><div id="arc-body"><p> <strong>dstat命令</strong>是一个用来替换<span class="wp_keywordlink"><a href="vmstat.html" title="vmstat命令" target="_blank">vmstat</a></span>、<span class="wp_keywordlink"><a href="iostat.html" title="iostat命令" target="_blank">iostat</a></span>、<span class="wp_keywordlink"><a href="netstat.html" title="netstat命令" target="_blank">netstat</a></span>、<span class="wp_keywordlink"><a href="nfsstat.html" title="nfsstat命令" target="_blank">nfsstat</a></span>和<span class="wp_keywordlink"><a href="ifstat.html" title="ifstat命令" target="_blank">ifstat</a></span>这些命令的工具，是一个全能系统信息统计工具。与sysstat相比，dstat拥有一个彩色的界面，在手动观察性能状况时，数据比较显眼容易观察；而且dstat支持即时刷新，譬如输入<code>dstat 3</code>即每三秒收集一次，但最新的数据都会每秒刷新显示。和sysstat相同的是，dstat也可以收集指定的性能资源，譬如<code>dstat -c</code>即显示CPU的使用情况。</p><h3> 下载安装<br/></h3><p> <strong>方法一</strong></p><pre>
+<span class="wp_keywordlink"><a href="yum.html" title="yum命令" target="_blank">yum</a></span> <span class="wp_keywordlink"><a href="install.html" title="install命令" target="_blank">install</a></span> -y dstat</pre><p> <strong>方法二</strong></p><p> 官网下载地址：http://dag.wieers.com/<span class="wp_keywordlink"><a href="rpm.html" title="rpm命令" target="_blank">rpm</a></span>/packages/dstat</p><pre>
+<span class="wp_keywordlink"><a href="wget.html" title="wget命令" target="_blank">wget</a></span> http://dag.wieers.com/rpm/packages/dstat/dstat-0.6.7-1.rh7.rf.noarch.rpm
+rpm -ivh dstat-0.6.7-1.rh7.rf.noarch.rpm</pre><h3> 使用说明<br/></h3><p> 安装完后就可以使用了，dstat非常强大，可以实时的监控cpu、磁盘、网络、IO、内存等使用情况。</p><p> 直接使用dstat，默认使用的是<code>-cdngy</code>参数，分别显示cpu、disk、net、page、system信息，默认是1s显示一条信息。可以在最后指定显示一条信息的时间间隔，如<code>dstat&nbsp;5</code>是没5s显示一条，<code>dstat&nbsp;5&nbsp;10</code>表示没5s显示一条，一共显示10条。</p><pre>
+[root@iZ23uulau1tZ ~]# dstat
+----total-cpu-usage---- -dsk/total- -net/total- ---paging-- ---system--
+usr sys idl wai hiq siq| <span class="wp_keywordlink"><a href="read.html" title="read命令" target="_blank">read</a></span>  writ| recv  send|  in   out | int   csw
+  0   0  99   0   0   0|7706B  164k|   0     0 |   0     0 | 189   225
+  0   0 100   0   0   0|   0     0 |4436B  826B|   0     0 | 195   248
+  1   0  99   0   0   0|   0     0 |4744B  346B|   0     0 | 203   242
+  0   0 100   0   0   0|   0     0 |5080B  346B|   0     0 | 206   242
+  0   1  99   0   0   0|   0     0 |5458B  444B|   0     0 | 214   244
+  1   0  99   0   0   0|   0     0 |5080B  346B|   0     0 | 208   242</pre><p> 下面对显示出来的部分信息作一些说明：</p><ol><li> cpu：hiq、siq分别为硬中断和软中断次数。</li><li> system：int、csw分别为系统的中断次数（interrupt）和上下文切换（context&nbsp;switch）。</li></ol><p> 其他的都很好理解。</p><h3> 语法<br/></h3><pre>
+dstat [-afv] [options..] [delay [count]]</pre><h3> 常用选项<br/></h3><pre>
+-c：显示CPU系统占用，用户占用，空闲，等待，中断，软件中断等信息。
+-C：当有多个CPU时候，此参数可按需分别显示cpu状态，例：-C 0,1 是显示cpu0和cpu1的信息。
+-d：显示磁盘读写数据大小。
+-D hda,total：include hda and total。
+-n：显示网络状态。
+-N eth1,total：有多块网卡时，指定要显示的网卡。
+-l：显示系统负载情况。
+-m：显示内存使用情况。
+-g：显示页面使用情况。
+-p：显示进程状态。
+-s：显示交换分区使用情况。
+-S：类似D/N。
+-r：I/O请求情况。
+-y：系统状态。
+--ipc：显示ipc消息队列，信号等信息。
+--socket：用来显示tcp udp端口状态。
+-a：此为默认选项，等同于-cdngy。
+-v：等同于 -pmgdsc -D total。
+--output 文件：此选项也比较有用，可以把状态信息以csv的格式重定向到指定的文件中，以便日后查看。例：dstat --output /root/dstat.csv &amp; 此时让程序默默的在后台运行并把结果输出到/root/dstat.csv文件中。</pre><p> 当然dstat还有很多更高级的用法，常用的基本这些选项，更高级的用法可以结合<span class="wp_keywordlink"><a href="man.html" title="man命令" target="_blank">man</a></span>文档。</p><h3> 实例<br/></h3><p> 如想监控swap，process，sockets，filesystem并显示监控的时间：</p><pre>
+[root@iZ23uulau1tZ ~]# dstat -tsp --socket --fs
+----system---- ----swap--- ---procs--- ------sockets------ --filesystem-
+  <span class="wp_keywordlink"><a href="date.html" title="date命令" target="_blank">date</a></span>/<span class="wp_keywordlink"><a href="time.html" title="time命令" target="_blank">time</a></span>   | used  <span class="wp_keywordlink"><a href="free.html" title="free命令" target="_blank">free</a></span>|run blk new|tot tcp udp raw frg|files  inodes
+26-07 09:23:48|   0     0 |  0   0 0.0|104   8   5   0   0|  704   6488
+26-07 09:23:49|   0     0 |  0   0   0|104   8   5   0   0|  704   6488
+26-07 09:23:50|   0     0 |  0   0   0|104   8   5   0   0|  704   6489
+26-07 09:23:51|   0     0 |  0   0   0|104   8   5   0   0|  704   6489
+26-07 09:23:52|   0     0 |  0   0   0|104   8   5   0   0|  704   6489
+26-07 09:23:53|   0     0 |  0   0   0|104   8   5   0   0|  704   6489</pre><p> 若要将结果输出到文件可以加<code>--output&nbsp;filename</code>：</p><pre>
+[root@iZ23uulau1tZ ~]# dstat -tsp --socket --fs --output /tmp/ds.csv
+----system---- ----swap--- ---procs--- ------sockets------ --filesystem-
+  date/time   | used  free|run blk new|tot tcp udp raw frg|files  inodes
+26-07 09:25:31|   0     0 |  0   0 0.0|104   8   5   0   0|  736   6493
+26-07 09:25:32|   0     0 |  0   0   0|104   8   5   0   0|  736   6493
+26-07 09:25:33|   0     0 |  0   0   0|104   8   5   0   0|  736   6493
+26-07 09:25:34|   0     0 |  0   0   0|104   8   5   0   0|  736   6493
+26-07 09:25:35|   0     0 |  0   0   0|104   8   5   0   0|  736   6494
+26-07 09:25:36|   0     0 |  0   0   0|104   8   5   0   0|  736   6494</pre><p> 这样生成的csv文件可以用excel打开，然后生成图表。</p><p> 通过<code>dstat&nbsp;--list</code>可以查看dstat能使用的所有参数，其中上面internal是dstat本身自带的一些监控参数，下面<code>/usr/share/dstat</code>中是dstat的插件，这些插件可以扩展dstat的功能，如可以监控电源（battery）、<span class="wp_keywordlink"><a href="mysql.html" title="mysql命令" target="_blank">mysql</a></span>等。</p><p> 下面这些插件并不是都可以直接使用的，有的还依赖其他包，如想监控mysql，必须要装python连接mysql的一些包。</p><pre>
+[root@iZ23uulau1tZ ~]# dstat --list
+internal:
+        aio, cpu, cpu24, disk, disk24, disk24old, epoch, fs, int, int24, io, ipc, load, lock, mem, net, page, page24, proc, raw, socket, swap, swapold, sys, tcp, time, udp, unix, vm
+/usr/share/dstat:
+        battery, battery-remain, cpufreq, dbus, disk-util, fan, freespace, gpfs, gpfs-ops, helloworld, innodb-buffer, innodb-io, innodb-ops, lustre, memcache-hits, mysql-io, mysql-keys, mysql5-cmds, mysql5-conn, mysql5-io, mysql5-keys,
+        net-packets, nfs3, nfs3-ops, nfsd3, nfsd3-ops, ntp, postfix, power, proc-count, rpc, rpcd, <span class="wp_keywordlink"><a href="sendmail.html" title="sendmail命令" target="_blank">sendmail</a></span>, snooze, thermal, <span class="wp_keywordlink"><a href="top.html" title="top命令" target="_blank">top</a></span>-bio, top-cpu, top-cputime, top-cputime-avg, top-io, top-latency, top-latency-avg, top-mem, top-oom, utmp,
+        vm-memctl, vmk-hba, vmk-int, vmk-nic, vz-cpu, vz-io, vz-ubc, wifi</pre><p> dstat命令的基本用法就说到这里，更多用法有待摸索，如果您需要补充内容请给我们发邮件，谢谢！</p></div></div><div id="sidebar" class="left"><div class="box"><h3 class="title">相关命令</h3><ul class="body list-col-1 clearfix"><li><a href="top.html" title="top">top</a></li><li><a href="tload.html" title="tload">tload</a></li><li><a href="free.html" title="free">free</a></li><li><a href="vmstat.html" title="vmstat">vmstat</a></li><li><a href="iotop.html" title="iotop">iotop</a></li><li><a href="iostat.html" title="iostat">iostat</a></li><li><a href="sar.html" title="sar">sar</a></li><li><a href="ifstat.html" title="ifstat">ifstat</a></li><li><a href="time.html" title="time">time</a></li><li><a href="lsof.html" title="lsof">lsof</a></li><li><a href="strace.html" title="strace">strace</a></li><li><a href="inotifywait.html" title="inotifywait">inotifywait</a></li><li><a href="ltrace.html" title="ltrace">ltrace</a></li><li><a href="mpstat.html" title="mpstat">mpstat</a></li><li><a href="fuser.html" title="fuser">fuser</a></li><li><a href="uptime.html" title="uptime">uptime</a></li><li><a href="nethogs.html" title="nethogs">nethogs</a></li></ul></div><div id="sidebar_search_box" class="box"><form action="https://man.niaoge.com/" method="post"> <input class="search-input " type="text" name="ss" id="ss" value="命令直达(输入完整命令)" onfocus="if (value =='命令直达(输入完整命令)'){value =''}" onblur="if (value ==''){value='命令直达(输入完整命令)'}"/> <input class="search-submit button mobile-visible" type="submit" value="进入"/></form></div><div class="box"><h3 class="title"><a href="download/index.html">Linux下载</a></h3><ul class="body list-col-1 clearfix"><li><a href="download/Ubuntu.html">Ubuntu下载</a></li><li><a href="download/CentOS.html">CentOS下载</a></li></ul></div></div></div> ﻿<div id="footer-wrap"><div id="btn-backtop" title="返回顶部">返回顶部↑</div><div id="footer"><div class="info box"> <a href="index.html" title="Linux命令大全">Linux命令大全</a> <span class="split"></span> <a href="about_us.html" title="关于/联系">关于/联系</a> <span class="split"></span> 收藏本站请使用Ctrl+D <span class="split"></span> <a href="shell-script/index.html" target="_blank">Shell脚本攻略</a> <span class="split"></span> <a href="shell-regex.html" target="_blank">Shell正则表达式</a> <span class="split"></span> 共收录 <span style="font-size: 16px; color:#74b147;">590</span> 条Linux系统命令</div><div class="desc box">在Linux命令大全（man.niaoge.com）可以查询您所需要的Linux命令教程和相关实例。如果您觉得本站内容对您有所帮助，请推荐给更多需要帮助的人。</div></div></div> <script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?9afbd88b4e674f3b4af0a760c48a00ac"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script></body>
+<!-- Mirrored from man.niaoge.com/dstat by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:04:12 GMT -->
+</html>

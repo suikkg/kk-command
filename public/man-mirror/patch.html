@@ -1,0 +1,42 @@
+<!DOCTYPE html><html lang="zh-cn">
+<!-- Mirrored from man.niaoge.com/patch by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:06:10 GMT -->
+<head>
+<meta charset="UTF-8"/><meta name="renderer" content="webkit"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/><link href="public/style.css" rel="stylesheet" type="text/css" />
+<link href="public/index.css" rel="stylesheet" type="text/css" />
+<link href="public/img/favicon.ico" type="image/x-icon" rel="shortcut icon">
+<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script><script src="public/main.js"></script><title>patch命令_Linux patch 命令用法详解：为开放源代码软件安装补丁程序</title><link rel="canonical" href="patch.html"/></head><body><div id="header" class="clearfix"><h2 id="logo" class="left"><a title="Linux命令大全" href="index.html">Linux命令大全</a></h2><ul id="menu-main" class="right toggle-target"><li id="menu-item-4" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-4"><a href="index.html">首页搜索</a></li><li id="menu-item-6" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6"><a href="par/2.html">系统管理</a></li><li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7"><a href="par/5.html">网络管理</a></li><li id="menu-item-8" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-8"><a href="par/4.html">软件·打印·开发·工具</a></li><li id="menu-item-9" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-9"><a href="par/1.html">文件和目录管理</a></li><li id="menu-item-10" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-10"><a href="par/3.html">硬件·内核·Shell·监测</a></li></ul> <span id="menu-main-toggle" class="toggle-btn" toggle-target="#menu-main"></span></div><div id="main-single" class="main-layout clearfix"><div class="right arc-wrap"><div id="position-wrap" class="clearfix"><div class="position left">当前位置：<a href="index.html">首页</a> &raquo; <a href="par/4.html" rel="category tag">软件·打印·开发·工具</a> &raquo; patch</div></div><div id="title" class="clearfix"><h1 class="left">patch命令</h1><div class="right"> <a href="sub/%e8%bd%af%e4%bb%b6%e5%8c%85%e7%ae%a1%e7%90%86.html" rel="tag">软件包管理</a></div></div><div id="ad-arc-top" class="ad"></div><div id="arc-body"><p> <strong>patch命令</strong>被用于为开放源代码软件安装补丁程序。让用户利用设置修补文件的方式，修改，更新原始文件。如果一次仅修改一个文件，可直接在命令列中下达指令依序执行。如果配合修补文件的方式则能一次修补大批文件，这也是Linux系统核心的升级方法之一。</p><h3> 语法<br/></h3><pre>
+patch(选项)(参数)</pre><h3> 选项<br/></h3><pre>
+-b或--backup：备份每一个原始文件；
+-B&lt;备份字首字符串&gt;或--prefix=&lt;备份字首字符串&gt;：设置文件备份时，附加在文件名称前面的字首字符串，该字符串可以是路径名称；
+-c或--context：把修补数据解译成关联性的差异；
+-d&lt;工作目录&gt;或--directory=&lt;工作目录&gt;：设置工作目录；
+-D&lt;标示符号&gt;或--ifdef=&lt;标示符号&gt;：用指定的符号把改变的地方标示出来；
+-e或--<span class="wp_keywordlink"><a href="ed.html" title="ed命令" target="_blank">ed</a></span>：把修补数据解译成ed指令可用的叙述文件；
+-E或--remove-empty-files：若修补过后输出的文件其内容是一片空白，则移除该文件；
+-f或--force：此参数的效果和指定&quot;-t&quot;参数类似，但会假设修补数据的版本为新版本；
+-F&lt;监别列数&gt;或--fuzz&lt;监别列数&gt;：设置监别列数的最大值；
+-g&lt;控制数值&gt;或--get=&lt;控制数值&gt;：设置以RSC或SCCS控制修补作业；
+-i&lt;修补文件&gt;或--input=&lt;修补文件&gt;：读取指定的修补问家你；
+-l或--ignore-whitespace：忽略修补数据与输入数据的跳格，空格字符；
+-n或--normal：把修补数据解译成一般性的差异；
+-N或--forward：忽略修补的数据较原始文件的版本更旧，或该版本的修补数据已使 用过；
+-o&lt;输出文件&gt;或--output=&lt;输出文件&gt;：设置输出文件的名称，修补过的文件会以该名称存放；
+-p&lt;剥离层级&gt;或--strip=&lt;剥离层级&gt;：设置欲剥离几层路径名称；
+-f&lt;拒绝文件&gt;或--<span class="wp_keywordlink"><a href="reject.html" title="reject命令" target="_blank">reject</a></span>-<span class="wp_keywordlink"><a href="file.html" title="file命令" target="_blank">file</a></span>=&lt;拒绝文件&gt;：设置保存拒绝修补相关信息的文件名称，预设的文件名称为.rej；
+-R或--reverse：假设修补数据是由新旧文件交换位置而产生；
+-s或--quiet或--silent：不显示指令执行过程，除非发生错误；
+-t或--<span class="wp_keywordlink"><a href="batch.html" title="batch命令" target="_blank">batch</a></span>：自动略过错误，不询问任何问题；
+-T或--<span class="wp_keywordlink"><a href="set.html" title="set命令" target="_blank">set</a></span>-<span class="wp_keywordlink"><a href="time.html" title="time命令" target="_blank">time</a></span>：此参数的效果和指定&quot;-Z&quot;参数类似，但以本地时间为主；
+-u或--unified：把修补数据解译成一致化的差异；
+-v或--version：显示版本信息；
+-V&lt;备份方式&gt;或--version-control=&lt;备份方式&gt;：用&quot;-b&quot;参数备份目标文件后，备份文件的字尾会被加上一个备份字符串，这个字符串不仅可用&quot;-z&quot;参数变更，当使用&quot;-V&quot;参数指定不同备份方式时，也会产生不同字尾的备份字符串；
+-Y&lt;备份字首字符串&gt;或--<span class="wp_keywordlink"><a href="basename.html" title="basename命令" target="_blank">basename</a></span>-prefix=--&lt;备份字首字符串&gt;：设置文件备份时，附加在文件基本名称开头的字首字符串；
+-z&lt;备份字尾字符串&gt;或--suffix=&lt;备份字尾字符串&gt;：此参数的效果和指定&quot;-B&quot;参数类似，差别在于修补作业使用的路径与文件名若为src/linux/fs/super.c，加上&quot;backup/&quot;字符串后，文件super.c会备份于/src/linux/fs/backup目录里；
+-Z或--set-utc：把修补过的文件更改，存取时间设为UTC；
+--backup-if-mismatch：在修补数据不完全吻合，且没有刻意指定要备份文件时，才备份文件；
+--binary：以二进制模式读写数据，而不通过标准输出设备；
+--<span class="wp_keywordlink"><a href="help.html" title="help命令" target="_blank">help</a></span>：在线帮助；
+--nobackup-if-mismatch：在修补数据不完全吻合，且没有刻意指定要备份文件时，不要备份文件；
+--verbose：详细显示指令的执行过程。</pre><h3> 参数<br/></h3><ul><li> 原文件：指定需要打补丁的原始文件；</li><li> 补丁文件：指定补丁文件。</li></ul></div></div><div id="sidebar" class="left"><div class="box"><h3 class="title">相关命令</h3><ul class="body list-col-1 clearfix"><li><a href="ntsysv.html" title="ntsysv">ntsysv</a></li><li><a href="dpkg-trigger.html" title="dpkg-trigger">dpkg-trigger</a></li><li><a href="yum.html" title="yum">yum</a></li><li><a href="factor.html" title="factor">factor</a></li><li><a href="dpkg-deb.html" title="dpkg-deb">dpkg-deb</a></li><li><a href="rpmdb.html" title="rpmdb">rpmdb</a></li><li><a href="rpm.html" title="rpm">rpm</a></li><li><a href="apt-key.html" title="apt-key">apt-key</a></li><li><a href="rpmsign.html" title="rpmsign">rpmsign</a></li><li><a href="rcconf.html" title="rcconf">rcconf</a></li><li><a href="dpkg.html" title="dpkg">dpkg</a></li><li><a href="dpkg-split.html" title="dpkg-split">dpkg-split</a></li><li><a href="apt-get.html" title="apt-get">apt-get</a></li><li><a href="dpkg-query.html" title="dpkg-query">dpkg-query</a></li><li><a href="rpm2cpio.html" title="rpm2cpio">rpm2cpio</a></li><li><a href="rpmbuild.html" title="rpmbuild">rpmbuild</a></li><li><a href="dpkg-preconfigure.html" title="dpkg-preconfigure">dpkg-preconfigure</a></li><li><a href="dpkg-reconfigure.html" title="dpkg-reconfigure">dpkg-reconfigure</a></li><li><a href="rpmquery.html" title="rpmquery">rpmquery</a></li><li><a href="dpkg-statoverride.html" title="dpkg-statoverride">dpkg-statoverride</a></li></ul></div><div id="sidebar_search_box" class="box"><form action="https://man.niaoge.com/" method="post"> <input class="search-input " type="text" name="ss" id="ss" value="命令直达(输入完整命令)" onfocus="if (value =='命令直达(输入完整命令)'){value =''}" onblur="if (value ==''){value='命令直达(输入完整命令)'}"/> <input class="search-submit button mobile-visible" type="submit" value="进入"/></form></div><div class="box"><h3 class="title"><a href="download/index.html">Linux下载</a></h3><ul class="body list-col-1 clearfix"><li><a href="download/Ubuntu.html">Ubuntu下载</a></li><li><a href="download/CentOS.html">CentOS下载</a></li></ul></div></div></div> ﻿<div id="footer-wrap"><div id="btn-backtop" title="返回顶部">返回顶部↑</div><div id="footer"><div class="info box"> <a href="index.html" title="Linux命令大全">Linux命令大全</a> <span class="split"></span> <a href="about_us.html" title="关于/联系">关于/联系</a> <span class="split"></span> 收藏本站请使用Ctrl+D <span class="split"></span> <a href="shell-script/index.html" target="_blank">Shell脚本攻略</a> <span class="split"></span> <a href="shell-regex.html" target="_blank">Shell正则表达式</a> <span class="split"></span> 共收录 <span style="font-size: 16px; color:#74b147;">581</span> 条Linux系统命令</div><div class="desc box">在Linux命令大全（man.niaoge.com）可以查询您所需要的Linux命令教程和相关实例。如果您觉得本站内容对您有所帮助，请推荐给更多需要帮助的人。</div></div></div> <script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?9afbd88b4e674f3b4af0a760c48a00ac"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script></body>
+<!-- Mirrored from man.niaoge.com/patch by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:06:10 GMT -->
+</html>

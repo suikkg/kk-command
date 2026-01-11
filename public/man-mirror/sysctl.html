@@ -1,0 +1,132 @@
+<!DOCTYPE html><html lang="zh-cn">
+<!-- Mirrored from man.niaoge.com/sysctl by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:04:17 GMT -->
+<head>
+<meta charset="UTF-8"/><meta name="renderer" content="webkit"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/><link href="public/style.css" rel="stylesheet" type="text/css" />
+<link href="public/index.css" rel="stylesheet" type="text/css" />
+<link href="public/img/favicon.ico" type="image/x-icon" rel="shortcut icon">
+<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script><script src="public/main.js"></script><title>sysctl命令_Linux sysctl 命令用法详解：时动态地修改内核的运行参数</title><link rel="canonical" href="sysctl.html"/></head><body><div id="header" class="clearfix"><h2 id="logo" class="left"><a title="Linux命令大全" href="index.html">Linux命令大全</a></h2><ul id="menu-main" class="right toggle-target"><li id="menu-item-4" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home current-post-parent menu-item-4"><a href="index.html">首页搜索</a></li><li id="menu-item-6" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6"><a href="par/2.html">系统管理</a></li><li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7"><a href="par/5.html">网络管理</a></li><li id="menu-item-8" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8"><a href="par/4.html">软件·打印·开发·工具</a></li><li id="menu-item-9" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-9"><a href="par/1.html">文件和目录管理</a></li><li id="menu-item-10" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-10"><a href="par/3.html">硬件·内核·Shell·监测</a></li></ul> <span id="menu-main-toggle" class="toggle-btn" toggle-target="#menu-main"></span></div><div id="main-single" class="main-layout clearfix"><div class="right arc-wrap"><div id="position-wrap" class="clearfix"><div class="position left">当前位置：<a href="index.html">首页</a> &raquo; <a href="par/3.html" rel="category tag">硬件·内核·Shell·监测</a> &raquo; sysctl</div></div><div id="title" class="clearfix"><h1 class="left">sysctl命令</h1><div class="right"> <a href="sub/%e5%86%85%e6%a0%b8%e4%b8%8e%e6%a8%a1%e5%9d%97%e7%ae%a1%e7%90%86.html" rel="tag">内核与模块管理</a></div></div><div id="ad-arc-top" class="ad"></div><div id="arc-body"><p> <strong>sysctl命令</strong>被用于在内核运行时动态地修改内核的运行参数，可用的内核参数在目录<code>/proc/sys</code>中。它包含一些TCP/<span class="wp_keywordlink"><a href="ip.html" title="ip命令" target="_blank">ip</a></span>堆栈和虚拟内存系统的高级选项， 这可以让有经验的管理员提高引人注目的系统性能。用sysctl可以读取设置超过五百个系统变量。</p><h3> 语法<br/></h3><pre>
+sysctl(选项)(参数)</pre><h3> 选项<br/></h3><pre>
+-n：打印值时不打印关键字；
+-e：忽略未知关键字错误；
+-N：仅打印名称；
+-<span class="wp_keywordlink"><a href="w.html" title="w命令" target="_blank">w</a></span>：当改变sysctl设置时使用此项；
+-p：从配置文件&ldquo;/etc/sysctl.conf&rdquo;加载内核参数设置；
+-a：打印当前所有可用的内核参数变量和值；
+-A：以表格方式打印当前所有可用的内核参数变量和值。</pre><h3> 参数<br/></h3><p> 变量=值：设置内核参数对应的变量值。</p><h3> 实例<br/></h3><p> 查看所有可读变量：</p><p> sysctl -a</p><p> 读一个指定的变量，例如<code>kern.maxproc</code>：</p><p> sysctl kern.maxproc kern.maxproc: 1044</p><p> 要设置一个指定的变量，直接用<code>variable=value</code>这样的语法：</p><pre>
+<span style="color:#FF0000;">sysctl kern.maxfiles=5000</span>
+kern.maxfiles: 2088 -&gt; 5000</pre><p> 您可以使用sysctl修改系统变量，也可以通过编辑sysctl.conf文件来修改系统变量。sysctl.conf看起来很像rc.conf。它用<code>variable=value</code>的形式来设定值。指定的值在系统进入多用户模式之后被设定。并不是所有的变量都可以在这个模式下设定。</p><p> sysctl变量的设置通常是字符串、数字或者布尔型。（布尔型用 1 来表示&#39;<span class="wp_keywordlink"><a href="yes.html" title="yes命令" target="_blank">yes</a></span>&#39;，用 0 来表示&#39;no&#39;）。</p><pre>
+sysctl -w kernel.sysrq=0
+sysctl -w kernel.core_uses_pid=1
+sysctl -w net.ipv4.conf.default.accept_redirects=0
+sysctl -w net.ipv4.conf.default.accept_source_route=0
+sysctl -w net.ipv4.conf.default.rp_filter=1
+sysctl -w net.ipv4.tcp_syncookies=1
+sysctl -w net.ipv4.tcp_max_syn_backlog=2048
+sysctl -w net.ipv4.tcp_fin_timeout=30
+sysctl -w net.ipv4.tcp_synack_retries=2
+sysctl -w net.ipv4.tcp_keepalive_time=3600
+sysctl -w net.ipv4.tcp_window_scaling=1
+sysctl -w net.ipv4.tcp_sack=1</pre><h3> 配置sysctl<br/></h3><p> 编辑此文件：<code>/etc/sysctl.conf</code></p><p> 如果该文件为空，则输入以下内容，否则请根据情况自己做调整：</p><pre>
+# Controls source <span class="wp_keywordlink"><a href="route.html" title="route命令" target="_blank">route</a></span> verification
+# Default should work for all interfaces
+net.ipv4.conf.default.rp_filter = 1
+# net.ipv4.conf.all.rp_filter = 1
+# net.ipv4.conf.lo.rp_filter = 1
+# net.ipv4.conf.eth0.rp_filter = 1
+
+# Disables IP source routing
+# Default should work for all interfaces
+net.ipv4.conf.default.accept_source_route = 0
+# net.ipv4.conf.all.accept_source_route = 0
+# net.ipv4.conf.lo.accept_source_route = 0
+# net.ipv4.conf.eth0.accept_source_route = 0
+
+# Controls the System Request debugging functionality of the kernel
+kernel.sysrq = 0
+
+# Controls whether core dumps will append the PID to the core filename.
+# Useful for debugging multi-threaded applications.
+kernel.core_uses_pid = 1
+
+# Increase maximum amount of memory allocated to shm
+# Only uncomment if needed!
+# kernel.shmmax = 67108864
+
+# Disable ICMP Redirect Acceptance
+# Default should work for all interfaces
+net.ipv4.conf.default.accept_redirects = 0
+# net.ipv4.conf.all.accept_redirects = 0
+# net.ipv4.conf.lo.accept_redirects = 0
+# net.ipv4.conf.eth0.accept_redirects = 0
+
+# <span class="wp_keywordlink"><a href="enable.html" title="enable命令" target="_blank">enable</a></span> Log Spoofed Packets, Source Routed Packets, Redirect Packets
+# Default should work for all interfaces
+net.ipv4.conf.default.log_martians = 1
+# net.ipv4.conf.all.log_martians = 1
+# net.ipv4.conf.lo.log_martians = 1
+# net.ipv4.conf.eth0.log_martians = 1
+
+# Decrease the <span class="wp_keywordlink"><a href="time.html" title="time命令" target="_blank">time</a></span> default value for tcp_fin_timeout connection
+net.ipv4.tcp_fin_timeout = 25
+
+# Decrease the time default value for tcp_keepalive_time connection
+net.ipv4.tcp_keepalive_time = 1200
+
+# Turn on the tcp_window_scaling
+net.ipv4.tcp_window_scaling = 1
+
+# Turn on the tcp_sack
+net.ipv4.tcp_sack = 1
+
+# tcp_fack should be on because of sack
+net.ipv4.tcp_fack = 1
+
+# Turn on the tcp_timestamps
+net.ipv4.tcp_timestamps = 1
+
+# Enable TCP SYN Cookie Protection
+net.ipv4.tcp_syncookies = 1
+
+# Enable ignoring broadcasts request
+net.ipv4.icmp_echo_ignore_broadcasts = 1
+
+# Enable bad error message Protection
+net.ipv4.icmp_ignore_bogus_error_responses = 1
+
+# <span class="wp_keywordlink"><a href="make.html" title="make命令" target="_blank">make</a></span> <span class="wp_keywordlink"><a href="more.html" title="more命令" target="_blank">more</a></span> local ports available
+# net.ipv4.ip_local_port_range = 1024 65000
+
+# <span class="wp_keywordlink"><a href="set.html" title="set命令" target="_blank">set</a></span> TCP Re-Ordering value in kernel to &lsquo;5&prime;
+net.ipv4.tcp_reordering = 5
+
+# Lower syn retry rates
+net.ipv4.tcp_synack_retries = 2
+net.ipv4.tcp_syn_retries = 3
+
+# Set Max SYN Backlog to &lsquo;2048&prime;
+net.ipv4.tcp_max_syn_backlog = 2048
+
+# Various Settings
+net.core.netdev_max_backlog = 1024
+
+# Increase the maximum number of skb-heads to be cached
+net.core.hot_list_length = 256
+
+# Increase the tcp-time-<span class="wp_keywordlink"><a href="wait.html" title="wait命令" target="_blank">wait</a></span> buckets pool size
+net.ipv4.tcp_max_tw_buckets = 360000
+
+# This will increase the amount of memory available for socket input/output queues
+net.core.rmem_default = 65535
+net.core.rmem_max = 8388608
+net.ipv4.tcp_rmem = 4096 87380 8388608
+net.core.wmem_default = 65535
+net.core.wmem_max = 8388608
+net.ipv4.tcp_wmem = 4096 65535 8388608
+net.ipv4.tcp_mem = 8388608 8388608 8388608
+net.core.optmem_max = 40960</pre><p> 如果希望屏蔽别人 <span class="wp_keywordlink"><a href="ping.html" title="ping命令" target="_blank">ping</a></span> 你的主机，则加入以下代码：</p><pre>
+# Disable ping requests
+net.ipv4.icmp_echo_ignore_all = 1</pre><p> 编辑完成后，请执行以下命令使变动立即生效：</p><pre>
+/sbin/sysctl -p
+/sbin/sysctl -w net.ipv4.route.flush=1</pre></div></div><div id="sidebar" class="left"><div class="box"><h3 class="title">相关命令</h3><ul class="body list-col-1 clearfix"><li><a href="lsmod.html" title="lsmod">lsmod</a></li><li><a href="dmesg.html" title="dmesg">dmesg</a></li><li><a href="slabtop.html" title="slabtop">slabtop</a></li><li><a href="modprobe.html" title="modprobe">modprobe</a></li><li><a href="kernelversion.html" title="kernelversion">kernelversion</a></li><li><a href="insmod.html" title="insmod">insmod</a></li><li><a href="depmod.html" title="depmod">depmod</a></li><li><a href="uname.html" title="uname">uname</a></li><li><a href="bmodinfo.html" title="bmodinfo">bmodinfo</a></li><li><a href="get_module.html" title="get_module">get_module</a></li><li><a href="rmmod.html" title="rmmod">rmmod</a></li><li><a href="lsb_release.html" title="lsb_release">lsb_release</a></li><li><a href="kexec.html" title="kexec">kexec</a></li></ul></div><div id="sidebar_search_box" class="box"><form action="https://man.niaoge.com/" method="post"> <input class="search-input " type="text" name="ss" id="ss" value="命令直达(输入完整命令)" onfocus="if (value =='命令直达(输入完整命令)'){value =''}" onblur="if (value ==''){value='命令直达(输入完整命令)'}"/> <input class="search-submit button mobile-visible" type="submit" value="进入"/></form></div><div class="box"><h3 class="title"><a href="download/index.html">Linux下载</a></h3><ul class="body list-col-1 clearfix"><li><a href="download/Ubuntu.html">Ubuntu下载</a></li><li><a href="download/CentOS.html">CentOS下载</a></li></ul></div></div></div> ﻿<div id="footer-wrap"><div id="btn-backtop" title="返回顶部">返回顶部↑</div><div id="footer"><div class="info box"> <a href="index.html" title="Linux命令大全">Linux命令大全</a> <span class="split"></span> <a href="about_us.html" title="关于/联系">关于/联系</a> <span class="split"></span> 收藏本站请使用Ctrl+D <span class="split"></span> <a href="shell-script/index.html" target="_blank">Shell脚本攻略</a> <span class="split"></span> <a href="shell-regex.html" target="_blank">Shell正则表达式</a> <span class="split"></span> 共收录 <span style="font-size: 16px; color:#74b147;">581</span> 条Linux系统命令</div><div class="desc box">在Linux命令大全（man.niaoge.com）可以查询您所需要的Linux命令教程和相关实例。如果您觉得本站内容对您有所帮助，请推荐给更多需要帮助的人。</div></div></div> <script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?9afbd88b4e674f3b4af0a760c48a00ac"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script></body>
+<!-- Mirrored from man.niaoge.com/sysctl by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:04:17 GMT -->
+</html>

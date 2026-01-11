@@ -1,83 +1,13 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>命令速查工具 | 离线版</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body class="light">
-  <header class="topbar">
-    <div>
-      <h1>命令速查工具</h1>
-      <p class="subtitle">离线 · Linux / JFFS2 / EXT4 / 固件分析 / Selenium / RIDE / Git · 即搜即用</p>
-    </div>
-    <div class="top-actions">
-      <a href="man-mirror/index.html" class="ghost" target="_blank" rel="noreferrer">原站镜像</a>
-      <button id="themeToggle" class="ghost">切换主题</button>
-      <label class="favorite-toggle">
-        <input type="checkbox" id="favOnly">
-        <span>只看收藏</span>
-      </label>
-    </div>
-  </header>
-
-  <main class="page">
-    <section class="controls card">
-      <div class="search-row">
-        <input id="searchInput" type="search" placeholder="搜索命令 / 场景 / 工具 / 文件系统" aria-label="搜索命令">
-        <button id="clearSearch" class="ghost">清空</button>
-      </div>
-      <div class="category-row" id="categoryRow">
-        <button class="cat-btn active" data-category="all">全部</button>
-        <button class="cat-btn" data-category="Linux">Linux</button>
-        <button class="cat-btn" data-category="Linux基础">Linux基础</button>
-        <button class="cat-btn" data-category="Readline">Readline</button>
-        <button class="cat-btn" data-category="JFFS2">JFFS2</button>
-        <button class="cat-btn" data-category="EXT4">EXT4</button>
-        <button class="cat-btn" data-category="固件分析">固件分析</button>
-        <button class="cat-btn" data-category="Selenium">Selenium</button>
-        <button class="cat-btn" data-category="RIDE">RIDE</button>
-        <button class="cat-btn" data-category="Git">Git</button>
-      </div>
-      <div class="history-row">
-        <div class="history-label">历史搜索</div>
-        <div id="historyChips" class="chips"></div>
-      </div>
-    </section>
-
-    <section>
-      <div id="commandList" class="grid"></div>
-      <div id="emptyState" class="empty hidden">未找到匹配命令，试试其他关键词或分类。</div>
-    </section>
-  </main>
-
-  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
-    <div class="modal-content card">
-      <header class="modal-header">
-        <div>
-          <div class="badge" id="modalCategory"></div>
-          <h2 id="modalScene"></h2>
-        </div>
-        <button id="modalClose" class="ghost" aria-label="关闭">✕</button>
-      </header>
-      <div class="modal-body">
-        <div class="command-line">
-          <code id="modalCommand"></code>
-          <button id="modalCopy" class="primary small">复制</button>
-        </div>
-        <div class="detail">
-          <div class="detail-title">参数说明</div>
-          <p id="modalParams"></p>
-        </div>
-        <div class="detail">
-          <div class="detail-title">注意事项 / 常见问题</div>
-          <p id="modalNotes"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script src="app.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>命令速查工具</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
 </html>

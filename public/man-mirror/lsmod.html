@@ -1,0 +1,84 @@
+<!DOCTYPE html><html lang="zh-cn">
+<!-- Mirrored from man.niaoge.com/lsmod by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:04:19 GMT -->
+<head>
+<meta charset="UTF-8"/><meta name="renderer" content="webkit"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/><link href="public/style.css" rel="stylesheet" type="text/css" />
+<link href="public/index.css" rel="stylesheet" type="text/css" />
+<link href="public/img/favicon.ico" type="image/x-icon" rel="shortcut icon">
+<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script><script src="public/main.js"></script><title>lsmod命令_Linux lsmod 命令用法详解：显示已载入系统的模块</title><link rel="canonical" href="lsmod.html"/></head><body><div id="header" class="clearfix"><h2 id="logo" class="left"><a title="Linux命令大全" href="index.html">Linux命令大全</a></h2><ul id="menu-main" class="right toggle-target"><li id="menu-item-4" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home current-post-parent menu-item-4"><a href="index.html">首页搜索</a></li><li id="menu-item-6" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6"><a href="par/2.html">系统管理</a></li><li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7"><a href="par/5.html">网络管理</a></li><li id="menu-item-8" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8"><a href="par/4.html">软件·打印·开发·工具</a></li><li id="menu-item-9" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-9"><a href="par/1.html">文件和目录管理</a></li><li id="menu-item-10" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-10"><a href="par/3.html">硬件·内核·Shell·监测</a></li></ul> <span id="menu-main-toggle" class="toggle-btn" toggle-target="#menu-main"></span></div><div id="main-single" class="main-layout clearfix"><div class="right arc-wrap"><div id="position-wrap" class="clearfix"><div class="position left">当前位置：<a href="index.html">首页</a> &raquo; <a href="par/3.html" rel="category tag">硬件·内核·Shell·监测</a> &raquo; lsmod</div></div><div id="title" class="clearfix"><h1 class="left">lsmod命令</h1><div class="right"> <a href="sub/%e5%86%85%e6%a0%b8%e4%b8%8e%e6%a8%a1%e5%9d%97%e7%ae%a1%e7%90%86.html" rel="tag">内核与模块管理</a></div></div><div id="arc-body"><p> <strong>lsmod命令</strong>用于显示已经加载到内核中的模块的状态信息。执行lsmod命令后会列出所有已载入系统的模块。Linux操作系统的核心具有模块化的特性，应此在编译核心时，务须把全部的功能都放入核心。您可以将这些功能编译成一个个单独的模块，待需要时再分别载入。</p><h3> 语法<br/></h3><pre>
+lsmod</pre><h3> 实例<br/></h3><pre>
+<span style="color:#FF0000;">[root@LinServ-1 ~]# lsmod</span>
+Module                  Size  Used by
+ipv6                  272801  15
+xfrm_nalgo             13381  1 ipv6
+crypto_api             12609  1 xfrm_nalgo
+ip_conntrack_ftp       11569  0
+xt_limit                6721  2
+xt_state                6209  2
+ip_conntrack           53665  2 ip_conntrack_ftp,xt_state
+nfnetlink              10713  1 ip_conntrack
+xt_tcpudp               7105  6
+xt_multiport            7233  1
+iptable_filter          7105  1
+ip_tables              17029  1 iptable_filter
+x_tables               17349  5 xt_limit,xt_state,xt_tcpudp,xt_multiport,ip_tables
+dm_mirror              24393  0
+dm_multipath           27213  0
+scsi_dh                12481  1 dm_multipath
+video                  21193  0
+backlight              10049  1 video
+sbs                    18533  0
+power_meter            16461  0
+hwmon                   7365  1 power_meter
+i2c_ec                  9025  1 sbs
+dell_wmi                8401  0
+wmi                    12137  1 dell_wmi
+button                 10705  0
+battery                13637  0
+asus_acpi              19289  0
+ac                      9157  0
+<span class="wp_keywordlink"><a href="lp.html" title="lp命令" target="_blank">lp</a></span>                     15849  0
+snd_hda_intel         401453  0
+snd_seq_dummy           7877  0
+snd_seq_oss            32577  0
+snd_seq_midi_event     11073  1 snd_seq_oss
+snd_seq                49585  5 snd_seq_dummy,snd_seq_oss,snd_seq_midi_event
+snd_seq_device         11725  3 snd_seq_dummy,snd_seq_oss,snd_seq
+snd_pcm_oss            42817  0
+snd_mixer_oss          19009  1 snd_pcm_oss
+snd_pcm                72517  2 snd_hda_intel,snd_pcm_oss
+ide_cd                 40161  0
+snd_timer              24517  2 snd_seq,snd_pcm
+tpm_tis                16713  0
+r8169                  43077  0
+snd_page_alloc         14281  2 snd_hda_intel,snd_pcm
+tpm                    19041  1 tpm_tis
+i2c_i801               12737  0
+mii                     9409  1 r8169
+serio_raw              10693  0
+i2c_core               24897  2 i2c_ec,i2c_i801
+snd_hwdep              12869  1 snd_hda_intel
+tpm_bios               11073  1 tpm
+cdrom                  36577  1 ide_cd
+pcspkr                  7105  0
+parport_pc             29669  1
+sg                     36973  0
+snd                    57797  9 snd_hda_intel,snd_seq_oss,snd_seq,snd_seq_device,snd_pcm_oss,snd_mixer_oss,snd_pcm,snd_timer,snd_hwdep
+parport                37513  2 lp,parport_pc
+soundcore              11553  1 snd
+dm_raid45              67273  0
+dm_message              6977  1 dm_raid45
+dm_region_hash         15681  1 dm_raid45
+dm_log                 14785  3 dm_mirror,dm_raid45,dm_region_hash
+dm_mod                 63993  4 dm_mirror,dm_multipath,dm_raid45,dm_log
+dm_mem_cache            9537  1 dm_raid45
+ata_piix               23749  4
+libata                158085  1 ata_piix
+sd_mod                 25409  6
+scsi_mod              144277  4 scsi_dh,sg,libata,sd_mod
+ext3                  126281  3
+jbd                    57705  1 ext3
+uhci_hcd               25421  0
+ohci_hcd               24937  0
+ehci_hcd               34509  0</pre><ul><li> 第1列：表示模块的名称。</li><li> 第2列：表示模块的大小。</li><li> 第3列：表示依赖模块的个数。</li><li> 第4列：表示依赖模块的内容。</li></ul><p> 通常在使用lsmod命令时，都会采用类似<code>lsmod | <span class="wp_keywordlink"><a href="grep.html" title="grep命令" target="_blank">grep</a></span> -i ext3</code>这样的命令来查询当前系统是否加载了某些模块。</p></div></div><div id="sidebar" class="left"><div class="box"><h3 class="title">相关命令</h3><ul class="body list-col-1 clearfix"><li><a href="get_module.html" title="get_module">get_module</a></li><li><a href="rmmod.html" title="rmmod">rmmod</a></li><li><a href="uname.html" title="uname">uname</a></li><li><a href="kexec.html" title="kexec">kexec</a></li><li><a href="depmod.html" title="depmod">depmod</a></li><li><a href="dmesg.html" title="dmesg">dmesg</a></li><li><a href="kernelversion.html" title="kernelversion">kernelversion</a></li><li><a href="bmodinfo.html" title="bmodinfo">bmodinfo</a></li><li><a href="slabtop.html" title="slabtop">slabtop</a></li><li><a href="sysctl.html" title="sysctl">sysctl</a></li><li><a href="lsb_release.html" title="lsb_release">lsb_release</a></li><li><a href="insmod.html" title="insmod">insmod</a></li><li><a href="modprobe.html" title="modprobe">modprobe</a></li></ul></div><div id="sidebar_search_box" class="box"><form action="https://man.niaoge.com/" method="post"> <input class="search-input " type="text" name="ss" id="ss" value="命令直达(输入完整命令)" onfocus="if (value =='命令直达(输入完整命令)'){value =''}" onblur="if (value ==''){value='命令直达(输入完整命令)'}"/> <input class="search-submit button mobile-visible" type="submit" value="进入"/></form></div><div class="box"><h3 class="title"><a href="download/index.html">Linux下载</a></h3><ul class="body list-col-1 clearfix"><li><a href="download/Ubuntu.html">Ubuntu下载</a></li><li><a href="download/CentOS.html">CentOS下载</a></li></ul></div></div></div> ﻿<div id="footer-wrap"><div id="btn-backtop" title="返回顶部">返回顶部↑</div><div id="footer"><div class="info box"> <a href="index.html" title="Linux命令大全">Linux命令大全</a> <span class="split"></span> <a href="about_us.html" title="关于/联系">关于/联系</a> <span class="split"></span> 收藏本站请使用Ctrl+D <span class="split"></span> <a href="shell-script/index.html" target="_blank">Shell脚本攻略</a> <span class="split"></span> <a href="shell-regex.html" target="_blank">Shell正则表达式</a> <span class="split"></span> 共收录 <span style="font-size: 16px; color:#74b147;">581</span> 条Linux系统命令</div><div class="desc box">在Linux命令大全（man.niaoge.com）可以查询您所需要的Linux命令教程和相关实例。如果您觉得本站内容对您有所帮助，请推荐给更多需要帮助的人。</div></div></div> <script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?9afbd88b4e674f3b4af0a760c48a00ac"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script></body>
+<!-- Mirrored from man.niaoge.com/lsmod by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:04:19 GMT -->
+</html>

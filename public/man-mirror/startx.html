@@ -1,0 +1,38 @@
+<!DOCTYPE html><html lang="zh-cn">
+<!-- Mirrored from man.niaoge.com/startx by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:03:56 GMT -->
+<head>
+<meta charset="UTF-8"/><meta name="renderer" content="webkit"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/><link href="public/style.css" rel="stylesheet" type="text/css" />
+<link href="public/index.css" rel="stylesheet" type="text/css" />
+<link href="public/img/favicon.ico" type="image/x-icon" rel="shortcut icon">
+<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script><script src="public/main.js"></script><title>startx命令_Linux startx 命令用法详解：用来启动X Window</title><link rel="canonical" href="startx.html"/></head><body><div id="header" class="clearfix"><h2 id="logo" class="left"><a title="Linux命令大全" href="index.html">Linux命令大全</a></h2><ul id="menu-main" class="right toggle-target"><li id="menu-item-4" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-4"><a href="index.html">首页搜索</a></li><li id="menu-item-6" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-6"><a href="par/2.html">系统管理</a></li><li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7"><a href="par/5.html">网络管理</a></li><li id="menu-item-8" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8"><a href="par/4.html">软件·打印·开发·工具</a></li><li id="menu-item-9" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-9"><a href="par/1.html">文件和目录管理</a></li><li id="menu-item-10" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-10"><a href="par/3.html">硬件·内核·Shell·监测</a></li></ul> <span id="menu-main-toggle" class="toggle-btn" toggle-target="#menu-main"></span></div><div id="main-single" class="main-layout clearfix"><div class="right arc-wrap"><div id="position-wrap" class="clearfix"><div class="position left">当前位置：<a href="index.html">首页</a> &raquo; <a href="par/2.html" rel="category tag">系统管理</a> &raquo; startx</div></div><div id="title" class="clearfix"><h1 class="left">startx命令</h1><div class="right"> <a href="sub/x-windows-2.html" rel="tag">X-Windows</a></div></div><div id="arc-body"><p> <strong>startx命令</strong>用来启动X Window，实际上启动X Window的程序为<span class="wp_keywordlink"><a href="xinit.html" title="xinit命令" target="_blank">xinit</a></span>。</p><h3> 语法<br/></h3><pre>
+startx(参数)</pre><h3> 参数<br/></h3><ul><li> 客户端及选项：X客户端及选项；</li><li> 服务器及选项：X服务器及选项。</li></ul><h3> 实例<br/></h3><p> 要在工作站上或 X 终端上启动 X 会话，请输入：</p><pre>
+startx</pre><p> 要在工作站上强制启动 X 会话，请输入：&nbsp;</p><pre>
+startx -<span class="wp_keywordlink"><a href="w.html" title="w命令" target="_blank">w</a></span></pre><p> 要为 X 终端启动 X 会话，并注销用户的 <span class="wp_keywordlink"><a href="telnet.html" title="telnet命令" target="_blank">telnet</a></span> 会话，请输入：</p><pre>
+startx; <span class="wp_keywordlink"><a href="kill.html" title="kill命令" target="_blank">kill</a></span> -9 $$</pre><p> 要使用 .xinitrc 脚本启动 X 会话，请输入：</p><pre>
+startx -x .xinitrc</pre><p> 要使用 mwm 窗口管理器启动 X 会话，请输入：</p><pre>
+startx -m mwm</pre><p> 但是，如果找到启动脚本文件，则忽略<code>-w</code>选项。在启动脚本中，启动窗口管理器、装入X资源以及产生X客户机是用户的责任。以下是.xsession脚本的一个示例。</p><pre>
+#!/bin/csh
+ (mwm &amp;)
+ xrdb -load .Xdefaults
+ (xclock -g 75x75+0+0 &amp;)
+ (xbiff -g 75x75+101-0 &amp;)
+ if (&quot;/dev/lft*&quot; == &quot;`tty`&quot;) then
+  aixterm -g 80x24+0+0 +ut -C -T `<span class="wp_keywordlink"><a href="hostname.html" title="hostname命令" target="_blank">hostname</a></span>`
+ else
+  aixterm -g 80x24+0+0 +ut -T `hostname`
+ endif</pre><p> 对于工作站，startup脚本中的最后一行应该是前台aixterm命令，该命令带有<code>-C</code>选项表示控制台信息。对于X终端，startup脚本中的最后一行应该是不带有<code>-C</code>选项的前台aixterm命令。另外，由于某些X终端在关闭时不终止telnet会话，所以用户必须在使用热键切换至X会话前退出当前的telnet会话。</p><p> <code>/usr/lib/X11/xdm/Xsession</code>文件中的xdm命令也可以使用startx命令。这为xdm命令提供了startx命令的功能。</p><p> 以下是启动X会话一贯使用的文件名。</p><pre>
+$HOME/.xerrors 其中，startx 用来重定向错误消息。在缺省情况下，startx 将错误重定向至用户主目录中的 .xerrors 文件中。
+$HOME/.Xinit,  
+$HOME/.xinit,  
+$HOME/.Xinitrc,  
+$HOME/.xinitrc,  
+$HOME/.xsession 作为包含 shell 命令的&ldquo;启动文件&rdquo;来启动窗口管理器、装入 X 资源并产生 X 客户机。
+$HOME/.Xdefaults,  
+$HOME/.xresources 作为装入的 X 资源文件来设置 X 客户机的用户首选项。
+$HOME/.mwmrc mwm 配置文件。
+$HOME/.twmrc twm 配置文件。
+$HOME/.awmrc awm 配置文件。
+$HOME/.uwmrc uwm 配置文件。
+/dev/lft* 终端或 tty、工作站初始 <span class="wp_keywordlink"><a href="login.html" title="login命令" target="_blank">login</a></span> shell 的界面。</pre></div></div><div id="sidebar" class="left"><div class="box"><h3 class="title">相关命令</h3><ul class="body list-col-1 clearfix"><li><a href="xhost.html" title="xhost">xhost</a></li><li><a href="xlsfonts.html" title="xlsfonts">xlsfonts</a></li><li><a href="xinit.html" title="xinit">xinit</a></li><li><a href="xlsclients.html" title="xlsclients">xlsclients</a></li><li><a href="xauth.html" title="xauth">xauth</a></li><li><a href="xclip.html" title="xclip">xclip</a></li><li><a href="xlsatoms.html" title="xlsatoms">xlsatoms</a></li><li><a href="xset.html" title="xset">xset</a></li></ul></div><div id="sidebar_search_box" class="box"><form action="https://man.niaoge.com/" method="post"> <input class="search-input " type="text" name="ss" id="ss" value="命令直达(输入完整命令)" onfocus="if (value =='命令直达(输入完整命令)'){value =''}" onblur="if (value ==''){value='命令直达(输入完整命令)'}"/> <input class="search-submit button mobile-visible" type="submit" value="进入"/></form></div><div class="box"><h3 class="title"><a href="download/index.html">Linux下载</a></h3><ul class="body list-col-1 clearfix"><li><a href="download/Ubuntu.html">Ubuntu下载</a></li><li><a href="download/CentOS.html">CentOS下载</a></li></ul></div></div></div> ﻿<div id="footer-wrap"><div id="btn-backtop" title="返回顶部">返回顶部↑</div><div id="footer"><div class="info box"> <a href="index.html" title="Linux命令大全">Linux命令大全</a> <span class="split"></span> <a href="about_us.html" title="关于/联系">关于/联系</a> <span class="split"></span> 收藏本站请使用Ctrl+D <span class="split"></span> <a href="shell-script/index.html" target="_blank">Shell脚本攻略</a> <span class="split"></span> <a href="shell-regex.html" target="_blank">Shell正则表达式</a> <span class="split"></span> 共收录 <span style="font-size: 16px; color:#74b147;">585</span> 条Linux系统命令</div><div class="desc box">在Linux命令大全（man.niaoge.com）可以查询您所需要的Linux命令教程和相关实例。如果您觉得本站内容对您有所帮助，请推荐给更多需要帮助的人。</div></div></div> <script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?9afbd88b4e674f3b4af0a760c48a00ac"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script></body>
+<!-- Mirrored from man.niaoge.com/startx by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:03:56 GMT -->
+</html>

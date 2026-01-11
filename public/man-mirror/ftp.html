@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="zh-cn">
+<!-- Mirrored from man.niaoge.com/ftp by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:04:27 GMT -->
+<head>
+<meta charset="UTF-8"/><meta name="renderer" content="webkit"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/><link href="public/style.css" rel="stylesheet" type="text/css" />
+<link href="public/index.css" rel="stylesheet" type="text/css" />
+<link href="public/img/favicon.ico" type="image/x-icon" rel="shortcut icon">
+<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script><script src="public/main.js"></script><title>ftp命令_Linux ftp 命令用法详解：用来设置文件系统相关功能</title><link rel="canonical" href="ftp.html"/></head><body><div id="header" class="clearfix"><h2 id="logo" class="left"><a title="Linux命令大全" href="index.html">Linux命令大全</a></h2><ul id="menu-main" class="right toggle-target"><li id="menu-item-4" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-4"><a href="index.html">首页搜索</a></li><li id="menu-item-6" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6"><a href="par/2.html">系统管理</a></li><li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7"><a href="par/5.html">网络管理</a></li><li id="menu-item-8" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8"><a href="par/4.html">软件·打印·开发·工具</a></li><li id="menu-item-9" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-9"><a href="par/1.html">文件和目录管理</a></li><li id="menu-item-10" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-10"><a href="par/3.html">硬件·内核·Shell·监测</a></li></ul> <span id="menu-main-toggle" class="toggle-btn" toggle-target="#menu-main"></span></div><div id="main-single" class="main-layout clearfix"><div class="right arc-wrap"><div id="position-wrap" class="clearfix"><div class="position left">当前位置：<a href="index.html">首页</a> &raquo; <a href="par/1.html" rel="category tag">文件和目录管理</a> &raquo; ftp</div></div><div id="title" class="clearfix"><h1 class="left">ftp命令</h1><div class="right"> <a href="sub/%e6%96%87%e4%bb%b6%e4%bc%a0%e8%be%93.html" rel="tag">文件传输</a></div></div><div id="ad-arc-top" class="ad"></div><div id="arc-body"><p> <strong>ftp命令</strong>用来设置文件系统相关功能。ftp服务器在网上较为常见，Linux ftp命令的功能是用命令的方式来控制在本地机和远程机之间传送文件，这里详细介绍Linux ftp命令的一些经常使用的命令，相信掌握了这些使用Linux进行ftp操作将会非常容易。</p><h3> 语法<br/></h3><pre>
+ftp(选项)(参数)</pre><h3> 选项<br/></h3><pre>
+-d：详细显示指令执行过程，便于排错或分析程序执行的情况；
+-i：关闭互动模式，不询问任何问题；
+-g：关闭本地主机文件名称支持特殊字符的扩充特性；
+-n：不使用自动登录；
+-v：显示指令执行过程。</pre><h3> 参数<br/></h3><p> 主机：指定要连接的FTP服务器的主机名或<span class="wp_keywordlink"><a href="ip.html" title="ip命令" target="_blank">ip</a></span>地址。</p><h3> 实例<br/></h3><pre>
+FTP&gt;ascii: 设定以ASCII方式传送文件(缺省值)
+FTP&gt;bell: 每完成一次文件传送,报警提示.
+FTP&gt;binary: 设定以二进制方式传送文件.
+FTP&gt;bye: 终止主机FTP进程,并退出FTP管理方式.
+FTP&gt;case: 当为ON时,用MGET命令拷贝的文件名到本地机器中,全部转换为小写字母.
+FTP&gt;<span class="wp_keywordlink"><a href="cd.html" title="cd命令" target="_blank">cd</a></span>: 同UNIX的CD命令.
+FTP&gt;cdup: 返回上一级目录.
+FTP&gt;<span class="wp_keywordlink"><a href="chmod.html" title="chmod命令" target="_blank">chmod</a></span>: 改变远端主机的文件权限.
+FTP&gt;close: 终止远端的FTP进程,返回到FTP命令状态, 所有的宏定义都被删除.
+FTP&gt;delete: 删除远端主机中的文件.
+FTP&gt;dir [remote-directory] [local-<span class="wp_keywordlink"><a href="file.html" title="file命令" target="_blank">file</a></span>] 列出当前远端主机目录中的文件.如果有本地文件,就将结果写至本地文件.
+FTP&gt;get [remote-file] [local-file] 从远端主机中传送至本地主机中.
+FTP&gt;<span class="wp_keywordlink"><a href="help.html" title="help命令" target="_blank">help</a></span> [<span class="wp_keywordlink"><a href="command.html" title="command命令" target="_blank">command</a></span>] 输出命令的解释.
+FTP&gt;lcd: 改变当前本地主机的工作目录,如果缺省,就转到当前用户的HOME目录.
+FTP&gt;<span class="wp_keywordlink"><a href="ls.html" title="ls命令" target="_blank">ls</a></span> [remote-directory] [local-file] 同DIR.
+FTP&gt;macdef: 定义宏命令.
+FTP&gt;mdelete [remote-files] 删除一批文件.
+FTP&gt;mget [remote-files] 从远端主机接收一批文件至本地主机.
+FTP&gt;<span class="wp_keywordlink"><a href="mkdir.html" title="mkdir命令" target="_blank">mkdir</a></span> directory-name 在远端主机中建立目录.
+FTP&gt;mput local-files 将本地主机中一批文件传送至远端主机.
+FTP&gt;open <span class="wp_keywordlink"><a href="host.html" title="host命令" target="_blank">host</a></span> [port] 重新建立一个新的连接.
+FTP&gt;prompt: 交互提示模式.
+FTP&gt;put local-file [remote-file] 将本地一个文件传送至远端主机中.
+FTP&gt;<span class="wp_keywordlink"><a href="pwd.html" title="pwd命令" target="_blank">pwd</a></span>: 列出当前远端主机目录.
+FTP&gt;quit: 同BYE.
+FTP&gt;recv remote-file [local-file] 同GET.
+FTP&gt;<span class="wp_keywordlink"><a href="rename.html" title="rename命令" target="_blank">rename</a></span> [from] [to] 改变远端主机中的文件名.
+FTP&gt;<span class="wp_keywordlink"><a href="rmdir.html" title="rmdir命令" target="_blank">rmdir</a></span> directory-name 删除远端主机中的目录.
+FTP&gt;send local-file [remote-file] 同PUT.
+FTP&gt;status: 显示当前FTP的状态.
+FTP&gt;system: 显示远端主机系统类型.
+FTP&gt;user user-name [password] [account] 重新以别的用户名登录远端主机.
+FTP&gt;? [command]: 同HELP. [command]指定需要帮助的命令名称。如果没有指定 command，ftp 将显示全部命令的列表。
+FTP&gt;! 从 ftp 子系统退出到外壳。</pre></div></div><div id="sidebar" class="left"><div class="box"><h3 class="title">相关命令</h3><ul class="body list-col-1 clearfix"><li><a href="ncftp.html" title="ncftp">ncftp</a></li><li><a href="tftp.html" title="tftp">tftp</a></li><li><a href="bye.html" title="bye">bye</a></li><li><a href="scp.html" title="scp">scp</a></li><li><a href="rcp.html" title="rcp">rcp</a></li></ul></div><div id="sidebar_search_box" class="box"><form action="https://man.niaoge.com/" method="post"> <input class="search-input " type="text" name="ss" id="ss" value="命令直达(输入完整命令)" onfocus="if (value =='命令直达(输入完整命令)'){value =''}" onblur="if (value ==''){value='命令直达(输入完整命令)'}"/> <input class="search-submit button mobile-visible" type="submit" value="进入"/></form></div><div class="box"><h3 class="title"><a href="download/index.html">Linux下载</a></h3><ul class="body list-col-1 clearfix"><li><a href="download/Ubuntu.html">Ubuntu下载</a></li><li><a href="download/CentOS.html">CentOS下载</a></li></ul></div></div></div> ﻿<div id="footer-wrap"><div id="btn-backtop" title="返回顶部">返回顶部↑</div><div id="footer"><div class="info box"> <a href="index.html" title="Linux命令大全">Linux命令大全</a> <span class="split"></span> <a href="about_us.html" title="关于/联系">关于/联系</a> <span class="split"></span> 收藏本站请使用Ctrl+D <span class="split"></span> <a href="shell-script/index.html" target="_blank">Shell脚本攻略</a> <span class="split"></span> <a href="shell-regex.html" target="_blank">Shell正则表达式</a> <span class="split"></span> 共收录 <span style="font-size: 16px; color:#74b147;">581</span> 条Linux系统命令</div><div class="desc box">在Linux命令大全（man.niaoge.com）可以查询您所需要的Linux命令教程和相关实例。如果您觉得本站内容对您有所帮助，请推荐给更多需要帮助的人。</div></div></div> <script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?9afbd88b4e674f3b4af0a760c48a00ac"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script></body>
+<!-- Mirrored from man.niaoge.com/ftp by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:04:29 GMT -->
+</html>

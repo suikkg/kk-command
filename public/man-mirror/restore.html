@@ -1,0 +1,28 @@
+<!DOCTYPE html><html lang="zh-cn">
+<!-- Mirrored from man.niaoge.com/restore by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:04:27 GMT -->
+<head>
+<meta charset="UTF-8"/><meta name="renderer" content="webkit"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/><link href="public/style.css" rel="stylesheet" type="text/css" />
+<link href="public/index.css" rel="stylesheet" type="text/css" />
+<link href="public/img/favicon.ico" type="image/x-icon" rel="shortcut icon">
+<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script><script src="public/main.js"></script><title>restore命令_Linux restore 命令用法详解：所进行的操作和dump指令相反</title><link rel="canonical" href="restore.html"/></head><body><div id="header" class="clearfix"><h2 id="logo" class="left"><a title="Linux命令大全" href="index.html">Linux命令大全</a></h2><ul id="menu-main" class="right toggle-target"><li id="menu-item-4" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-4"><a href="index.html">首页搜索</a></li><li id="menu-item-6" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6"><a href="par/2.html">系统管理</a></li><li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7"><a href="par/5.html">网络管理</a></li><li id="menu-item-8" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8"><a href="par/4.html">软件·打印·开发·工具</a></li><li id="menu-item-9" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-9"><a href="par/1.html">文件和目录管理</a></li><li id="menu-item-10" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-10"><a href="par/3.html">硬件·内核·Shell·监测</a></li></ul> <span id="menu-main-toggle" class="toggle-btn" toggle-target="#menu-main"></span></div><div id="main-single" class="main-layout clearfix"><div class="right arc-wrap"><div id="position-wrap" class="clearfix"><div class="position left">当前位置：<a href="index.html">首页</a> &raquo; <a href="par/1.html" rel="category tag">文件和目录管理</a> &raquo; restore</div></div><div id="title" class="clearfix"><h1 class="left">restore命令</h1><div class="right"> <a href="sub/%e6%96%87%e4%bb%b6%e5%a4%87%e4%bb%bd%e5%92%8c%e6%81%a2%e5%a4%8d.html" rel="tag">文件备份和恢复</a></div></div><div id="ad-arc-top" class="ad"></div><div id="arc-body"><p> <strong>restore命令</strong>是<span class="wp_keywordlink"><a href="dump.html" title="dump命令" target="_blank">dump</a></span>命令的逆过程，用于还原dump命令生成的备份文件。倾倒操作可用来备份文件，而还原操作则是写回这些已备份的文件。</p><h3> 语法<br/></h3><pre>
+restore(选项)</pre><h3> 选项<br/></h3><pre>
+-b&lt;区块大小&gt;：设置区块大小，单位为Byte；
+-c：不检查倾倒操作的备份格式，仅准许读取使用旧格式的备份文件；
+-C：使用对比模式，将备份的文件与现行的文件相互对比；
+-D&lt;文件系统&gt;：允许用户指定文件系统的名称；
+-f&lt;备份文件&gt;：从指定的文件中读取备份数据，进行还原操作；
+-h：仅解除目录而不包括与该目录相关的所有文件；
+-i：使用互动模式，在进行还原操作时，restore指令将依序询问用户；
+-m：解开符合指定的inode编号的文件或目录而非用文件名称指定；
+-r：进行还原操作；
+-R：全面还原文件系统时，检查应从何处开始进行；
+-s&lt;文件编号&gt;：当备份数据超过一卷磁带时，用户可以指定备份文件的编号；
+-t：指定文件名称，若该文件已存在备份文件中，则列出它们的名称；
+-v：显示指令执行过程；
+-x：设置文件名称，且从指定的存储媒体里读入它们，若该文件已存在在备份文件中，则将其还原到文件系统内；
+-y：不询问任何问题，一律以同意回答并继续执行指令。</pre><h3> 实例<br/></h3><pre>
+dump -9 -u -f /dev/hda3 /home/frank/</pre><p> 用restore命令来恢复备份：</p><pre>
+restore rf /dev/hda3 /home/frank</pre><p> 用restore命令来查看备份文件里的文件列表：</p><pre>
+restore ft /dev/hda3</pre></div></div><div id="sidebar" class="left"><div class="box"><h3 class="title">相关命令</h3><ul class="body list-col-1 clearfix"><li><a href="cpio.html" title="cpio">cpio</a></li><li><a href="dump.html" title="dump">dump</a></li></ul></div><div id="sidebar_search_box" class="box"><form action="https://man.niaoge.com/" method="post"> <input class="search-input " type="text" name="ss" id="ss" value="命令直达(输入完整命令)" onfocus="if (value =='命令直达(输入完整命令)'){value =''}" onblur="if (value ==''){value='命令直达(输入完整命令)'}"/> <input class="search-submit button mobile-visible" type="submit" value="进入"/></form></div><div class="box"><h3 class="title"><a href="download/index.html">Linux下载</a></h3><ul class="body list-col-1 clearfix"><li><a href="download/Ubuntu.html">Ubuntu下载</a></li><li><a href="download/CentOS.html">CentOS下载</a></li></ul></div></div></div> ﻿<div id="footer-wrap"><div id="btn-backtop" title="返回顶部">返回顶部↑</div><div id="footer"><div class="info box"> <a href="index.html" title="Linux命令大全">Linux命令大全</a> <span class="split"></span> <a href="about_us.html" title="关于/联系">关于/联系</a> <span class="split"></span> 收藏本站请使用Ctrl+D <span class="split"></span> <a href="shell-script/index.html" target="_blank">Shell脚本攻略</a> <span class="split"></span> <a href="shell-regex.html" target="_blank">Shell正则表达式</a> <span class="split"></span> 共收录 <span style="font-size: 16px; color:#74b147;">581</span> 条Linux系统命令</div><div class="desc box">在Linux命令大全（man.niaoge.com）可以查询您所需要的Linux命令教程和相关实例。如果您觉得本站内容对您有所帮助，请推荐给更多需要帮助的人。</div></div></div> <script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?9afbd88b4e674f3b4af0a760c48a00ac"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script></body>
+<!-- Mirrored from man.niaoge.com/restore by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:04:27 GMT -->
+</html>

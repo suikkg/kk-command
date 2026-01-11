@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="zh-cn">
+<!-- Mirrored from man.niaoge.com/cpio by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:04:26 GMT -->
+<head>
+<meta charset="UTF-8"/><meta name="renderer" content="webkit"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/><link href="public/style.css" rel="stylesheet" type="text/css" />
+<link href="public/index.css" rel="stylesheet" type="text/css" />
+<link href="public/img/favicon.ico" type="image/x-icon" rel="shortcut icon">
+<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script><script src="public/main.js"></script><title>cpio命令_Linux cpio 命令用法详解：用来建立、还原备份档的工具程序</title><link rel="canonical" href="cpio.html"/></head><body><div id="header" class="clearfix"><h2 id="logo" class="left"><a title="Linux命令大全" href="index.html">Linux命令大全</a></h2><ul id="menu-main" class="right toggle-target"><li id="menu-item-4" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-4"><a href="index.html">首页搜索</a></li><li id="menu-item-6" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6"><a href="par/2.html">系统管理</a></li><li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7"><a href="par/5.html">网络管理</a></li><li id="menu-item-8" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8"><a href="par/4.html">软件·打印·开发·工具</a></li><li id="menu-item-9" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-9"><a href="par/1.html">文件和目录管理</a></li><li id="menu-item-10" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-10"><a href="par/3.html">硬件·内核·Shell·监测</a></li></ul> <span id="menu-main-toggle" class="toggle-btn" toggle-target="#menu-main"></span></div><div id="main-single" class="main-layout clearfix"><div class="right arc-wrap"><div id="position-wrap" class="clearfix"><div class="position left">当前位置：<a href="index.html">首页</a> &raquo; <a href="par/1.html" rel="category tag">文件和目录管理</a> &raquo; cpio</div></div><div id="title" class="clearfix"><h1 class="left">cpio命令</h1><div class="right"> <a href="sub/%e6%96%87%e4%bb%b6%e5%a4%87%e4%bb%bd%e5%92%8c%e6%81%a2%e5%a4%8d.html" rel="tag">文件备份和恢复</a></div></div><div id="arc-body"><p> <strong>cpio命令</strong>主要是用来建立或者还原备份档的工具程序，cpio命令可以复制文件到归档包中，或者从归档包中复制文件。</p><h3> 语法<br/></h3><pre>
+cpio(选项)</pre><h3> 选项<br/></h3><pre>
+-0或--null：接受新增列控制字符，通常配合<span class="wp_keywordlink"><a href="find.html" title="find命令" target="_blank">find</a></span>指令的&ldquo;-print0&rdquo;参数使用；
+-a或--rest-access-<span class="wp_keywordlink"><a href="time.html" title="time命令" target="_blank">time</a></span>：重新设置文件的存取时间；
+-A或--append：附加到已存在的备份文档中，且这个备份文档必须存放在磁盘上，而不能放置于磁带机里；
+-b或--awap：此参数的效果和同时指定&ldquo;-<span class="wp_keywordlink"><a href="ss.html" title="ss命令" target="_blank">ss</a></span>&rdquo;参数相同；
+-B：将输入/输出的区块大小改成5210Bytes；
+-c：使用旧ASCII备份格式；
+-C&lt;区块大小&gt;或--io-size=&lt;区块大小&gt;：设置输入/输出的区块大小，单位是Byte；
+-d或--<span class="wp_keywordlink"><a href="make.html" title="make命令" target="_blank">make</a></span>-directories：如有需要cpio会自行建立目录；
+-E&lt;范本文件&gt;或--pattern-<span class="wp_keywordlink"><a href="file.html" title="file命令" target="_blank">file</a></span>=&lt;范本文件&gt;：指定范本文件，其内含有一个或多个范本样式，让cpio解开符合范本条件的文件，格式为每列一个范本样式；
+-f或--nonmatching：让cpio解开所有不符合范本条件的文件；
+-F&lt;备份档&gt;或--file=&lt;备份档&gt;：指定备份档的名称，用来取代标准输入或输出，也能借此通过网络使用另一台主机的保存设备存取备份档；
+-H&lt;备份格式&gt;：指定备份时欲使用的文件格式；
+-i或--extract：执行copy-in模式，还原备份档；
+-l&lt;备份档&gt;：指定备份档的名称，用来取代标准输入，也能借此通过网络使用另一台主机的保存设备读取备份档；
+-k：此参数将忽略不予处理，仅负责解决cpio不同版本间的兼容性问题；
+-l或--link：以硬连接的方式取代复制文件，可在copy-pass模式下运用；
+-L或--dereference：不建立符号连接，直接复制该连接所指向的原始文件；
+-m或preserve-modification-time：不去更改文件的更改时间；
+-M&lt;回传信息&gt;或--message=&lt;回传信息&gt;：设置更换保存媒体的信息；
+-n或--numeric-uid-gid：使用&ldquo;-tv&rdquo;参数列出备份档的内容时，若再加上参数&ldquo;-n&rdquo;，则会以用户识别和群组识别码替代拥有者和群组名称列出文件清单；
+-o或--create：执行copy-out模式，建立备份档；
+-O&lt;备份档&gt;：指定备份档的名称，用来取代标准输出，也能借此通过网络使用另一台主机的保存设备存放备份档；
+-p或--pass-through：执行copy-pass模式，略过备份步骤，直接将文件复制到目的目录；
+-r或--<span class="wp_keywordlink"><a href="rename.html" title="rename命令" target="_blank">rename</a></span>：当有文件名称需要更改时，采用互动模式；
+-R&lt;拥有者&gt;&lt;:/.&gt;&lt;所属群组&gt;或----owner&lt;拥有者&gt;&lt;:/.&gt;&lt;所属群组&gt;   在copy-in模式还原备份档，或copy-pass模式复制文件时，可指定这些备份，复制的文件的拥有者与所属群组；
+-s或--swap-bytes：交换每队字节的内容；
+-S或--swap-halfwords：交换每半个字节的内容；
+-t或--list：将输入的内容呈现出来；
+-u或--unconditional：置换所有文件，不论日期时间的新旧与否，皆不予询问而直接覆盖；
+-v或--verbose：详细显示指令的执行过程；
+-V或--dot：执行指令时。在每个文件的执行程序前面加上&ldquo;.&rdquo;号；
+--block-size=&lt;区块大小&gt;：设置输入/输出的区块大小，假如设置数值为5，则区块大小为2500，若设置成10，则区块大小为5120，以此类推；
+--force-local：强制将备份档存放在本地主机；
+--<span class="wp_keywordlink"><a href="help.html" title="help命令" target="_blank">help</a></span>：在线帮助；
+--no-absolute-filenames：使用相对路径建立文件名称；
+--no-preserve-owner：不保留文件的拥有者，谁解开了备份档，那些文件就归谁所有；
+-only-verify-crc：当备份档采用CRC备份格式时，可使用这项参数检查备份档内的每个文件是否正确无误；
+--quiet：不显示复制了多少区块；
+--sparse：倘若一个文件内含有大量的连续0字节，则将此文件存在稀疏文件；
+--version：显示版本信息。</pre><h3> 实例<br/></h3><p> <strong>将<code>/etc</code>下的所有普通文件都备份到<code>/opt/etc.cpio</code>，使用以下命令：</strong></p><pre>
+find /etc &ndash;<span class="wp_keywordlink"><a href="type.html" title="type命令" target="_blank">type</a></span> f | cpio &ndash;ocvB &gt;/opt/etc.cpio</pre><p> <strong>将系统上所有资料备份到磁带机内，使用以下命令：</strong></p><pre>
+find / -print | cpio -covB &gt; /dev/st0</pre><p> 这里的<code>/dev/st0</code>是磁带的设备名，代表SCSI磁带机。</p><p> <strong>查看上例磁带机上备份的文件，使用以下命令：</strong></p><pre>
+cpio  -icdvt &lt; /dev/st0 &gt; /tmp/st_content</pre><p> 有时可能因为备份的文件过多，一个屏幕无法显示完毕，此时我们利用下面命令，让磁带机的文件信息输出到文件。</p><p> <strong>将示例1中的备份包还原到相应的位置，如果有相同文件进行覆盖，使用以下命令：</strong></p><pre>
+cpio &ndash;icduv &lt; /opt/etc.cpio</pre><p> 注意，cpio恢复的路径，如果cpio在打包备份的时候用的是绝对路径，那么在恢复的时候会自动恢复到这些绝对路径下，本例就会将备份文件全部还原到/etc路径下对应的目录中。同理，如果在打包备份用的是相对路径，还原时也将恢复到相对路径下。</p><p> 通过上面的示例，可以看出，cpio无法直接读取文件，它需要每个文件或者目录的完整路径名才能识别读取，而find命令的输出刚好做到了这点，因此，cpio命令一般和find命令配合使用。其实，上面的示例我们已经看到了它们的组合用法。</p></div></div><div id="sidebar" class="left"><div class="box"><h3 class="title">相关命令</h3><ul class="body list-col-1 clearfix"><li><a href="dump.html" title="dump">dump</a></li><li><a href="restore.html" title="restore">restore</a></li></ul></div><div id="sidebar_search_box" class="box"><form action="https://man.niaoge.com/" method="post"> <input class="search-input " type="text" name="ss" id="ss" value="命令直达(输入完整命令)" onfocus="if (value =='命令直达(输入完整命令)'){value =''}" onblur="if (value ==''){value='命令直达(输入完整命令)'}"/> <input class="search-submit button mobile-visible" type="submit" value="进入"/></form></div><div class="box"><h3 class="title"><a href="download/index.html">Linux下载</a></h3><ul class="body list-col-1 clearfix"><li><a href="download/Ubuntu.html">Ubuntu下载</a></li><li><a href="download/CentOS.html">CentOS下载</a></li></ul></div></div></div> ﻿<div id="footer-wrap"><div id="btn-backtop" title="返回顶部">返回顶部↑</div><div id="footer"><div class="info box"> <a href="index.html" title="Linux命令大全">Linux命令大全</a> <span class="split"></span> <a href="about_us.html" title="关于/联系">关于/联系</a> <span class="split"></span> 收藏本站请使用Ctrl+D <span class="split"></span> <a href="shell-script/index.html" target="_blank">Shell脚本攻略</a> <span class="split"></span> <a href="shell-regex.html" target="_blank">Shell正则表达式</a> <span class="split"></span> 共收录 <span style="font-size: 16px; color:#74b147;">585</span> 条Linux系统命令</div><div class="desc box">在Linux命令大全（man.niaoge.com）可以查询您所需要的Linux命令教程和相关实例。如果您觉得本站内容对您有所帮助，请推荐给更多需要帮助的人。</div></div></div> <script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?9afbd88b4e674f3b4af0a760c48a00ac"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script></body>
+<!-- Mirrored from man.niaoge.com/cpio by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:04:27 GMT -->
+</html>

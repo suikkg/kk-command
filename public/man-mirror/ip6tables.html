@@ -1,0 +1,111 @@
+<!DOCTYPE html><html lang="zh-cn">
+<!-- Mirrored from man.niaoge.com/ip6tables by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:04:05 GMT -->
+<head>
+<meta charset="UTF-8"/><meta name="renderer" content="webkit"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/><link href="public/style.css" rel="stylesheet" type="text/css" />
+<link href="public/index.css" rel="stylesheet" type="text/css" />
+<link href="public/img/favicon.ico" type="image/x-icon" rel="shortcut icon">
+<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script><script src="public/main.js"></script><title>ip6tables命令_Linux ip6tables 命令用法详解：linux中防火墙软件</title><link rel="canonical" href="ip6tables.html"/></head><body><div id="header" class="clearfix"><h2 id="logo" class="left"><a title="Linux命令大全" href="index.html">Linux命令大全</a></h2><ul id="menu-main" class="right toggle-target"><li id="menu-item-4" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-4"><a href="index.html">首页搜索</a></li><li id="menu-item-6" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6"><a href="par/2.html">系统管理</a></li><li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-7"><a href="par/5.html">网络管理</a></li><li id="menu-item-8" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8"><a href="par/4.html">软件·打印·开发·工具</a></li><li id="menu-item-9" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-9"><a href="par/1.html">文件和目录管理</a></li><li id="menu-item-10" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-10"><a href="par/3.html">硬件·内核·Shell·监测</a></li></ul> <span id="menu-main-toggle" class="toggle-btn" toggle-target="#menu-main"></span></div><div id="main-single" class="main-layout clearfix"><div class="right arc-wrap"><div id="position-wrap" class="clearfix"><div class="position left">当前位置：<a href="index.html">首页</a> &raquo; <a href="par/5.html" rel="category tag">网络管理</a> &raquo; ip6tables</div></div><div id="title" class="clearfix"><h1 class="left">ip6tables命令</h1><div class="right"> <a href="sub/%e9%ab%98%e7%ba%a7%e7%bd%91%e7%bb%9c.html" rel="tag">高级网络</a></div></div><div id="ad-arc-top" class="ad"></div><div id="arc-body"><p> <strong>ip6tables命令</strong>和<span class="wp_keywordlink"><a href="iptables.html" title="iptables命令" target="_blank">iptables</a></span>一样，都是linux中防火墙软件，不同的是ip6tables采用的TCP/<span class="wp_keywordlink"><a href="ip.html" title="ip命令" target="_blank">ip</a></span>协议为IPv6。</p><h3> 语法<br/></h3><pre>
+ip6tables(选项)</pre><h3> 选项<br/></h3><pre>
+-t&lt;表&gt;：指定要操纵的表；
+-A：向规则链中添加条目；
+-D：从规则链中删除条目；
+-i：向规则链中插入条目；
+-R：替换规则链中的条目；
+-L：显示规则链中已有的条目；
+-F：清楚规则链中已有的条目；
+-Z：清空规则链中的数据包计算器和字节计数器；
+-N：创建新的用户自定义规则链；
+-P：定义规则链中的默认目标；
+-h：显示帮助信息；
+-p：指定要匹配的数据包协议类型；
+-s：指定要匹配的数据包源ip地址；
+-j&lt;目标&gt;：指定要跳转的目标；
+-i&lt;网络接口&gt;：指定数据包进入本机的网络接口；
+-o&lt;网络接口&gt;：指定数据包要离开本机所使用的网络接口。
+-c&lt;计数器&gt;：在执行插入操作（insert），追加操作（append），替换操作（replace）时初始化包计数器和字节计数器。</pre><h3> 实例<br/></h3><p> 在命令行窗口输入下面的指令就可以查看当前的 IPv6 防火墙配置：</p><pre>
+ip6tables -<span class="wp_keywordlink"><a href="nl.html" title="nl命令" target="_blank">nl</a></span> --line-numbers</pre><p id="ip6tables_file"> <strong>/etc/sysconfig/ip6tables文件</strong></p><p> 使用编辑器编辑<code>/etc/sysconfig/ip6tables</code>文件：</p><pre>
+<span class="wp_keywordlink"><a href="vi.html" title="vi命令" target="_blank">vi</a></span> /etc/sysconfig/ip6tables</pre><p> 可能会看到下面的默认 ip6tables 规则：</p><pre>
+*filter
+:INPUT <span class="wp_keywordlink"><a href="accept.html" title="accept命令" target="_blank">accept</a></span> [0:0]
+:FORWARD ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+:RH-Firewall-1-INPUT - [0:0]
+-A INPUT -j RH-Firewall-1-INPUT
+-A FORWARD -j RH-Firewall-1-INPUT
+-A RH-Firewall-1-INPUT -i lo -j ACCEPT
+-A RH-Firewall-1-INPUT -p icmpv6 -j ACCEPT
+-A RH-Firewall-1-INPUT -p 50 -j ACCEPT
+-A RH-Firewall-1-INPUT -p 51 -j ACCEPT
+-A RH-Firewall-1-INPUT -p udp --dport 5353 -d ff02::fb -j ACCEPT
+-A RH-Firewall-1-INPUT -p udp -m udp --dport 631 -j ACCEPT
+-A RH-Firewall-1-INPUT -p tcp -m tcp --dport 631 -j ACCEPT
+-A RH-Firewall-1-INPUT -p udp -m udp --dport 32768:61000 -j ACCEPT
+-A RH-Firewall-1-INPUT -p tcp -m tcp --dport 32768:61000 ! --syn -j ACCEPT
+-A RH-Firewall-1-INPUT -m tcp -p tcp --dport 22 -j ACCEPT
+-A RH-Firewall-1-INPUT -j <span class="wp_keywordlink"><a href="reject.html" title="reject命令" target="_blank">reject</a></span> --reject-with icmp6-adm-prohibited
+COMMIT</pre><p> 与 IPv4 的 iptables 规则类似，但又不完全相同。</p><p> 要开启 80 端口（HTTP 服务器端口），在 COMMIT 一行之前添加如下规则：</p><pre>
+-A RH-Firewall-1-INPUT -m tcp -p tcp --dport 80 -j ACCEPT</pre><p> <code>-p tcp</code>表示仅针对 tcp 协议的通信。<code>--dport</code>指定端口号。</p><p> 要开启 53 端口（DNS 服务器端口），在 COMMIT 一行之前添加如下规则：</p><pre>
+-A RH-Firewall-1-INPUT -m tcp -p tcp --dport 53 -j ACCEPT
+-A RH-Firewall-1-INPUT -m udp -p tcp --dport 53 -j ACCEPT</pre><p> 同时针对 tcp 和 udp 协议开启 53 端口。</p><p> 要开启 443 端口，在 COMMIT 一行之前添加如下规则：</p><pre>
+-A RH-Firewall-1-INPUT -m tcp -p tcp --dport 443 -j ACCEPT</pre><p> 要开启 25 端口（SMTP 邮件服务器端口），在 COMMIT 一行之前添加如下规则：</p><pre>
+-A RH-Firewall-1-INPUT -m tcp -p tcp --dport 25 -j ACCEPT</pre><p> 对于那些没有特定规则与之匹配的数据包，可能是我们不想要的，多半是有问题的。我们可能也希望在丢弃（DROP）之前记录它们。此时，可以将最后一行：</p><pre>
+-A RH-Firewall-1-INPUT -j REJECT --reject-with icmp6-adm-prohibited
+COMMIT</pre><p> 改为：</p><pre>
+-A RH-Firewall-1-INPUT -j LOG
+-A RH-Firewall-1-INPUT -j DROP
+COMMIT</pre><p> 保存并关闭该文件。然后重新启动 ip6tables 防火墙：</p><pre>
+# <span class="wp_keywordlink"><a href="service.html" title="service命令" target="_blank">service</a></span> ip6tables restart</pre><p> 然后重新查看 ip6tables 规则，可以看到如下所示的输出：</p><pre>
+# ip6tables -vnL --line-numbers</pre><p> 输出示例：</p><pre>
+Chain INPUT (policy ACCEPT 0 packets, 0 bytes)
+num   pkts bytes target     prot opt in     out     source               destination
+1    42237 3243K RH-Firewall-1-INPUT  all      *      *       ::/0                 ::/0
+Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
+num   pkts bytes target     prot opt in     out     source               destination
+1        0     0 RH-Firewall-1-INPUT  all      *      *       ::/0                 ::/0
+Chain OUTPUT (policy ACCEPT 12557 packets, 2042K bytes)
+num   pkts bytes target     prot opt in     out     source               destination
+Chain RH-Firewall-1-INPUT (2 references)
+num   pkts bytes target     prot opt in     out     source               destination
+1        6   656 ACCEPT     all      lo     *       ::/0                 ::/0
+2    37519 2730K ACCEPT     icmpv6    *      *       ::/0                 ::/0
+3        0     0 ACCEPT     esp      *      *       ::/0                 ::/0
+4        0     0 ACCEPT     ah       *      *       ::/0                 ::/0
+5      413 48385 ACCEPT     udp      *      *       ::/0                 ff02::fb/128       udp dpt:5353
+6        0     0 ACCEPT     udp      *      *       ::/0                 ::/0               udp dpt:631
+7        0     0 ACCEPT     tcp      *      *       ::/0                 ::/0               tcp dpt:631
+8      173 79521 ACCEPT     udp      *      *       ::/0                 ::/0               udp dpts:32768:61000
+9        0     0 ACCEPT     tcp      *      *       ::/0                 ::/0               tcp dpts:32768:61000 flags:!0x16/0x02
+10       0     0 ACCEPT     tcp      *      *       ::/0                 ::/0               tcp dpt:22
+11       0     0 ACCEPT     tcp      *      *       ::/0                 ::/0               tcp dpt:80
+12       0     0 ACCEPT     tcp      *      *       ::/0                 ::/0               tcp dpt:53
+13    4108  380K ACCEPT     udp      *      *       ::/0                 ::/0               udp dpt:53
+14      18  4196 REJECT     all      *      *       ::/0                 ::/0</pre><p id="private_ips"> <strong>IPv6 私有 IP</strong></p><p> IPv4 通常默认即可保护内部局域网私有 IP 上的主机。但是 IPv6 的地址非常丰富，不再需要使用类似 NAT 等协议的私有网络。这样一来，所有的内部主机都可以拥有公网 IP 而直接连接到互联网，也就同时暴露于互联网上的各种威胁之中了。那么，如何配置 IPv6 防火墙使其默认将除了 ping6 请求之外的所有输入数据包都丢弃呢？可以使用<a href="http://tools.ietf.org/html/rfc4193" target="_blank">FC00::/7</a>&nbsp;前缀来标识本地 IPv6 单播地址。</p><p id="icmpv6"> <strong>允许特定的 ICMPv6 通信</strong></p><p> 使用 IPv6 的时候需要允许比 IPv4 更多类型的 ICMP 通信以保证路由和 IP 地址自动配置等功能正常工作。有时候，如果你的规则设置太过苛刻，可能都无法分配到正确的 IPv6 地址。当然，不使用 DHCP 而是手动配置 IP 地址的除外。</p><p> 下面是一些比较常见的 ipv6-icmp 配置实例：</p><pre>
+:ICMPv6 - [0:0]
+# Approve certain ICMPv6 types and all outgoing ICMPv6
+# http://forum.linode.com/viewtopic.<span class="wp_keywordlink"><a href="php.html" title="php命令" target="_blank">php</a></span>?p=39840#39840
+-A INPUT -p icmpv6 -j ICMPv6
+-A ICMPv6 -p icmpv6 --icmpv6-<span class="wp_keywordlink"><a href="type.html" title="type命令" target="_blank">type</a></span> <span class="wp_keywordlink"><a href="echo.html" title="echo命令" target="_blank">echo</a></span>-request -j ACCEPT
+-A ICMPv6 -p icmpv6 --icmpv6-type destination-unreachable -j ACCEPT
+-A ICMPv6 -p icmpv6 --icmpv6-type packet-too-big -j ACCEPT
+-A ICMPv6 -p icmpv6 --icmpv6-type <span class="wp_keywordlink"><a href="time.html" title="time命令" target="_blank">time</a></span>-exceeded -j ACCEPT
+-A ICMPv6 -p icmpv6 --icmpv6-type parameter-problem -j ACCEPT
+-A ICMPv6 -p icmpv6 --icmpv6-type router-solicitation -j ACCEPT
+-A ICMPv6 -p icmpv6 --icmpv6-type router-advertisement -j ACCEPT
+-A ICMPv6 -p icmpv6 --icmpv6-type neighbour-solicitation -j ACCEPT
+-A ICMPv6 -p icmpv6 --icmpv6-type neighbour-advertisement -j ACCEPT
+-A ICMPv6 -p icmpv6 --icmpv6-type redirect -j ACCEPT
+-A ICMPv6 -p icmpv6 --icmpv6-type 141 -j ACCEPT
+-A ICMPv6 -p icmpv6 --icmpv6-type 142 -j ACCEPT
+-A ICMPv6 -p icmpv6 --icmpv6-type 148 -j ACCEPT
+-A ICMPv6 -p icmpv6 --icmpv6-type 149 -j ACCEPT
+-A ICMPv6 -p icmpv6 --icmpv6-type 130 -s fe80::/10 -j ACCEPT
+-A ICMPv6 -p icmpv6 --icmpv6-type 131 -s fe80::/10 -j ACCEPT
+-A ICMPv6 -p icmpv6 --icmpv6-type 132 -s fe80::/10 -j ACCEPT
+-A ICMPv6 -p icmpv6 --icmpv6-type 143 -s fe80::/10 -j ACCEPT
+-A ICMPv6 -p icmpv6 --icmpv6-type 151 -s fe80::/10 -j ACCEPT
+-A ICMPv6 -p icmpv6 --icmpv6-type 152 -s fe80::/10 -j ACCEPT
+-A ICMPv6 -p icmpv6 --icmpv6-type 153 -s fe80::/10 -j ACCEPT
+-A ICMPv6 -j RETURN
+-A OUTPUT -p icmpv6 -j ACCEPT</pre></div></div><div id="sidebar" class="left"><div class="box"><h3 class="title">相关命令</h3><ul class="body list-col-1 clearfix"><li><a href="tcpdump.html" title="tcpdump">tcpdump</a></li><li><a href="ss.html" title="ss">ss</a></li><li><a href="ip6tables-save.html" title="ip6tables-save">ip6tables-save</a></li><li><a href="iptables-save.html" title="iptables-save">iptables-save</a></li><li><a href="nstat_rtacct.html" title="nstat/rtacct">nstat/rtacct</a></li><li><a href="tcpreplay.html" title="tcpreplay">tcpreplay</a></li><li><a href="lnstat.html" title="lnstat">lnstat</a></li><li><a href="ip.html" title="ip">ip</a></li><li><a href="pfctl.html" title="pfctl">pfctl</a></li><li><a href="iptables.html" title="iptables">iptables</a></li><li><a href="arptables.html" title="arptables">arptables</a></li><li><a href="iptraf.html" title="iptraf">iptraf</a></li><li><a href="ip6tables-restore.html" title="ip6tables-restore">ip6tables-restore</a></li><li><a href="arpd.html" title="arpd">arpd</a></li><li><a href="iptables-restore.html" title="iptables-restore">iptables-restore</a></li></ul></div><div id="sidebar_search_box" class="box"><form action="https://man.niaoge.com/" method="post"> <input class="search-input " type="text" name="ss" id="ss" value="命令直达(输入完整命令)" onfocus="if (value =='命令直达(输入完整命令)'){value =''}" onblur="if (value ==''){value='命令直达(输入完整命令)'}"/> <input class="search-submit button mobile-visible" type="submit" value="进入"/></form></div><div class="box"><h3 class="title"><a href="download/index.html">Linux下载</a></h3><ul class="body list-col-1 clearfix"><li><a href="download/Ubuntu.html">Ubuntu下载</a></li><li><a href="download/CentOS.html">CentOS下载</a></li></ul></div></div></div> ﻿<div id="footer-wrap"><div id="btn-backtop" title="返回顶部">返回顶部↑</div><div id="footer"><div class="info box"> <a href="index.html" title="Linux命令大全">Linux命令大全</a> <span class="split"></span> <a href="about_us.html" title="关于/联系">关于/联系</a> <span class="split"></span> 收藏本站请使用Ctrl+D <span class="split"></span> <a href="shell-script/index.html" target="_blank">Shell脚本攻略</a> <span class="split"></span> <a href="shell-regex.html" target="_blank">Shell正则表达式</a> <span class="split"></span> 共收录 <span style="font-size: 16px; color:#74b147;">581</span> 条Linux系统命令</div><div class="desc box">在Linux命令大全（man.niaoge.com）可以查询您所需要的Linux命令教程和相关实例。如果您觉得本站内容对您有所帮助，请推荐给更多需要帮助的人。</div></div></div> <script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?9afbd88b4e674f3b4af0a760c48a00ac"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script></body>
+<!-- Mirrored from man.niaoge.com/ip6tables by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:04:06 GMT -->
+</html>

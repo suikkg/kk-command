@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+
+
+
+<!-- Mirrored from man.niaoge.com/dpkg-preconfigur by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:07:42 GMT -->
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="renderer" content="webkit" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+        <link href="public/style.css" rel="stylesheet" type="text/css" />
+        <link href="public/index.css" rel="stylesheet" type="text/css" />
+        <link href="public/img/favicon.ico" type="image/x-icon" rel="shortcut icon">
+        <script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script><script src="public/main.js"></script><title>dpkg-preconfigur命令_Linux dpkg-preconfigur命令用法详解：Debian Linux中软件包安装之前询问问题</title>                    </head>
+    <body>
+        <div id="header" class="clearfix">
+            <h2 id="logo" class="left"><a title="Linux命令大全" href="index.html">Linux命令大全</a></h2>
+            <ul id="menu-main" class="right toggle-target">
+                <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-4"><a href="index.html">首页</a></li>
+                <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6"><a href="https://www.shubei.net/" target="_blank">推荐书单</a></li>
+                <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7"><a href="https://www.5ibc.net/book" target="_blank">电子书免费下载</a></li>
+                <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8"><a href="https://www.daokao.net/" target="_blank">推荐书单</a></li>
+            </ul> 
+            <span id="menu-main-toggle" class="toggle-btn" toggle-target="#menu-main"></span>
+        </div><div id="main-single" class="main-layout clearfix">
+    <div class="right arc-wrap">
+        <div id="position-wrap" class="clearfix">
+            <div class="position left">
+                当前位置：
+                <a href="index.html">Linux命令大全</a> &raquo; 
+                <a href="sub/17.html" rel="category tag">软件包管理</a> &raquo; 
+				<a href="dpkg-preconfigur.html">dpkg-preconfigur命令</a>
+            </div>
+        </div>
+        <div id="title" class="clearfix">
+            <h1 class="left">dpkg-preconfigur命令</h1>
+            <div class="right"> 
+                <a href="sub/17.html" rel="tag">软件包管理</a>
+            </div>
+        </div>
+        <div id="arc-body">
+            <p> <strong><span class='wp_keywordlink'><a href="dpkg.html" title="dpkg命令" target="_blank">dpkg</a></span>-preconfigure命令</strong>用于在Debian Linux中软件包安装之前询问问题。</p><h3> 语法<br /></h3><pre>
+dpkg-preconfigure(选项)(参数)</pre><h3> 选项<br /></h3><pre>
+-f：选择使用的前端；
+-p：感兴趣的最低的优先级问题；
+--apt：在apt模式下运行。</pre><h3> 参数<br /></h3><p> 软件包：指定&ldquo;.deb&rdquo;软件包。</p><h3> 实例<br /></h3><p> 导入debconf模板：</p><pre>
+dpkg-preconfigure /var/cache/apt/archives/<span class='wp_keywordlink'><a href="mysql.html" title="mysql命令" target="_blank">mysql</a></span>-server-5.5*.deb</pre>        </div>
+    </div>
+    <div id="sidebar" class="left">
+        <div class="box">
+            <h3 class="title">相关命令</h3>
+            <ul class="body list-col-1 clearfix">
+                <li><a target="_blank" href="apt-get.html" title="apt-get">apt-get</a></li><li><a target="_blank" href="apt-key.html" title="apt-key">apt-key</a></li><li><a target="_blank" href="apt-sortpkgs.html" title="apt-sortpkgs">apt-sortpkgs</a></li><li><a target="_blank" href="aptitude.html" title="aptitude">aptitude</a></li><li><a target="_blank" href="chkconfig.html" title="chkconfig">chkconfig</a></li><li><a target="_blank" href="dnf.html" title="dnf">dnf</a></li><li><a target="_blank" href="dpkg.html" title="dpkg">dpkg</a></li><li><a target="_blank" href="dpkg-deb.html" title="dpkg-deb">dpkg-deb</a></li><li><a target="_blank" href="dpkg-divert.html" title="dpkg-divert">dpkg-divert</a></li><li><a target="_blank" href="dpkg-preconfigur.html" title="dpkg-preconfigur">dpkg-preconfigur</a></li><li><a target="_blank" href="dpkg-query.html" title="dpkg-query">dpkg-query</a></li><li><a target="_blank" href="dpkg-reconfigure.html" title="dpkg-reconfigure">dpkg-reconfigure</a></li><li><a target="_blank" href="dpkg-split.html" title="dpkg-split">dpkg-split</a></li><li><a target="_blank" href="dpkg-statoverrid.html" title="dpkg-statoverrid">dpkg-statoverrid</a></li><li><a target="_blank" href="dpkg-trigger.html" title="dpkg-trigger">dpkg-trigger</a></li><li><a target="_blank" href="ntsysv.html" title="ntsysv">ntsysv</a></li><li><a target="_blank" href="patch.html" title="patch">patch</a></li><li><a target="_blank" href="rcconf.html" title="rcconf">rcconf</a></li><li><a target="_blank" href="rpm.html" title="rpm">rpm</a></li><li><a target="_blank" href="rpm2cpio.html" title="rpm2cpio">rpm2cpio</a></li><li><a target="_blank" href="rpmbuild.html" title="rpmbuild">rpmbuild</a></li><li><a target="_blank" href="rpmdb.html" title="rpmdb">rpmdb</a></li><li><a target="_blank" href="rpmquery.html" title="rpmquery">rpmquery</a></li><li><a target="_blank" href="rpmsign.html" title="rpmsign">rpmsign</a></li><li><a target="_blank" href="rpmverify.html" title="rpmverify">rpmverify</a></li><li><a target="_blank" href="yum.html" title="yum">yum</a></li>            </ul>
+        </div>
+    </div>
+</div>
+<div id="footer-wrap">
+    <div id="footer">
+        <div class="info box"> 
+            <a href="index.html" title="Linux命令大全">Linux命令大全</a> 
+            <span class="split"></span> 收藏本站请使用Ctrl+D 
+            <span class="split"></span> 
+            <a href="https://www.5ibc.net/" target="_blank">菜鸟教程</a> 
+            <span class="split"></span> 
+            <a href="https://www.5ibc.net/book" target="_blank">电子书免费下载</a> 
+            <span class="split"></span>
+            <a href="https://www.shubei.net/" target="_blank">推荐书单</a> 
+            <span class="split"></span> 共收录 
+            <span style="font-size: 16px; color:#74b147;">525</span> 条Linux系统命令
+        </div>
+        <div class="desc box">
+            在Linux命令大全（man.niaoge.com）可以查询您所需要的Linux命令教程和相关实例。如果您觉得本站内容对您有所帮助，请推荐给更多需要帮助的人。
+        </div>
+    </div>
+</div>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?9afbd88b4e674f3b4af0a760c48a00ac";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?9afbd88b4e674f3b4af0a760c48a00ac"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script></body>
+
+
+
+<!-- Mirrored from man.niaoge.com/dpkg-preconfigur by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:07:43 GMT -->
+</html>

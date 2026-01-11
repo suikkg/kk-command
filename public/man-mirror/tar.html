@@ -1,0 +1,45 @@
+<!DOCTYPE html><html lang="zh-cn">
+<!-- Mirrored from man.niaoge.com/tar by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:04:27 GMT -->
+<head>
+<meta charset="UTF-8"/><meta name="renderer" content="webkit"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/><link href="public/style.css" rel="stylesheet" type="text/css" />
+<link href="public/index.css" rel="stylesheet" type="text/css" />
+<link href="public/img/favicon.ico" type="image/x-icon" rel="shortcut icon">
+<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script><script src="public/main.js"></script><title>tar命令_Linux tar 命令用法详解：Linux下的归档使用工具，用来打包和备份。</title><link rel="canonical" href="tar.html"/></head><body><div id="header" class="clearfix"><h2 id="logo" class="left"><a title="Linux命令大全" href="index.html">Linux命令大全</a></h2><ul id="menu-main" class="right toggle-target"><li id="menu-item-4" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-4"><a href="index.html">首页搜索</a></li><li id="menu-item-6" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6"><a href="par/2.html">系统管理</a></li><li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7"><a href="par/5.html">网络管理</a></li><li id="menu-item-8" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8"><a href="par/4.html">软件·打印·开发·工具</a></li><li id="menu-item-9" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-9"><a href="par/1.html">文件和目录管理</a></li><li id="menu-item-10" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-10"><a href="par/3.html">硬件·内核·Shell·监测</a></li></ul> <span id="menu-main-toggle" class="toggle-btn" toggle-target="#menu-main"></span></div><div id="main-single" class="main-layout clearfix"><div class="right arc-wrap"><div id="position-wrap" class="clearfix"><div class="position left">当前位置：<a href="index.html">首页</a> &raquo; <a href="par/1.html" rel="category tag">文件和目录管理</a> &raquo; tar</div></div><div id="title" class="clearfix"><h1 class="left">tar命令</h1><div class="right"> <a href="sub/%e6%96%87%e4%bb%b6%e5%8e%8b%e7%bc%a9%e4%b8%8e%e8%a7%a3%e5%8e%8b.html" rel="tag">文件压缩与解压</a></div></div><div id="ad-arc-top" class="ad"></div><div id="arc-body"><p> <strong>tar命令</strong>可以为linux的文件和目录创建档案。利用tar，可以为某一特定文件创建档案（备份文件），也可以在档案中改变文件，或者向档案中加入新的文件。tar最初被用来在磁带上创建档案，现在，用户可以在任何设备上创建档案。利用tar命令，可以把一大堆的文件和目录全部打包成一个文件，这对于备份文件或将几个文件组合成为一个文件以便于网络传输是非常有用的。</p><p> 首先要弄清两个概念：打包和压缩。打包是指将一大堆文件或目录变成一个总的文件；压缩则是将一个大的文件通过一些压缩算法变成一个小文件。</p><p> 为什么要区分这两个概念呢？这源于Linux中很多压缩程序只能针对一个文件进行压缩，这样当你想要压缩一大堆文件时，你得先将这一大堆文件先打成一个包（tar命令），然后再用压缩程序进行压缩（<span class="wp_keywordlink"><a href="gzip.html" title="gzip命令" target="_blank">gzip</a></span>&nbsp;<span class="wp_keywordlink"><a href="bzip2.html" title="bzip2命令" target="_blank">bzip2</a></span>命令）。</p><h3> 语法<br/></h3><pre>
+tar(选项)(参数)</pre><h3> 选项<br/></h3><pre>
+-A或--catenate：新增文件到以存在的备份文件；
+-B：设置区块大小；
+-c或--create：建立新的备份文件；
+-C &lt;目录&gt;：这个选项用在解压缩，若要在特定目录解压缩，可以使用这个选项。
+-d：记录文件的差别；
+-x或--extract或--get：从备份文件中还原文件；
+-t或--list：列出备份文件的内容；
+-z或--gzip或--ungzip：通过gzip指令处理备份文件；
+-Z或--<span class="wp_keywordlink"><a href="compress.html" title="compress命令" target="_blank">compress</a></span>或--<span class="wp_keywordlink"><a href="uncompress.html" title="uncompress命令" target="_blank">uncompress</a></span>：通过compress指令处理备份文件；
+-f&lt;备份文件&gt;或--<span class="wp_keywordlink"><a href="file.html" title="file命令" target="_blank">file</a></span>=&lt;备份文件&gt;：指定备份文件；
+-v或--verbose：显示指令执行过程；
+-r：添加文件到已经压缩的文件；
+-u：添加改变了和现有的文件到已经存在的压缩文件；
+-j：支持bzip2解压文件；
+-v：显示操作过程；
+-l：文件系统边界设置；
+-k：保留原有文件不覆盖；
+-m：保留文件不被覆盖；
+-<span class="wp_keywordlink"><a href="w.html" title="w命令" target="_blank">w</a></span>：确认压缩文件的正确性；
+-p或--same-permissions：用原来的文件权限还原文件；
+-P或--absolute-names：文件名使用绝对名称，不移除文件名称前的&ldquo;/&rdquo;号；
+-N &lt;日期格式&gt; 或 --newer=&lt;日期时间&gt;：只将较指定日期更新的文件保存到备份文件里；
+--exclude=&lt;范本样式&gt;：排除符合范本样式的文件。</pre><h3> 参数<br/></h3><p> 文件或目录：指定要打包的文件或目录列表。</p><h3> 实例<br/></h3><p> <strong>将文件全部打包成tar包</strong>：</p><pre>
+tar -cvf log.tar log2012.log    仅打包，不压缩！ 
+tar -zcvf log.tar.gz log2012.log   打包后，以 gzip 压缩 
+tar -jcvf log.tar.bz2 log2012.log  打包后，以 bzip2 压缩 </pre><p> 在选项<code>f</code>之后的文件档名是自己取的，我们习惯上都用&nbsp;.tar&nbsp;来作为辨识。&nbsp;如果加<code>z</code>选项，则以.tar.gz或.tgz来代表gzip压缩过的tar包；如果加<code>j</code>选项，则以.tar.bz2来作为tar包名。</p><p> <strong>查阅上述tar包内有哪些文件</strong>：</p><pre>
+tar -ztvf log.tar.gz</pre><p> 由于我们使用&nbsp;gzip&nbsp;压缩的log.tar.gz，所以要查阅log.tar.gz包内的文件时，就得要加上<code>z</code>这个选项了。</p><p> <strong>将tar包解压缩</strong>：</p><pre>
+tar -zxvf /opt/soft/<span class="wp_keywordlink"><a href="test.html" title="test命令" target="_blank">test</a></span>/log.tar.gz</pre><p> 在预设的情况下，我们可以将压缩档在任何地方解开的</p><p> <strong>只将tar内的部分文件解压出来</strong>：</p><pre>
+tar -zxvf /opt/soft/test/log30.tar.gz log2013.log</pre><p> 我可以透过<code>tar&nbsp;-ztvf</code>来查阅&nbsp;tar&nbsp;包内的文件名称，如果单只要一个文件，就可以透过这个方式来解压部分文件！</p><p> <strong>文件备份下来，并且保存其权限</strong>：</p><pre>
+tar -zcvpf log31.tar.gz log2014.log log2015.log log2016.log</pre><p> 这个<code>-p</code>的属性是很重要的，尤其是当您要保留原本文件的属性时。</p><p> <strong>在文件夹当中，比某个日期新的文件才备份</strong>：</p><pre>
+tar -N &quot;2012/11/13&quot; -zcvf log17.tar.gz test</pre><p> <strong>备份文件夹内容是排除部分文件：</strong></p><pre>
+tar --exclude scf/<span class="wp_keywordlink"><a href="service.html" title="service命令" target="_blank">service</a></span> -zcvf scf.tar.gz scf/*</pre><p> <strong>其实最简单的使用 tar 就只要记忆底下的方式即可：</strong></p><pre>
+压　缩：tar -jcv -f filename.tar.bz2 要被压缩的文件或目录名称
+查　询：tar -jtv -f filename.tar.bz2
+解压缩：tar -jxv -f filename.tar.bz2 -C 欲解压缩的目录</pre></div></div><div id="sidebar" class="left"><div class="box"><h3 class="title">相关命令</h3><ul class="body list-col-1 clearfix"><li><a href="znew.html" title="znew">znew</a></li><li><a href="zfore.html" title="zfore">zfore</a></li><li><a href="compress.html" title="compress">compress</a></li><li><a href="arj.html" title="arj">arj</a></li><li><a href="bzcmp.html" title="bzcmp">bzcmp</a></li><li><a href="unarj.html" title="unarj">unarj</a></li><li><a href="gzexe.html" title="gzexe">gzexe</a></li><li><a href="bzgrep.html" title="bzgrep">bzgrep</a></li><li><a href="bzmore.html" title="bzmore">bzmore</a></li><li><a href="bzip2recover.html" title="bzip2recover">bzip2recover</a></li><li><a href="bzless.html" title="bzless">bzless</a></li><li><a href="uncompress.html" title="uncompress">uncompress</a></li><li><a href="zcat.html" title="zcat">zcat</a></li><li><a href="unzip.html" title="unzip">unzip</a></li><li><a href="zip.html" title="zip">zip</a></li><li><a href="zipinfo.html" title="zipinfo">zipinfo</a></li><li><a href="lha.html" title="lha">lha</a></li><li><a href="bunzip2.html" title="bunzip2">bunzip2</a></li><li><a href="gzip.html" title="gzip">gzip</a></li><li><a href="gunzip.html" title="gunzip">gunzip</a></li></ul></div><div id="sidebar_search_box" class="box"><form action="https://man.niaoge.com/" method="post"> <input class="search-input " type="text" name="ss" id="ss" value="命令直达(输入完整命令)" onfocus="if (value =='命令直达(输入完整命令)'){value =''}" onblur="if (value ==''){value='命令直达(输入完整命令)'}"/> <input class="search-submit button mobile-visible" type="submit" value="进入"/></form></div><div class="box"><h3 class="title"><a href="download/index.html">Linux下载</a></h3><ul class="body list-col-1 clearfix"><li><a href="download/Ubuntu.html">Ubuntu下载</a></li><li><a href="download/CentOS.html">CentOS下载</a></li></ul></div></div></div> ﻿<div id="footer-wrap"><div id="btn-backtop" title="返回顶部">返回顶部↑</div><div id="footer"><div class="info box"> <a href="index.html" title="Linux命令大全">Linux命令大全</a> <span class="split"></span> <a href="about_us.html" title="关于/联系">关于/联系</a> <span class="split"></span> 收藏本站请使用Ctrl+D <span class="split"></span> <a href="shell-script/index.html" target="_blank">Shell脚本攻略</a> <span class="split"></span> <a href="shell-regex.html" target="_blank">Shell正则表达式</a> <span class="split"></span> 共收录 <span style="font-size: 16px; color:#74b147;">581</span> 条Linux系统命令</div><div class="desc box">在Linux命令大全（man.niaoge.com）可以查询您所需要的Linux命令教程和相关实例。如果您觉得本站内容对您有所帮助，请推荐给更多需要帮助的人。</div></div></div> <script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?9afbd88b4e674f3b4af0a760c48a00ac"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script></body>
+<!-- Mirrored from man.niaoge.com/tar by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Jan 2026 15:04:27 GMT -->
+</html>
