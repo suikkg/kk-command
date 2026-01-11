@@ -1319,5 +1319,455 @@
     "command": "git stash pop",
     "params": "应用并删除最新 stash",
     "notes": "若冲突需手动解决"
+  },
+  {
+    "id": "readline-beginning-of-line",
+    "category": "Readline",
+    "sub": "光标移动",
+    "scene": "跳到行首",
+    "command": "Ctrl + A",
+    "params": "光标移到当前行开头",
+    "notes": "默认 Emacs 模式快捷键，常用"
+  },
+  {
+    "id": "readline-end-of-line",
+    "category": "Readline",
+    "sub": "光标移动",
+    "scene": "跳到行尾",
+    "command": "Ctrl + E",
+    "params": "光标移到当前行末尾",
+    "notes": "常用，长命令快速定位"
+  },
+  {
+    "id": "readline-forward-char",
+    "category": "Readline",
+    "sub": "光标移动",
+    "scene": "前移一个字符",
+    "command": "Ctrl + F",
+    "params": "向前移动一个字符",
+    "notes": "等价方向键 →"
+  },
+  {
+    "id": "readline-forward-word",
+    "category": "Readline",
+    "sub": "光标移动",
+    "scene": "前移一个单词",
+    "command": "Alt + F",
+    "params": "按单词向前跳转",
+    "notes": "常用，快速略过参数"
+  },
+  {
+    "id": "readline-backward-char",
+    "category": "Readline",
+    "sub": "光标移动",
+    "scene": "后移一个字符",
+    "command": "Ctrl + B",
+    "params": "向后移动一个字符",
+    "notes": "等价方向键 ←"
+  },
+  {
+    "id": "readline-backward-word",
+    "category": "Readline",
+    "sub": "光标移动",
+    "scene": "后移一个单词",
+    "command": "Alt + B",
+    "params": "按单词向后跳转",
+    "notes": "与 Alt + F 反向成对使用"
+  },
+  {
+    "id": "readline-delete-char",
+    "category": "Readline",
+    "sub": "剪切删除",
+    "scene": "删除光标处字符",
+    "command": "Ctrl + D",
+    "params": "删除当前字符；行尾发送 EOF",
+    "notes": "光标在行尾时可直接退出 shell"
+  },
+  {
+    "id": "readline-kill-word-forward",
+    "category": "Readline",
+    "sub": "剪切删除",
+    "scene": "删除光标后的单词",
+    "command": "Alt + D",
+    "params": "从光标起删到单词结尾",
+    "notes": "常用来清理多余参数"
+  },
+  {
+    "id": "readline-kill-word-backward",
+    "category": "Readline",
+    "sub": "剪切删除",
+    "scene": "删除光标前的单词",
+    "command": "Ctrl + W",
+    "params": "向前删除一个单词",
+    "notes": "删除路径或参数时好用（常用）"
+  },
+  {
+    "id": "readline-kill-line-end",
+    "category": "Readline",
+    "sub": "剪切删除",
+    "scene": "删除到行尾",
+    "command": "Ctrl + K",
+    "params": "从光标删到行尾",
+    "notes": "删除内容会进入剪贴环"
+  },
+  {
+    "id": "readline-kill-line-start",
+    "category": "Readline",
+    "sub": "剪切删除",
+    "scene": "删除到行首",
+    "command": "Ctrl + U",
+    "params": "从行首删到光标位置",
+    "notes": "清空误输入（如密码）很常用"
+  },
+  {
+    "id": "readline-history-search-back",
+    "category": "Readline",
+    "sub": "历史与搜索",
+    "scene": "反向搜索历史",
+    "command": "Ctrl + R",
+    "params": "增量搜索更早的命令",
+    "notes": "重复 Ctrl + R 继续向上；Esc 退出搜索"
+  },
+  {
+    "id": "readline-history-search-forward",
+    "category": "Readline",
+    "sub": "历史与搜索",
+    "scene": "正向搜索历史",
+    "command": "Ctrl + S",
+    "params": "从当前位置向前搜索",
+    "notes": "若被终端流控占用，可先运行 stty -ixon"
+  },
+  {
+    "id": "readline-history-prev",
+    "category": "Readline",
+    "sub": "历史与搜索",
+    "scene": "上一条历史命令",
+    "command": "Ctrl + P",
+    "params": "向上浏览历史",
+    "notes": "等价方向键 ↑"
+  },
+  {
+    "id": "readline-history-next",
+    "category": "Readline",
+    "sub": "历史与搜索",
+    "scene": "下一条历史命令",
+    "command": "Ctrl + N",
+    "params": "向下浏览历史",
+    "notes": "等价方向键 ↓"
+  },
+  {
+    "id": "readline-history-first",
+    "category": "Readline",
+    "sub": "历史与搜索",
+    "scene": "跳到历史顶部",
+    "command": "Alt + <",
+    "params": "直接跳到最早的命令",
+    "notes": "配合 Alt + > 快速首尾跳转"
+  },
+  {
+    "id": "readline-history-last",
+    "category": "Readline",
+    "sub": "历史与搜索",
+    "scene": "跳到历史底部",
+    "command": "Alt + >",
+    "params": "返回最近一条命令",
+    "notes": "与 Alt + < 反向成对使用"
+  },
+  {
+    "id": "readline-transpose-chars",
+    "category": "Readline",
+    "sub": "编辑变换",
+    "scene": "交换光标前后字符",
+    "command": "Ctrl + T",
+    "params": "互换光标前后两个字符",
+    "notes": "拼写纠错时快捷"
+  },
+  {
+    "id": "readline-transpose-words",
+    "category": "Readline",
+    "sub": "编辑变换",
+    "scene": "交换前后单词",
+    "command": "Alt + T",
+    "params": "互换当前与前一个单词",
+    "notes": "调整参数顺序很快"
+  },
+  {
+    "id": "readline-uppercase-word",
+    "category": "Readline",
+    "sub": "编辑变换",
+    "scene": "单词转大写",
+    "command": "Alt + U",
+    "params": "将光标后的单词大写",
+    "notes": "适合环境变量等全大写场景"
+  },
+  {
+    "id": "readline-lowercase-word",
+    "category": "Readline",
+    "sub": "编辑变换",
+    "scene": "单词转小写",
+    "command": "Alt + L",
+    "params": "将光标后的单词小写",
+    "notes": "整理命令/域名时常用"
+  },
+  {
+    "id": "readline-capitalize-word",
+    "category": "Readline",
+    "sub": "编辑变换",
+    "scene": "单词首字母大写",
+    "command": "Alt + C",
+    "params": "单词首字母大写，其余小写",
+    "notes": "标题式大小写调整"
+  },
+  {
+    "id": "readline-yank",
+    "category": "Readline",
+    "sub": "粘贴/撤销",
+    "scene": "粘贴上次删除",
+    "command": "Ctrl + Y",
+    "params": "粘贴最近一次剪切内容",
+    "notes": "Readline 剪贴环 yank"
+  },
+  {
+    "id": "readline-yank-pop",
+    "category": "Readline",
+    "sub": "粘贴/撤销",
+    "scene": "切换更早的粘贴内容",
+    "command": "Alt + Y",
+    "params": "在 yank 后轮换更早删除",
+    "notes": "需紧跟 Ctrl + Y 使用"
+  },
+  {
+    "id": "readline-undo",
+    "category": "Readline",
+    "sub": "粘贴/撤销",
+    "scene": "撤销上一步编辑",
+    "command": "Ctrl + _",
+    "params": "撤销最近一次修改",
+    "notes": "部分终端可用 Ctrl + / 或 Ctrl + X Ctrl + U"
+  },
+  {
+    "id": "readline-edit-in-editor",
+    "category": "Readline",
+    "sub": "编辑器",
+    "scene": "用外部编辑器编辑命令",
+    "command": "Ctrl + X Ctrl + E",
+    "params": "在默认 $EDITOR 中打开当前命令行",
+    "notes": "多行命令编辑完保存即执行"
+  },
+  {
+    "id": "readline-clear-screen",
+    "category": "Readline",
+    "sub": "其他",
+    "scene": "清屏并重绘提示符",
+    "command": "Ctrl + L",
+    "params": "清理屏幕输出但保留历史",
+    "notes": "等价 clear，刷屏时常用"
+  },
+  {
+    "id": "readline-abort",
+    "category": "Readline",
+    "sub": "其他",
+    "scene": "取消当前输入",
+    "command": "Ctrl + G",
+    "params": "中止当前编辑或搜索",
+    "notes": "退出增量搜索/粘贴错误时使用"
+  },
+  {
+    "id": "readline-vim-insert-mode",
+    "category": "Readline",
+    "sub": "Vim",
+    "scene": "切换到插入模式",
+    "command": "i",
+    "params": "普通模式按 i 在光标处插入",
+    "notes": "Esc 返回普通模式"
+  },
+  {
+    "id": "readline-vim-save",
+    "category": "Readline",
+    "sub": "Vim",
+    "scene": "保存当前文件",
+    "command": ":w",
+    "params": "普通模式输入 :w 回车",
+    "notes": "保存但不退出"
+  },
+  {
+    "id": "readline-vim-save-quit",
+    "category": "Readline",
+    "sub": "Vim",
+    "scene": "保存并退出",
+    "command": ":wq",
+    "params": "写入文件后退出",
+    "notes": "同 :x，可用 ZZ 快捷"
+  },
+  {
+    "id": "readline-vim-quit-without-save",
+    "category": "Readline",
+    "sub": "Vim",
+    "scene": "放弃修改退出",
+    "command": ":q!",
+    "params": "强制退出不保存",
+    "notes": "编辑错误时常用"
+  },
+  {
+    "id": "readline-vim-undo",
+    "category": "Readline",
+    "sub": "Vim",
+    "scene": "撤销上一步",
+    "command": "u",
+    "params": "普通模式撤销一条修改",
+    "notes": "可多次撤销；U 还原整行"
+  },
+  {
+    "id": "readline-vim-redo",
+    "category": "Readline",
+    "sub": "Vim",
+    "scene": "重做撤销的修改",
+    "command": "Ctrl + R",
+    "params": "恢复最近被撤销的操作",
+    "notes": "配合 u 反向操作"
+  },
+  {
+    "id": "readline-vim-delete-line",
+    "category": "Readline",
+    "sub": "Vim",
+    "scene": "删除/剪切当前行",
+    "command": "dd",
+    "params": "删除光标所在行并放入寄存器",
+    "notes": "可加数字批量删除，如 3dd"
+  },
+  {
+    "id": "readline-vim-yank-line",
+    "category": "Readline",
+    "sub": "Vim",
+    "scene": "复制当前行",
+    "command": "yy",
+    "params": "复制当前行到默认寄存器",
+    "notes": "可加数字复制多行，如 5yy"
+  },
+  {
+    "id": "readline-vim-paste",
+    "category": "Readline",
+    "sub": "Vim",
+    "scene": "在光标后粘贴",
+    "command": "p",
+    "params": "使用最近一次删除/复制的内容",
+    "notes": "P 可在光标前粘贴"
+  },
+  {
+    "id": "readline-vim-top-bottom",
+    "category": "Readline",
+    "sub": "Vim",
+    "scene": "快速跳转文件首尾",
+    "command": "gg / G",
+    "params": "gg 跳到首行；G 跳到末行",
+    "notes": "可用行号 nG 直接跳到第 n 行"
+  },
+  {
+    "id": "readline-vim-search",
+    "category": "Readline",
+    "sub": "Vim",
+    "scene": "向前搜索文本",
+    "command": "/pattern",
+    "params": "输入 /关键字 回车查找",
+    "notes": "n 查找下一个，N 查找上一个"
+  },
+  {
+    "id": "readline-vim-replace",
+    "category": "Readline",
+    "sub": "Vim",
+    "scene": "全局替换文本",
+    "command": ":%s/old/new/g",
+    "params": "在全文件替换 old 为 new",
+    "notes": "追加 c 逐条确认：:%s/old/new/gc"
+  },
+  {
+    "id": "readline-nano-save",
+    "category": "Readline",
+    "sub": "Nano",
+    "scene": "保存文件",
+    "command": "Ctrl + O",
+    "params": "写出当前缓冲区到文件",
+    "notes": "提示文件名后回车保存"
+  },
+  {
+    "id": "readline-nano-exit",
+    "category": "Readline",
+    "sub": "Nano",
+    "scene": "退出 nano",
+    "command": "Ctrl + X",
+    "params": "关闭编辑器，必要时提示保存",
+    "notes": "若未保存会先询问"
+  },
+  {
+    "id": "readline-nano-search",
+    "category": "Readline",
+    "sub": "Nano",
+    "scene": "搜索文本",
+    "command": "Ctrl + W",
+    "params": "输入关键字查找下一处",
+    "notes": "重复 Ctrl + W 查找下一个"
+  },
+  {
+    "id": "readline-nano-replace",
+    "category": "Readline",
+    "sub": "Nano",
+    "scene": "查找并替换",
+    "command": "Ctrl + \\\\",
+    "params": "输入搜索与替换内容",
+    "notes": "可逐条确认替换"
+  },
+  {
+    "id": "readline-nano-cut-line",
+    "category": "Readline",
+    "sub": "Nano",
+    "scene": "剪切当前行",
+    "command": "Ctrl + K",
+    "params": "剪切光标所在行到缓冲区",
+    "notes": "连续按可剪切多行"
+  },
+  {
+    "id": "readline-nano-paste",
+    "category": "Readline",
+    "sub": "Nano",
+    "scene": "粘贴剪切内容",
+    "command": "Ctrl + U",
+    "params": "在光标处插入剪切缓冲区",
+    "notes": "配合 Ctrl + K 剪切使用"
+  },
+  {
+    "id": "readline-nano-mark",
+    "category": "Readline",
+    "sub": "Nano",
+    "scene": "开始/结束选区",
+    "command": "Ctrl + ^",
+    "params": "设置标记用于块操作",
+    "notes": "Ctrl + ^ 即 Ctrl + 6，选中后可剪切/复制"
+  },
+  {
+    "id": "readline-nano-goto-line",
+    "category": "Readline",
+    "sub": "Nano",
+    "scene": "跳转到行号",
+    "command": "Ctrl + _",
+    "params": "输入行号（可带列号）",
+    "notes": "快速定位到指定位置"
+  },
+  {
+    "id": "readline-nano-page",
+    "category": "Readline",
+    "sub": "Nano",
+    "scene": "翻页浏览",
+    "command": "Ctrl + Y / Ctrl + V",
+    "params": "Ctrl + Y 上翻一页；Ctrl + V 下翻一页",
+    "notes": "快速滚动长文件"
+  },
+  {
+    "id": "readline-nano-help",
+    "category": "Readline",
+    "sub": "Nano",
+    "scene": "查看 nano 帮助",
+    "command": "Ctrl + G",
+    "params": "打开内置帮助与快捷键列表",
+    "notes": "记不住快捷键时可随时查看"
   }
 ]
