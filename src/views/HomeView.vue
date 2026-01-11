@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import { useDark, useToggle } from '@vueuse/core'
+import { computed, onMounted, ref } from 'vue'
+import { useDark, useToggle, useWindowScroll } from '@vueuse/core'
 import CommandCard from '@/components/CommandCard.vue'
 import CommandModal from '@/components/CommandModal.vue'
 import { useCommandStore } from '@/stores/command'
@@ -18,6 +18,9 @@ const isDark = useDark({
 })
 const toggleDark = useToggle(isDark)
 
+const { y } = useWindowScroll()
+const showBackToTop = computed(() => y.value > 520)
+
 onMounted(() => {
   store.loadCommands()
 })
@@ -28,6 +31,11 @@ function openModal(command: Command) {
 
 function closeModal() {
   selectedCommand.value = null
+}
+
+function handleCategorySelect(event: Event) {
+  const value = (event.target as HTMLSelectElement).value
+  store.setCategory(value)
 }
 
 function handleSearchEnter() {
@@ -45,6 +53,10 @@ function clearSearch() {
 function handleFavOnly(event: Event) {
   const checked = (event.target as HTMLInputElement).checked
   store.setFavOnly(checked)
+}
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 </script>
 
@@ -105,7 +117,20 @@ function handleFavOnly(event: Event) {
           <span v-if="!store.history.length" class="text-sm text-slate-500 dark:text-slate-400">暂无记录</span>
         </div>
 
-        <div class="flex gap-2 overflow-x-auto pb-1">
+        <div class="flex flex-col gap-2 md:hidden">
+          <span class="text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">分类</span>
+          <select
+            :value="store.activeCategory"
+            class="w-full rounded-xl border border-slate-200 bg-white px-3 py-3 text-base text-slate-900 shadow-sm outline-none transition focus:border-blue-400 focus:ring-2 focus:ring-blue-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-50 dark:focus:border-blue-500 dark:focus:ring-blue-900/40"
+            @change="handleCategorySelect"
+          >
+            <option v-for="cat in store.categories" :key="cat" :value="cat">
+              {{ cat === 'all' ? '全部' : cat }}
+            </option>
+          </select>
+        </div>
+
+        <div class="hidden gap-2 overflow-x-auto pb-1 md:flex">
           <button
             v-for="cat in store.categories"
             :key="cat"
@@ -156,5 +181,16 @@ function handleFavOnly(event: Event) {
     </div>
 
     <CommandModal v-if="selectedCommand" :command="selectedCommand" @close="closeModal" />
+
+    <button
+      v-show="showBackToTop && !selectedCommand"
+      type="button"
+      class="fixed right-4 z-40 rounded-full bg-slate-900/90 px-4 py-3 text-sm font-medium text-white shadow-lg backdrop-blur transition hover:bg-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:bg-slate-50/90 dark:text-slate-900 dark:hover:bg-slate-50"
+      style="bottom: calc(env(safe-area-inset-bottom) + 1rem);"
+      aria-label="返回顶部"
+      @click="scrollToTop"
+    >
+      ↑ 返回顶部
+    </button>
   </div>
 </template>

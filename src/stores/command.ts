@@ -24,7 +24,10 @@ export const useCommandStore = defineStore('commands', () => {
 
   const categories = computed(() => {
     const set = new Set<string>(commands.value.map((c) => c.category))
-    return ['all', ...Array.from(set)]
+    const rest = Array.from(set).sort((a, b) =>
+      a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }),
+    )
+    return ['all', ...rest]
   })
 
   const filteredCommands = computed(() => {
